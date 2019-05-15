@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Cards from "./components/Cards"
+import API from "./utils/API";
 
 class App extends Component {
-  
+
   state = {
     text: ""
   }
@@ -10,15 +11,22 @@ class App extends Component {
   handleInputChange = key => event => {
     const value = event.target.value;
     this.setState({
-      [key]:value
+      [key]: value
     });
   };
 
   handleFormSubmit = event => {
     event.preventDefault();
-    
+    this.saveConcept(`${this.state.text}`)
+    // alert(`Text: ${this.state.text}`)
   }
-  
+
+  saveConcept = query => {
+    API.saveConcept(query)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  }
+
   render() {
     return (
       <div>
@@ -29,7 +37,7 @@ class App extends Component {
             onChange={this.handleInputChange("text")}
             type="text"
             placeholder="Concept 1"
-            />
+          />
         </form>
       </div>
       // <Cards />
