@@ -1,5 +1,20 @@
 import axios from "axios";
 
 export default {
-
+  // Gets all books
+  getConcepts: function() {
+    return axios.get("/api/concepts");
+  },
+  // Gets the book with the given id
+  getConcept: function(id) {
+    return axios.get("/api/concept/" + id);
+  },
+  // Deletes the book with the given id
+  deleteConcept: function(id) {
+    return axios.delete("/api/concept/" + id);
+  },
+  // Saves a book to the database
+  saveConcept: function(conceptData) {
+    return axios.post("/api/concepts", conceptData);
+  }
 };
