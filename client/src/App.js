@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import Cards from "./components/Cards"
+// import Cards from "./components/Cards"
 import API from "./utils/API";
+
 
 class App extends Component {
 
@@ -28,6 +29,7 @@ class App extends Component {
   }
 
   render() {
+    
     return (
       <div>
         <h1>Topic</h1>
@@ -38,7 +40,9 @@ class App extends Component {
             type="text"
             placeholder="Concept 1"
           />
+           <button onClick={this.handleSubmitForm}>Submit</button>
         </form>
+       
       </div>
       // <Cards />
     )
