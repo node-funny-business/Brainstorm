@@ -1,16 +1,17 @@
 const router = require("express").Router();
-const brainstormController = require("../../controllers/brainstormController");
+const conceptController = require("../../controllers/conceptController");
 
 // Matches with "/api/books"
 router.route("/")
-  .get(brainstormController.findAll)
-  .post(brainstormController.create);
+  .get(conceptController.findAll)
+  .post(conceptController.create);
 
 // Matches with "/api/books/:id"
 router
   .route("/:id")
-  .get(brainstormController.findById)
-  .put(brainstormController.update)
-  .delete(brainstormController.remove);
+  .get(conceptController.findById)
+  .put(conceptController.update)
+  //possibly remove this method
+  .delete(conceptController.remove);
 
 module.exports = router;
