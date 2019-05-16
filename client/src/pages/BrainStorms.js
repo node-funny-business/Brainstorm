@@ -1,8 +1,8 @@
 import React from "react";
 import Nav from "../components/Nav"
 
-function Instructions() {
+function BrainStorms() {
     return <Nav />
 }
 
-export default Instructions;
+export default BrainStorms;
