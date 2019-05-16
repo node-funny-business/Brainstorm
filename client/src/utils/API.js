@@ -14,7 +14,8 @@ export default {
     return axios.delete("/api/concept/" + id);
   },
   // Saves a concept to the database
-  saveConcept: function(conceptData) {
-    return axios.post("/api/concepts", conceptData);
+  saveConcept: function(Data) {
+    return axios.post("/api/concepts", Data);
   }
 };
+
