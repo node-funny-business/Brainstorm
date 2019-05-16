@@ -1,6 +1,6 @@
 const db = require("../models");
 
-// Defining methods for the booksController
+// Defining methods for the conceptController
 module.exports = {
   findAll: function(req, res) {
     // take off 'db.Book' and replace with db.(collection_name)

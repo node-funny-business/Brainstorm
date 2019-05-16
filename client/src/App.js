@@ -1,24 +1,52 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Books from "./pages/Books";
-import Detail from "./pages/Detail";
-import NoMatch from "./pages/NoMatch";
-import Nav from "./components/Nav";
+import React, { Component } from "react";
+// import Cards from "./components/Cards"
+import API from "./utils/API";
 
-function App() {
-  return (
-    <Router>
+
+class App extends Component {
+
+  state = {
+    text: ""
+  }
+
+  handleInputChange = key => event => {
+    const value = event.target.value;
+    this.setState({
+      [key]: value
+    });
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+    this.saveConcept(`${this.state.text}`)
+    // alert(`Text: ${this.state.text}`)
+  }
+
+  saveConcept = query => {
+    API.saveConcept(query)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  }
+
+  render() {
+    
+    return (
       <div>
-        <Nav />
-        <Switch>
-          <Route exact path="/" component={Books} />
-          <Route exact path="/books" component={Books} />
-          <Route exact path="/books/:id" component={Detail} />
-          <Route component={NoMatch} />
-        </Switch>
+        <h1>Topic</h1>
+        <form className="form" onSubmit={this.handleFormSubmit}>
+          <input
+            value={this.state.text}
+            onChange={this.handleInputChange("text")}
+            type="text"
+            placeholder="Concept 1"
+          />
+           <button onClick={this.handleSubmitForm}>Submit</button>
+        </form>
+       
       </div>
-    </Router>
-  );
+      // <Cards />
+    )
+  };
 }
 
 export default App;
