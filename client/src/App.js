@@ -9,28 +9,28 @@ import SignIn from "./pages/SignIn";
 
 class App extends Component {
 
-  state = {
-    text: ""
-  }
+  // state = {
+  //   text: ""
+  // }
 
-  handleInputChange = key => event => {
-    const value = event.target.value;
-    this.setState({
-      [key]: value
-    });
-  };
+  // handleInputChange = key => event => {
+  //   const value = event.target.value;
+  //   this.setState({
+  //     [key]: value
+  //   });
+  // };
 
-  handleFormSubmit = event => {
-    event.preventDefault();
-    this.saveConcept(`${this.state.text}`)
-    // alert(`Text: ${this.state.text}`)
-  }
+  // handleFormSubmit = event => {
+  //   event.preventDefault();
+  //   this.saveConcept(`${this.state.text}`)
+  //   // alert(`Text: ${this.state.text}`)
+  // }
 
-  saveConcept = query => {
-    API.saveConcept(query)
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
-  }
+  // saveConcept = query => {
+  //   API.saveConcept(query)
+  //     .then(res => console.log(res))
+  //     .catch(err => console.log(err));
+  // }
 
   render() {
     return (
