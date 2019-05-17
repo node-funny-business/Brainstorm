@@ -7,18 +7,18 @@ class App extends Component {
 
   state = {
     text: "",
-    searchResults: ""
+    results: []
   }
 
-  componentWillMount() {
-    this.getAll();
-  }
+  // componentWillMount() {
+  //   this.getAll();
+  // }
 
 
   handleFormSubmit = event => {
     event.preventDefault();
     this.saveConcept(`${this.state.text}`)
-    this.getAll();
+    // this.getAll();
     // alert(`Text: ${this.state.text}`)
   }
 
@@ -35,18 +35,18 @@ class App extends Component {
     });
   };
 
-  getAll = () => {
-    API.getConcepts()
-      .then(res => this.setState({ searchResults: res.data }))
-      .catch(err => console.log(err));
-  }
+  // getAll = () => {
+  //   API.getConcepts()
+  //     .then(res => this.setState({ results: res.data }))
+  //     .catch(err => console.log(err));
+  // }
 
   render() {
     
     return (
       <div>
         <h1>Topic</h1>
-        <p>Get text: {JSON.stringify(this.state.searchResults)}</p>
+        {/* <p>Get text: {JSON.stringify(this.state.results)}</p> */}
         <form className="form" onSubmit={this.handleFormSubmit}>
           <input
             value={this.state.text}
@@ -54,7 +54,7 @@ class App extends Component {
             type="text"
             placeholder="Concept 1"
           />
-           {/* <button onClick={this.handleSubmitForm}>Submit</button> */}
+           <button onClick={this.handleSubmitForm}>Submit</button>
         </form>
       <div>
 
