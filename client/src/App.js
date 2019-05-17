@@ -1,8 +1,11 @@
 import React, { Component } from "react";
-import Cards from "./components/Cards"
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import API from "./utils/API";
 import AboutUs from "./pages/AboutUs"
+import Instructions from "./pages/Instructions"
+import MyAccount from "./pages/MyAccount"
 import Home from "./pages/Home";
+import SignIn from "./pages/SignIn";
 
 class App extends Component {
 
@@ -42,8 +45,15 @@ class App extends Component {
       //     />
       //   </form>
       // </div>
-      // <Cards />
-      <Home />
+      <div>
+        <Router>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/aboutus" component={AboutUs} />
+          <Route exact path="/instructions" component={Instructions} />
+          <Route exact path="/myaccount" component={MyAccount} />
+        </Router>
+      </div>
+      // <SignIn />
     )
   };
 }

@@ -10,6 +10,7 @@ import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import { Link } from 'react-router-dom'
 
 const styles = theme => ({
   root: {
@@ -43,29 +44,9 @@ const styles = theme => ({
       width: 'auto',
     },
   },
-  searchIcon: {
-    width: theme.spacing.unit * 9,
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   inputRoot: {
     color: 'inherit',
     width: '100%',
-  },
-  inputInput: {
-    paddingTop: theme.spacing.unit,
-    paddingRight: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit,
-    paddingLeft: theme.spacing.unit * 10,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: 200,
-    },
   },
   sectionDesktop: {
     display: 'none',
@@ -124,9 +105,15 @@ class Nav extends React.Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleMenuClose}>Home</MenuItem>
-        <MenuItem onClick={this.handleMenuClose}>About Us</MenuItem>
-        <MenuItem onClick={this.handleMenuClose}>Instructions</MenuItem>
+        <MenuItem onClick={this.handleMenuClose}>
+          <Link to="/">Home</Link>
+        </MenuItem>
+        <MenuItem onClick={this.handleMenuClose}>
+          <Link to="/aboutus">About</Link>
+        </MenuItem>
+        <MenuItem onClick={this.handleMenuClose}>
+          <Link to="/instructions">Instructions</Link>
+        </MenuItem>
       </Menu>
     );
 
@@ -148,7 +135,13 @@ class Nav extends React.Component {
           <IconButton color="inherit">
           <i class="material-icons">flash_on</i>
           </IconButton>
-          <p>BrainStorms</p>
+          <p><Link to="/myaccount">My Brainstorms</Link></p>
+        </MenuItem>
+        <MenuItem onClick={this.handleMobileMenuClose}>
+          <IconButton color="inherit">
+          <i class="material-icons">account_circle</i>
+          </IconButton>
+          <p><Link to="/myaccount">Log Out</Link></p>
         </MenuItem>
       </Menu>
     );
@@ -170,7 +163,7 @@ class Nav extends React.Component {
         >
         </Menu>
             <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-              BrainStorm
+            <i class="fas fa-brain"></i> BrainStorm
             </Typography>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>

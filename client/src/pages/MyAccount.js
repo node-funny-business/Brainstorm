@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import CardHeader from '@material-ui/core/CardHeader';
 import { CardContent } from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';
+import { spacing } from '@material-ui/system';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -13,7 +14,7 @@ const styles = theme => ({
     }
 })
 
-function Instructions(props) {
+function MyAccount(props) {
     const { classes } = props;
     return (
         <div>
@@ -23,21 +24,20 @@ function Instructions(props) {
                 <Grid item xs={6}>
                     <Card className={classes.card}>
                         <Typography align="center">
-                            <CardHeader title="Instructions" />
+                            <CardHeader title="Username's Brainstorms" />
                         </Typography>
                         <CardContent>
                             <Typography align="center" component="p">
-                                <p>Create as many concepts as you like.</p>
-                                <p>Within your concept, create as many ideas as you like.</p>
-                                <p>Within your idea, create as many steps as are necessary.</p>
+                                <p>Brainstorm 1</p>
+                                <p>Brainstorm 2</p>
+                                <p>Brainstorm 3</p>
                             </Typography>
                         </CardContent>
                     </Card>
                 </Grid>
             </Grid>
         </div>
-            )
-        }
-        
+    )
+}
 
-export default withStyles(styles)(Instructions);
+export default withStyles(styles)(MyAccount);
