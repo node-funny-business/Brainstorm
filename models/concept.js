@@ -17,11 +17,11 @@ const titleOne = new Schema({
         }
           }
       }
+    },
+    userCreated: {
+      type: Date,
+      default: Date.now
     }
-  },
-  date: {
-    type: Date,
-    default: Date.now
   }
 });
 // might have to use new Map
