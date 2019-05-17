@@ -2,18 +2,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const titleOne = new Schema({
-<<<<<<< HEAD
-
-    topic: {
-      name: String,
-      type: String,
-      concepts: {
-        name: String,
-        idea: {
-          name: String,
-          steps: []
-        }
-=======
   topic: {
     name: String,
     type: String,
@@ -28,13 +16,13 @@ const titleOne = new Schema({
           steps: []
         }
           }
->>>>>>> origin/goon2
       }
     },
     userCreated: {
       type: Date,
       default: Date.now
     }
+  }
 });
 // might have to use new Map
 
