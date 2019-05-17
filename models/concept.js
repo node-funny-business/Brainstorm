@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const titleOne = new Schema({
+<<<<<<< HEAD
 
     topic: {
       name: String,
@@ -12,6 +13,22 @@ const titleOne = new Schema({
           name: String,
           steps: []
         }
+=======
+  topic: {
+    name: String,
+    type: String,
+    concepts: {
+      type: Map,
+      of: {
+        name: String,
+        idea: {
+          type: Map,
+          of: {
+            name: String,
+          steps: []
+        }
+          }
+>>>>>>> origin/goon2
       }
     },
     userCreated: {
@@ -19,7 +36,7 @@ const titleOne = new Schema({
       default: Date.now
     }
 });
-
+// might have to use new Map
 
 const Concept = mongoose.model("Concept", titleOne);
 

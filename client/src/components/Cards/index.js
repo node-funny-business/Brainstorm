@@ -9,20 +9,7 @@ import TextField from '@material-ui/core/TextField';
 function Cards() {
   return (
     <Card>
-      <CardHeader title={"Topic"} titleTypographyProps={{ align: 'center' }} />
-      <CardContent>
-        <div>
-          <Typography align={"center"}>
-            <TextField
-              id="outlined-dense"
-              label="Concept"
-              // className={classNames(classes.textField, classes.dense)}
-              margin="dense"
-              variant="outlined"
-            />
-          </Typography>
-        </div>
-      </CardContent>
+      
     </Card>
   );
 }
