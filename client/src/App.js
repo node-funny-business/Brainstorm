@@ -6,19 +6,19 @@ import API from "./utils/API";
 class App extends Component {
 
   state = {
-    text: ""
+    text: "",
+    searchResults: ""
   }
 
-  handleInputChange = key => event => {
-    const value = event.target.value;
-    this.setState({
-      [key]: value
-    });
-  };
+  componentWillMount() {
+    this.getAll();
+  }
+
 
   handleFormSubmit = event => {
     event.preventDefault();
     this.saveConcept(`${this.state.text}`)
+    this.getAll();
     // alert(`Text: ${this.state.text}`)
   }
 
@@ -28,20 +28,37 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
+  handleInputChange = key => event => {
+    const value = event.target.value;
+    this.setState({ 
+      [key]: value
+    });
+  };
+
+  getAll = () => {
+    API.getConcepts()
+      .then(res => this.setState({ searchResults: res.data }))
+      .catch(err => console.log(err));
+  }
+
   render() {
     
     return (
       <div>
         <h1>Topic</h1>
+        <p>Get text: {JSON.stringify(this.state.searchResults)}</p>
         <form className="form" onSubmit={this.handleFormSubmit}>
           <input
             value={this.state.text}
-            onChange={this.handleInputChange("text")}
+            onChange={this.handleInputChange}
             type="text"
             placeholder="Concept 1"
           />
-           <button onClick={this.handleSubmitForm}>Submit</button>
+           {/* <button onClick={this.handleSubmitForm}>Submit</button> */}
         </form>
+      <div>
+
+      </div>
        
       </div>
       // <Cards />
