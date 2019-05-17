@@ -4,54 +4,54 @@ import { withStyles } from "@material-ui/core/styles";
 import FormControl from "@material-ui/core/FormControl";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import Input from "@material-ui/core/Input";
+import Typography from "@material-ui/core/Typography";
 
 const styles = theme => ({
-  container: {
-    display: "flex",
-    flexWrap: "wrap"
-  },
-  formControl: {
-    margin: theme.spacing.unit
-  }
+    container: {
+        display: "flex",
+        flexWrap: "wrap"
+    },
+    formControl: {
+        margin: theme.spacing.unit
+    }
 });
 
-class ConceptText extends React.Component {
-  // state = {
-  //   name: "Composed TextField"
-  // };
 
-  componentDidMount() {
-    this.forceUpdate();
-  }
+function ConceptText(props) {
+    // state = {
+    //   name: "Composed TextField"
+    // };
 
-  handleChange = event => {
-    this.setState({ name: event.target.value });
-  };
+    // componentDidMount() {
+    //     this.forceUpdate();
+    // }
 
-  render() {
-    const { classes } = this.props;
+
+    const { classes } = props;
 
     return (
-      <div className={classes.container}>
-        <FormControl className={classes.formControl}>
-          <Input
-            id="component-helper"
-            value="Concept/Idea/Step"
-            onChange={this.handleChange}
-            aria-describedby="component-helper-text"
-          />
-
-          <FormHelperText id="component-helper-text">
-            Add Concept Here
+        <div className={classes.container}>
+            <FormControl className={classes.formControl}>
+                <Input
+                    id="component-helper"
+                    value={props.value}
+                    onChange={props.onChange}
+                    aria-describedby="component-helper-text"
+                />
+                {/* Testing state */}
+                <Typography>
+                    {props.value}
+                </Typography>
+                <FormHelperText id="component-helper-text">
+                    Add Concept Here
           </FormHelperText>
-        </FormControl>
-      </div>
+            </FormControl>
+        </div>
     );
-  }
 }
 
 ConceptText.propTypes = {
-  classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(ConceptText);
