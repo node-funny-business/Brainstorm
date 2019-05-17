@@ -2,21 +2,22 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const titleOne = new Schema({
-  topic: {
-    name: String,
-    type: String,
-    concept: {
+
+    topic: {
       name: String,
-      idea: {
+      type: String,
+      concepts: {
         name: String,
-        steps: []
+        idea: {
+          name: String,
+          steps: []
+        }
       }
+    },
+    userCreated: {
+      type: Date,
+      default: Date.now
     }
-  },
-  date: {
-    type: Date,
-    default: Date.now
-  }
 });
 
 
