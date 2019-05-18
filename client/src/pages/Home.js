@@ -10,9 +10,12 @@ import API from "../utils/API";
 
 class Home extends React.Component {
     state = {
-        text: "",
-        results: ""
-    }
+        concept:[],
+        idea:[],
+        step:[],
+        currConcept:{},
+        currIdea:{}
+      }
 
     handleChange = key => event => {
         const value = event.target.value;
@@ -27,9 +30,9 @@ class Home extends React.Component {
             .catch(err => console.log(err));
     }
     
-    handleFormSubmit = query => event => {
+    handleConceptSubmit = query => event => {
         event.preventDefault();
-        this.saveConcept(`${this.state.text}`)
+        this.saveConcept(query)
     }
    
 
@@ -44,12 +47,11 @@ class Home extends React.Component {
                                 <CardHeader title="Topic" />
                             </Typography>
                             <CardContent>
-                                <form className='form' onSubmit={this.handleFormSubmit}>
                                 <ConceptText
-                                    onChange={this.handleChange("text")}
-                                    value={this.state.text}
+                                    onChange={this.handleChange("concept")}
+                                    onSubmit={this.handleConceptSubmit(`${this.state.concept}`)}
+                                    value={this.state.concept}
                                 />
-                                </form>
                             </CardContent>
                         </Card>
                     </Grid>

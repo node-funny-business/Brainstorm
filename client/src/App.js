@@ -12,11 +12,6 @@ import Home from "./pages/Home";
 
 class App extends Component {
 
-  // state = {
-  //   text: "",
-  //   results: []
-  // }
-
   // componentWillMount() {
   //   this.getAll();
   // }
