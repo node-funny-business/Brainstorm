@@ -16,17 +16,22 @@ class Home extends React.Component {
 
     handleChange = key => event => {
         const value = event.target.value;
-        this.setState({ 
+        this.setState({
             [key]: value
         });
     };
 
-    handleFormSubmit = query => event => {
-        event.preventDefault();
+    saveConcept = query => {
         API.saveConcept(query)
-            .then(res => this.setState({ results: res.data }))
+            .then(res => console.log(res))
             .catch(err => console.log(err));
     }
+    
+    handleFormSubmit = query => event => {
+        event.preventDefault();
+        this.saveConcept(`${this.state.text}`)
+    }
+   
 
     render() {
         return (
@@ -39,11 +44,12 @@ class Home extends React.Component {
                                 <CardHeader title="Topic" />
                             </Typography>
                             <CardContent>
-                                <ConceptText                     
-                                onChange={this.handleChange("text")}
-                                value={this.state.text} 
-                                onSubmit={this.handleFormSubmit(this.state.text)}
+                                <form className='form' onSubmit={this.handleFormSubmit}>
+                                <ConceptText
+                                    onChange={this.handleChange("text")}
+                                    value={this.state.text}
                                 />
+                                </form>
                             </CardContent>
                         </Card>
                     </Grid>
