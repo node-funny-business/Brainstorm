@@ -6,6 +6,8 @@ import CardHeader from '@material-ui/core/CardHeader';
 import { CardContent } from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';
 import ConceptText from "../components/ConceptText"
+import IdeaText from "../components/IdeaText"
+import StepText from "../components/StepText"
 import API from "../utils/API";
 
 class Home extends React.Component {
@@ -29,10 +31,32 @@ class Home extends React.Component {
             .then(res => console.log(res))
             .catch(err => console.log(err));
     }
+
+    saveIdea = query => {
+        API.saveIdea(query)
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+    }
+
+    saveStep = query => {
+        API.saveStep(query)
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+    }
     
     handleConceptSubmit = query => event => {
         event.preventDefault();
         this.saveConcept(query)
+    }
+
+    handleIdeaSubmit = query => event => {
+        event.preventDefault();
+        this.saveIdea(query)
+    }
+
+    handleStepSubmit = query => event => {
+        event.preventDefault();
+        this.saveStep(query)
     }
    
 
@@ -61,6 +85,11 @@ class Home extends React.Component {
                                 <CardHeader title="Concept" />
                             </Typography>
                             <CardContent>
+                            <IdeaText
+                                    onChange={this.handleChange("idea")}
+                                    onSubmit={this.handleIdeaSubmit(`${this.state.idea}`)}
+                                    value={this.state.idea}
+                                />
                             </CardContent>
                         </Card>
                     </Grid>
@@ -70,6 +99,11 @@ class Home extends React.Component {
                                 <CardHeader title="Idea" />
                             </Typography>
                             <CardContent>
+                            <StepText
+                                    onChange={this.handleChange("step")}
+                                    onSubmit={this.handleStepSubmit(`${this.state.step}`)}
+                                    value={this.state.step}
+                                />
                             </CardContent>
                         </Card>
                     </Grid>
