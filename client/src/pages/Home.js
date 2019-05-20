@@ -107,7 +107,7 @@ class Home extends React.Component {
                         <Grid item xs={4}>
                             <Card backgroundColor="secondary">
                                 <Typography align="center">
-                                    <CardHeader title={this.state.brainstorm.name} />
+                                    <CardHeader title={this.state.brainstorm[0].name} />
                                 </Typography>
                                 <CardContent>
                                     <ConceptText
