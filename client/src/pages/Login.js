@@ -12,6 +12,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+import { withAuth } from "@okta/okta-react";
+import { Link } from 'react-router-dom';
 
 const styles = theme => ({
   main: {
@@ -48,6 +50,31 @@ const styles = theme => ({
 function SignIn(props) {
   const { classes } = props;
 
+
+  state = { authenicated: null };
+
+  checkAuthentication = async () => {
+    const authenticated = await this.props.auth.isAuthenticated();
+    if (authenticated !== this.state.authenticated) {
+      this.setState({ authenticated });
+    }
+  };
+
+  async componentDidMount() {
+    this.checkAuthentication();
+  }
+
+  async componentDidUpdate() {
+    this.checkAuthentication();
+  }
+
+  login = async () => {
+    this.props.auth.login('/');
+  };
+
+  logout = async () => {
+    this.props.auth.logout('/');
+  };
   return (
     <main className={classes.main}>
       <CssBaseline />
@@ -77,6 +104,7 @@ function SignIn(props) {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={this.login}
           >
             Sign in
           </Button>
@@ -99,4 +127,4 @@ SignIn.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SignIn);
+export default withStyles(styles)(withAuth);

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Nav from "../components/Nav"
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
@@ -7,6 +7,7 @@ import { CardContent } from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';
 import ConceptText from "../components/ConceptText"
 import API from "../utils/API";
+
 
 class Home extends React.Component {
     state = {

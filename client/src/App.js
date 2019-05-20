@@ -1,13 +1,18 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Security, SecureRoute, ImplicitCallback } from '@okta/okta-react';
+
 // import API from "./utils/API";
 import AboutUs from "./pages/AboutUs"
 import Instructions from "./pages/Instructions"
 import MyAccount from "./pages/MyAccount"
 import Home from "./pages/Home";
-// import SignIn from "./pages/SignIn";
+import Login from "./components/auth/login";
+import { Switch } from "@material-ui/core";
 
-
+function onAuthRequired({ history }) {
+  history.push('/login');
+}
 
 
 class App extends Component {
@@ -62,15 +67,23 @@ class App extends Component {
       //     />
       //   </form>
       // </div>
-      <div>
       <Router>
-        <Route exact path ='/' component={Home} />
-        <Route exact path ='/aboutus' component={AboutUs} />
-        <Route exact path ='/instructions' component={Instructions} />
-        <Route exact path ='/myaccount' component={MyAccount} />
+
+        <Security issuer='https://dev-363275.okta.com/oauth2/default'
+          client_id='0oam45rndnEWAIpaA356'
+          redirect_uri={window.location.origin + '/implicit/callback'}
+          onAuthRequired={onAuthRequired} >
+          <div className="App">
+            <Route exact={true} path='/' component={Home} />
+            <SecureRoute exact={true} path='/aboutus' component={AboutUs} />
+            <Route exact path='/instructions' component={Instructions} />
+            <Route exact path='/myaccount' component={MyAccount} />
+            <Route path='/login' render={() => <Login baseUrl='https://dev-363275.okta.com' />} />
+            <Route path='/implicit/callback' component={ImplicitCallback} />
+          </div>
+        </Security>
       </Router>
-    </div>
-     
+
     )
   };
 }
