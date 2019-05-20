@@ -10,12 +10,13 @@ import IdeaText from "../components/IdeaText"
 import StepText from "../components/StepText"
 import API from "../utils/API";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import purple from '@material-ui/core/colors/purple';
 import pink from '@material-ui/core/colors/pink';
 
 
 const theme = createMuiTheme({
     palette: {
-      primary: { main: pink[300] },
+      primary: { main: purple[500] },
       secondary: { main: "#D3D3D3" },
     },
     typography: { useNextVariants: true },
@@ -24,8 +25,8 @@ const theme = createMuiTheme({
 
 class Home extends React.Component {
     state = {
-        topic: "",
-        concept: [],
+        brainstorm: [{id:1, name:"Pizza", user_id:1}],
+        concept: [{id:1, name:"Pepperoni", topic_id:1}],
         idea: [],
         step: [],
         currConcept: {},
@@ -33,25 +34,35 @@ class Home extends React.Component {
     }
 
     // GET Request to load data for Topic/Brainstorm
-    componentDidMount() {
-        this.setState(()=>{
-            return
-        })
-    }
+    // componentDidMount() {
+    //     this.setState(()=>{
+    //         return
+    //     })
+    // }
 
     // UPDATE Request to load whenever updated
-    componentDidUpdate(prevProps) {
-        // Typical usage (don't forget to compare props):
-        if (this.props.userID !== prevProps.userID) {
-          this.fetchData(this.props.userID);
-        }
-      }
-
-    handleChange = key => event => {
+    // componentDidUpdate(prevProps) {
+    //     // Typical usage (don't forget to compare props):
+    //     if (this.props.userID !== prevProps.userID) {
+    //       this.fetchData(this.props.userID);
+    //     }
+    //   }
+    
+    // Or should UPDATE be run here?
+    handleChange = (key, index, property) => event => {
         const value = event.target.value;
+        const newState = this.state[key].map((x, i) => {
+            if (i === index) {
+                return Object.assign({}, this.state[key][index], { [property]: value });
+
+            } else {
+                return this.state[key][i];
+            }
+        })
         this.setState({
-            [key]: value
+            [key]: newState
         });
+        // console.log(newState)
     };
 
     saveConcept = query => {
@@ -87,7 +98,6 @@ class Home extends React.Component {
         this.saveStep(query)
     }
 
-
     render() {
         return (
             <div>
@@ -95,15 +105,15 @@ class Home extends React.Component {
                     <Nav color="primary"/>
                     <Grid container spacing={24}>
                         <Grid item xs={4}>
-                            <Card color="secondary">
+                            <Card backgroundColor="secondary">
                                 <Typography align="center">
-                                    <CardHeader title="Topic" />
+                                    <CardHeader title={this.state.brainstorm.name} />
                                 </Typography>
                                 <CardContent>
                                     <ConceptText
-                                        onChange={this.handleChange("concept")}
+                                        onChange={this.handleChange("concept", 0, "name")}
                                         onSubmit={this.handleConceptSubmit(`${this.state.concept}`)}
-                                        value={this.state.concept}
+                                        value={this.state.concept[0].name}
                                     />
                                 </CardContent>
                             </Card>
