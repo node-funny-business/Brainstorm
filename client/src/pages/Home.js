@@ -9,14 +9,42 @@ import ConceptText from "../components/ConceptText"
 import IdeaText from "../components/IdeaText"
 import StepText from "../components/StepText"
 import API from "../utils/API";
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import pink from '@material-ui/core/colors/pink';
+
+
+const theme = createMuiTheme({
+    palette: {
+      primary: { main: pink[300] },
+      secondary: { main: "#D3D3D3" },
+    },
+    typography: { useNextVariants: true },
+  });
+
 
 class Home extends React.Component {
     state = {
-        concept:[],
-        idea:[],
-        step:[],
-        currConcept:{},
-        currIdea:{}
+        topic: "",
+        concept: [],
+        idea: [],
+        step: [],
+        currConcept: {},
+        currIdea: {}
+    }
+
+    // GET Request to load data for Topic/Brainstorm
+    componentDidMount() {
+        this.setState(()=>{
+            return
+        })
+    }
+
+    // UPDATE Request to load whenever updated
+    componentDidUpdate(prevProps) {
+        // Typical usage (don't forget to compare props):
+        if (this.props.userID !== prevProps.userID) {
+          this.fetchData(this.props.userID);
+        }
       }
 
     handleChange = key => event => {
@@ -43,7 +71,7 @@ class Home extends React.Component {
             .then(res => console.log(res))
             .catch(err => console.log(err));
     }
-    
+
     handleConceptSubmit = query => event => {
         event.preventDefault();
         this.saveConcept(query)
@@ -58,56 +86,58 @@ class Home extends React.Component {
         event.preventDefault();
         this.saveStep(query)
     }
-   
+
 
     render() {
         return (
             <div>
-                <Nav />
-                <Grid container spacing={24}>
-                    <Grid item xs={4}>
-                        <Card>
-                            <Typography align="center">
-                                <CardHeader title="Topic" />
-                            </Typography>
-                            <CardContent>
-                                <ConceptText
-                                    onChange={this.handleChange("concept")}
-                                    onSubmit={this.handleConceptSubmit(`${this.state.concept}`)}
-                                    value={this.state.concept}
-                                />
-                            </CardContent>
-                        </Card>
+                <MuiThemeProvider theme={theme}>
+                    <Nav color="primary"/>
+                    <Grid container spacing={24}>
+                        <Grid item xs={4}>
+                            <Card color="secondary">
+                                <Typography align="center">
+                                    <CardHeader title="Topic" />
+                                </Typography>
+                                <CardContent>
+                                    <ConceptText
+                                        onChange={this.handleChange("concept")}
+                                        onSubmit={this.handleConceptSubmit(`${this.state.concept}`)}
+                                        value={this.state.concept}
+                                    />
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Card>
+                                <Typography align="center">
+                                    <CardHeader title="Concept" />
+                                </Typography>
+                                <CardContent>
+                                    <IdeaText
+                                        onChange={this.handleChange("idea")}
+                                        onSubmit={this.handleIdeaSubmit(`${this.state.idea}`)}
+                                        value={this.state.idea}
+                                    />
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Card>
+                                <Typography align="center">
+                                    <CardHeader title="Idea" />
+                                </Typography>
+                                <CardContent>
+                                    <StepText
+                                        onChange={this.handleChange("step")}
+                                        onSubmit={this.handleStepSubmit(`${this.state.step}`)}
+                                        value={this.state.step}
+                                    />
+                                </CardContent>
+                            </Card>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={4}>
-                        <Card>
-                            <Typography align="center">
-                                <CardHeader title="Concept" />
-                            </Typography>
-                            <CardContent>
-                            <IdeaText
-                                    onChange={this.handleChange("idea")}
-                                    onSubmit={this.handleIdeaSubmit(`${this.state.idea}`)}
-                                    value={this.state.idea}
-                                />
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid item xs={4}>
-                        <Card>
-                            <Typography align="center">
-                                <CardHeader title="Idea" />
-                            </Typography>
-                            <CardContent>
-                            <StepText
-                                    onChange={this.handleChange("step")}
-                                    onSubmit={this.handleStepSubmit(`${this.state.step}`)}
-                                    value={this.state.step}
-                                />
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                </Grid>
+                </MuiThemeProvider>
             </div>
         )
     }
