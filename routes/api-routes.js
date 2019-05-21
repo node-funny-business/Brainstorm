@@ -51,6 +51,8 @@ module.exports = function(app) {
         });
     });
 
+
+
     // app.get('/api/concepts/:conecept', function(req, res) {
     //     db.Concept.findAll({
     //         where: {
@@ -64,15 +66,48 @@ module.exports = function(app) {
     //     });
     // });
 
-    // app.post('/api/concepts', function(req, res) {
-    //     db.Concept.create({
-    //         name: req.body.name
-    //     }).then(result => res.json(result))
-    //     .catch(function (err) {
-    //         console.log(err.message);
-    //         res.send(500);
-    //     });
-    // });
+    app.post('/api/brainstorm', function(req, res) {
+        db.Concept.create({
+             brainstorm: req.body.brainstorm
+        }).then(result => res.json(result))
+        .catch(function (err) {
+            console.log(err.message);
+            res.send(500);
+        });
+    });
+
+    app.post('/api/brainstorm/concept', function(req, res) {
+        db.Concept.create({
+             brainstorm_id: req.body.id,
+             concept: req.body.concept
+        }).then(result => res.json(result))
+        .catch(function (err) {
+            console.log(err.message);
+            res.send(500);
+        });
+    });
+
+    app.post('/api/brainstorm/concept/idea', function(req, res) {
+        db.Concept.create({
+             concept_id: req.body.id,
+             idea: req.body.idea
+        }).then(result => res.json(result))
+        .catch(function (err) {
+            console.log(err.message);
+            res.send(500);
+        });
+    });
+
+    app.post('/api/brainstorm/concept/idea/steps', function(req, res) {
+        db.Concept.create({
+             idea_id: req.body.id,
+             steps: req.body.steps
+        }).then(result => res.json(result))
+        .catch(function (err) {
+            console.log(err.message);
+            res.send(500);
+        });
+    });
 
     // app.delete('/api/concepts/:id', function(req, res) {
     //     db.Concept.delete({
