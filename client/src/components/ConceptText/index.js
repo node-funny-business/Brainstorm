@@ -34,7 +34,9 @@ function ConceptText(props) {
 
     return (
         <div className={classes.container}>
-            <FormControl className={classes.formControl}>
+            <FormControl 
+            className={classes.formControl}
+            onSubmit={props.handleConceptSubmit}>
                 <Input
                     id="component-helper"
                     value={props.value}
