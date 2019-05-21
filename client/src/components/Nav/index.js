@@ -135,7 +135,7 @@ class Nav extends React.Component {
           <IconButton color="inherit">
           <i class="material-icons">flash_on</i>
           </IconButton>
-          <p><Link to="/myaccount">My Brainstorms</Link></p>
+          <p><Link to="/brainstorms">My Brainstorms</Link></p>
         </MenuItem>
         <MenuItem onClick={this.handleMobileMenuClose}>
           <IconButton color="inherit">
