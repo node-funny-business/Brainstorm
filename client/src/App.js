@@ -30,12 +30,12 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider theme={theme}>
-        <Nav color="primary" />
         <Router>
           <Security issuer='https://dev-363275.okta.com/oauth2/default'
             client_id='0oam45rndnEWAIpaA356'
             redirect_uri={window.location.origin + '/implicit/callback'}
             onAuthRequired={onAuthRequired} >
+            <Nav color="primary" />
             <Route path='/' exact={true} component={Instructions} />
             <Route path='/Instructions' exact={true} component={Instructions} />
             <SecureRoute path='/Main' exact={true} component={Main} />

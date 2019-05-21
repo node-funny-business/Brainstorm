@@ -46,15 +46,15 @@ class Main extends React.Component {
     }
 
     // GET Request to load data for Topic/Brainstorm
-    // componentDidMount() {
-    //     API.getBrainstorm(10)
-    //         .then(res => 
-    //             this.setState(()=>{
-    //                 return
-    //             })    
-    //             )
+    componentDidMount() {
+        API.getBrainstorm(10)
+            .then(res => 
+                this.setState(()=>{
+                    return
+                })    
+                )
         
-    // }
+    }
 
     // UPDATE Request to load whenever updated
     // componentDidUpdate(prevProps) {
