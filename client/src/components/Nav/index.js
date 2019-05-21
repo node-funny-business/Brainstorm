@@ -106,7 +106,7 @@ class Nav extends React.Component {
         onClose={this.handleMenuClose}
       >
         <MenuItem onClick={this.handleMenuClose}>
-          <Link to="/home">Home</Link>
+          <Link to="/">Home</Link>
         </MenuItem>
         <MenuItem onClick={this.handleMenuClose}>
           <Link to="/aboutus">About</Link>
@@ -141,7 +141,7 @@ class Nav extends React.Component {
           <IconButton color="inherit">
           <i class="material-icons">account_circle</i>
           </IconButton>
-          <p><Link to="/myaccount">Log Out</Link></p>
+          <p><Link to="/">Log Out</Link></p>
         </MenuItem>
       </Menu>
     );

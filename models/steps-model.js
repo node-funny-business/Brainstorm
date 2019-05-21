@@ -2,7 +2,7 @@ module.exports = function(sequelize, DataTypes) {
     var Steps = sequelize.define('Steps', {
         idea_id: null,
         idea: {
-            type: DataTypes.String,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [1]
