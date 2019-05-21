@@ -112,7 +112,7 @@ class Nav extends React.Component {
           <Link to="/aboutus">About</Link>
         </MenuItem>
         <MenuItem onClick={this.handleMenuClose}>
-          <Link to="/instructions">Instructions</Link>
+          <Link to="/main">Main</Link>
         </MenuItem>
       </Menu>
     );

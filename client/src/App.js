@@ -9,9 +9,7 @@ import Instructions from "./pages/Instructions";
 import MyAccount from "./pages/MyAccount";
 import Main from "./pages/Main";
 import Login from "./components/auth/login";
-import Home from "./pages/Home";
-// import SignIn from "./pages/Login";
-// import { Switch } from "@material-ui/core";
+
 
 function onAuthRequired({ history }) {
   history.push('/login');

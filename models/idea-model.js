@@ -1,8 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
-    var Steps = sequelize.define('Steps', {
-        id: 13,
-        idea_id: 4,
-        steps: {
+    var Idea = sequelize.define('Idea', {
+        concept_id: 3,
+        idea: {
             type: DataTypes.String,
             allowNull: false,
             validate: {
@@ -10,5 +9,5 @@ module.exports = function(sequelize, DataTypes) {
             }
         }
     });
-    return Steps;
+    return Idea;
 };

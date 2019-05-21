@@ -7,6 +7,18 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import { withAuth } from '@okta/okta-react';
 import style from "@material-ui/system/style";
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import pink from '@material-ui/core/colors/pink';
+
+
+const theme = createMuiTheme({
+    palette: {
+      primary: { main: pink[300] },
+      secondary: { main: "#D3D3D3" },
+    },
+    typography: { useNextVariants: true },
+  });
+
 
 const styles = theme => ({
     card: {

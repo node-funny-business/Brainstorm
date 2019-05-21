@@ -1,10 +1,8 @@
 const express = require("express");
-const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-var db = require("./models");
-
+var db = require('./models');
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -16,12 +14,10 @@ if (process.env.NODE_ENV === "production") {
 // Add routes, both API and view
 app.use(routes);
 
-app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-} )
+require('./routes/api-routes.js')(app);
 
-db.sequelize.sync().then(function() {
+db.sequelize.sync({ force: true }).then(function() {
   app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
-  })
+    console.log('App listening on PORT' + PORT);
   });
+});
