@@ -1,5 +1,4 @@
 import React from "react";
-import Nav from "../components/Nav"
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -31,7 +30,6 @@ function AboutUs(props) {
     return (
         <div>
             <MuiThemeProvider theme={theme}>
-                <Nav color="primary" />
                 <Grid container spacing={24}>
                     <Grid item xs={4}>
                         <Card>

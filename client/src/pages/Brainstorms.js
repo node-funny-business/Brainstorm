@@ -1,11 +1,10 @@
 import React from "react";
-import Nav from "../components/Nav"
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 import CardHeader from '@material-ui/core/CardHeader';
 import { CardContent } from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';
-// import { spacing } from '@material-ui/system';
+import { spacing } from '@material-ui/system';
 import { withStyles } from '@material-ui/core/styles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import pink from '@material-ui/core/colors/pink';
@@ -30,7 +29,6 @@ function Brainstorms(props) {
     return (
         <div>
             <MuiThemeProvider theme={theme}>
-                <Nav />
                 <Grid container spacing={24}>
                     <Grid item xs={3} />
                     <Grid item xs={6}>

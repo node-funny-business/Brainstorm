@@ -1,12 +1,14 @@
 module.exports = function(sequelize, DataTypes) {
-    var Concept = sequelize.define('Concept', {
-        concept: {
-            type: DataTypes.STRING,
+    var Steps = sequelize.define('Steps', {
+        id: 13,
+        idea_id: 4,
+        steps: {
+            type: DataTypes.String,
             allowNull: false,
             validate: {
                 len: [1]
             }
         }
     });
-    return Concept;
+    return Steps;
 };
