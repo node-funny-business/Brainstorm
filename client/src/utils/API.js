@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
   // Gets all concepts
-  getBrainstorm: function() {
+  getAllBrainstorms: function() {
     return axios.get("/api/brainstorm");
   },
   // Gets the concept with the given id

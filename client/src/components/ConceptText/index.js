@@ -5,7 +5,7 @@ import FormControl from "@material-ui/core/FormControl";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import Input from "@material-ui/core/Input";
 import Typography from "@material-ui/core/Typography";
-
+import DeleteBtn from "../DeleteBtn/"
 
 const styles = theme => ({
     container: {
@@ -38,6 +38,7 @@ function ConceptText(props) {
             className={classes.formControl}
             onSubmit={props.handleConceptSubmit}>
                 <Input
+                    onClick={props.onClick}
                     id="component-helper"
                     value={props.value}
                     onChange={props.onChange}
@@ -49,8 +50,9 @@ function ConceptText(props) {
                 </Typography>
                 <FormHelperText id="component-helper-text">
                     Add Concept Here
-          </FormHelperText>
+                </FormHelperText>
             </FormControl>
+            <DeleteBtn />
         </div>
     );
 }

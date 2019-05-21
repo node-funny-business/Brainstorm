@@ -112,7 +112,7 @@ class Nav extends React.Component {
           <Link to="/aboutus">About</Link>
         </MenuItem>
         <MenuItem onClick={this.handleMenuClose}>
-          <Link to="/instructions">Instructions</Link>
+          <Link to="/main">Main</Link>
         </MenuItem>
       </Menu>
     );
@@ -141,7 +141,7 @@ class Nav extends React.Component {
           <IconButton color="inherit">
           <i class="material-icons">account_circle</i>
           </IconButton>
-          <p><Link to="/myaccount">Log Out</Link></p>
+          <p><Link to="/">Log Out</Link></p>
         </MenuItem>
       </Menu>
     );
