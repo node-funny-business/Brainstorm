@@ -1,81 +1,39 @@
-import React from "react";
-import Nav from "../components/Nav"
-import Card from '@material-ui/core/Card';
-import Grid from '@material-ui/core/Grid';
-import CardHeader from '@material-ui/core/CardHeader';
-import { CardContent } from "@material-ui/core";
-import Typography from '@material-ui/core/Typography';
-import ConceptText from "../components/ConceptText"
-import API from "../utils/API";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { withAuth } from '@okta/okta-react';
 
+export default withAuth(class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { authenticated: null };
+    this.checkAuthentication = this.checkAuthentication.bind(this);
+    this.checkAuthentication();
+  }
 
-class Home extends React.Component {
-    state = {
-        text: "",
-        results: ""
+  async checkAuthentication() {
+    const authenticated = await this.props.auth.isAuthenticated();
+    if (authenticated !== this.state.authenticated) {
+      this.setState({ authenticated });
     }
+  }
 
-    handleChange = key => event => {
-        const value = event.target.value;
-        this.setState({
-            [key]: value
-        });
-    };
+  componentDidUpdate() {
+    this.checkAuthentication();
+  }
 
-    saveConcept = query => {
-        API.saveConcept(query)
-            .then(res => console.log(res))
-            .catch(err => console.log(err));
-    }
-    
-    handleFormSubmit = query => event => {
-        event.preventDefault();
-        this.saveConcept(`${this.state.text}`)
-    }
-   
+  render() {
+    if (this.state.authenticated === null) return null;
 
-    render() {
-        return (
-            <div>
-                <Nav />
-                <Grid container spacing={24}>
-                    <Grid item xs={4}>
-                        <Card>
-                            <Typography align="center">
-                                <CardHeader title="Topic" />
-                            </Typography>
-                            <CardContent>
-                                <form className='form' onSubmit={this.handleFormSubmit}>
-                                <ConceptText
-                                    onChange={this.handleChange("text")}
-                                    value={this.state.text}
-                                />
-                                </form>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid item xs={4}>
-                        <Card>
-                            <Typography align="center">
-                                <CardHeader title="Concept" />
-                            </Typography>
-                            <CardContent>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid item xs={4}>
-                        <Card>
-                            <Typography align="center">
-                                <CardHeader title="Idea" />
-                            </Typography>
-                            <CardContent>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                </Grid>
-            </div>
-        )
-    }
-}
+    const button = this.state.authenticated ?
+      <button onClick={this.props.auth.logout}>Logout</button> :
+      <button onClick={this.props.auth.login}>Login</button>;
 
-export default Home;
+    return (
+      <div>
+        <Link to='/'>Home</Link><br/>
+        <Link to='/protected'>Protected</Link><br/>
+        {button}
+      </div>
+    );
+  }
+});

@@ -6,12 +6,14 @@ import CardHeader from '@material-ui/core/CardHeader';
 import { CardContent } from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 
 const styles = theme => ({
     card: {
         marginTop: theme.spacing.unit * 8
     }
 })
+
 
 function Instructions(props) {
     const { classes } = props;
@@ -36,8 +38,8 @@ function Instructions(props) {
                 </Grid>
             </Grid>
         </div>
-            )
-        }
-        
+    )
+}
+
 
 export default withStyles(styles)(Instructions);
