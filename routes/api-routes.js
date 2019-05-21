@@ -68,6 +68,7 @@ module.exports = function(app) {
 
     app.post('/api/brainstorm', function(req, res) {
         db.brainstorm.create({
+            id: req.body.id,
              brainstorm: req.body.brainstorm
         }).then(result => res.json(result))
         .catch(function (err) {
@@ -78,6 +79,7 @@ module.exports = function(app) {
 
     app.post('/api/brainstorm/concept', function(req, res) {
         db.concept.create({
+            id: req.body.id,
              brainstorm_id: req.body.id,
              concept: req.body.concept
         }).then(result => res.json(result))
@@ -89,6 +91,7 @@ module.exports = function(app) {
 
     app.post('/api/brainstorm/concept/idea', function(req, res) {
         db.idea.create({
+            id: req.body.id,
              concept_id: req.body.id,
              idea: req.body.idea
         }).then(result => res.json(result))
@@ -100,6 +103,7 @@ module.exports = function(app) {
 
     app.post('/api/brainstorm/concept/idea/steps', function(req, res) {
         db.steps.create({
+            id: req.body.id,
              idea_id: req.body.id,
              steps: req.body.steps
         }).then(result => res.json(result))
