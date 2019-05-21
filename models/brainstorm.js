@@ -1,7 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
-    var Idea = sequelize.define('Idea', {
-        concept_id: 3,
-        idea: {
+    var Brainstorm = sequelize.define('Brainstorm', {
+        brainstorm: {
             type: DataTypes.String,
             allowNull: false,
             validate: {
@@ -9,5 +8,5 @@ module.exports = function(sequelize, DataTypes) {
             }
         }
     });
-    return Idea;
+    return Brainstorm;
 };

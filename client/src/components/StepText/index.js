@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import FormControl from "@material-ui/core/FormControl";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import Input from "@material-ui/core/Input";
+import Typography from "@material-ui/core/Typography";
 
 const styles = theme => ({
   container: {
@@ -15,39 +16,38 @@ const styles = theme => ({
   }
 });
 
-class IdeaText extends React.Component {
+function IdeaText(props) {
   // state = {
   //   name: "Composed TextField"
   // };
 
-  componentDidMount() {
-    this.forceUpdate();
-  }
+  // componentDidMount() {
+  //   this.forceUpdate();
+  // }
 
-  handleChange = event => {
-    this.setState({ name: event.target.value });
-  };
+  const { classes } = props;
 
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <div className={classes.container}>
-        <FormControl className={classes.formControl}>
-          <Input
-            id="component-helper"
-            value="Concept/Idea/Step"
-            onChange={this.handleChange}
-            aria-describedby="component-helper-text"
-          />
-
-          <FormHelperText id="component-helper-text">
-            Add Step Here
+  return (
+    <div className={classes.container}>
+      <FormControl
+        className={classes.formControl}
+        onSubmit={props.handleStepSubmit}>
+        <Input
+          id="component-helper"
+          value={props.value}
+          onChange={props.onChange}
+          aria-describedby="component-helper-text"
+        />
+        {/* Testing state */}
+        <Typography>
+          {props.value}
+        </Typography>
+        <FormHelperText id="component-helper-text">
+          Add Step Here
           </FormHelperText>
-        </FormControl>
-      </div>
-    );
-  }
+      </FormControl>
+    </div>
+  );
 }
 
 IdeaText.propTypes = {
