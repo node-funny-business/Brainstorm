@@ -16,6 +16,15 @@ export default {
   // Saves a concept to the database
   saveBrainstorm: function(brainstormData) {
     return axios.post("/api/brainstorm", brainstormData);
+  },
+  saveConcept: function(conceptData) {
+    return axios.post('/api/brainstorm/concept', conceptData);
+  },
+  saveIdea: function(ideaData) {
+    return axios.post('/api/brainstorm/concept/idea', ideaData);
+  },
+  saveSteps: function(stepsData) {
+    return axios.post('/api/brainstorm/concept/idea/steps', stepsData);
   }
 };
 
