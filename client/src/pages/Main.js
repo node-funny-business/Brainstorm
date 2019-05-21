@@ -13,13 +13,13 @@ import IdeaText from "../components/IdeaText"
 import StepText from "../components/StepText"
 import API from "../utils/API";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import purple from '@material-ui/core/colors/purple';
 import pink from '@material-ui/core/colors/pink';
+
 
 
 const theme = createMuiTheme({
     palette: {
-        primary: { main: purple[500] },
+        primary: { main: pink[500] },
         secondary: { main: "#D3D3D3" },
     },
     typography: { useNextVariants: true },
@@ -121,7 +121,6 @@ class Main extends React.Component {
         return (
             <div>
                 <MuiThemeProvider theme={theme}>
-                    <Nav color="primary" />
                     <Grid container spacing={24}>
                         <Grid item xs={4}>
                             <Card>

@@ -18,13 +18,6 @@ export default {
     return axios.post("/api/brainstorm", brainstormData);
   },
   saveConcept: function(conceptData) {
-<<<<<<< HEAD
-    return axios.post("/api/concepts", conceptData);
-  },
-  // Updates concept in database
-  updateConcept: function(id) {
-    return axios.post("/api/concepts", id);
-=======
     return axios.post('/api/brainstorm/concept', conceptData);
   },
   saveIdea: function(ideaData) {
@@ -32,7 +25,6 @@ export default {
   },
   saveSteps: function(stepsData) {
     return axios.post('/api/brainstorm/concept/idea/steps', stepsData);
->>>>>>> 6e5dc8c61855275e3ba5d162a8958da6046bd27d
   }
 };
 
