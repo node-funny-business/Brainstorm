@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 // import API from "./utils/API";
 import AboutUs from "./pages/AboutUs"
 import Instructions from "./pages/Instructions"
-import MyAccount from "./pages/MyAccount"
+import Brainstorms from "./pages/Brainstorms"
 import Home from "./pages/Home";
 // import SignIn from "./pages/SignIn";
 
@@ -11,7 +11,9 @@ import Home from "./pages/Home";
 
 
 class App extends Component {
-
+  state = {
+    
+  }
   // componentWillMount() {
   //   this.getAll();
   // }
@@ -62,7 +64,7 @@ class App extends Component {
         <Route exact path ='/' component={Home} />
         <Route exact path ='/aboutus' component={AboutUs} />
         <Route exact path ='/instructions' component={Instructions} />
-        <Route exact path ='/myaccount' component={MyAccount} />
+        <Route exact path ='/brainstorms' component={Brainstorms} />
       </Router>
     </div>
      

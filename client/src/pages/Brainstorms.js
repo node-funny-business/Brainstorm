@@ -25,7 +25,7 @@ const styles = theme => ({
     }
 })
 
-function MyAccount(props) {
+function Brainstorms(props) {
     const { classes } = props;
     return (
         <div>
@@ -53,4 +53,4 @@ function MyAccount(props) {
     )
 }
 
-export default withStyles(styles)(MyAccount);
+export default withStyles(styles)(Brainstorms);

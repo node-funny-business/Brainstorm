@@ -16,6 +16,10 @@ export default {
   // Saves a concept to the database
   saveConcept: function(conceptData) {
     return axios.post("/api/concepts", conceptData);
+  },
+  // Updates concept in database
+  updateConcept: function(id) {
+    return axios.post("/api/concepts", id);
   }
 };
 
