@@ -18,11 +18,13 @@ const theme = createMuiTheme({
     typography: { useNextVariants: true },
   });
 
+
 const styles = theme => ({
     card: {
         marginTop: theme.spacing.unit * 8
     }
 })
+
 
 function Instructions(props) {
     const { classes } = props;
@@ -49,8 +51,8 @@ function Instructions(props) {
                 </Grid>
             </MuiThemeProvider>
         </div>
-            )
-        }
-        
+    )
+}
+
 
 export default withStyles(styles)(Instructions);

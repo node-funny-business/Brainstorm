@@ -106,7 +106,7 @@ class Nav extends React.Component {
         onClose={this.handleMenuClose}
       >
         <MenuItem onClick={this.handleMenuClose}>
-          <Link to="/">Home</Link>
+          <Link to="/home">Home</Link>
         </MenuItem>
         <MenuItem onClick={this.handleMenuClose}>
           <Link to="/aboutus">About</Link>
