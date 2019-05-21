@@ -187,4 +187,3 @@ var db = require('../controllers/db');
                 res.send(500);
             });
     });
-}
