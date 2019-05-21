@@ -3,7 +3,7 @@ var db = require('../controllers/db');
 // will need to add users as soon as we get a user up and going. GET route will need to be changed
 module.exports = function(app) {
     app.get('/api/brainstorm', function(req, res) {
-        db.brainstorm.findAll({
+        db.Brainstorm.findAll({
             include: [
                 {
                     model: db.concept,
@@ -25,18 +25,21 @@ module.exports = function(app) {
                     {},
                     {
                         user_id: user_id,
+                        id: brainstorm.id,
                         brainstorm: brainstorm.idea,
                         ideas: brainstorm.ideas.map(idea => {
                             return Object.assign(
                                 {},
                                 {
                                     concept_id: concept_id,
+                                    id: idea.id,
                                     idea: idea.steps,
                                     steps: idea.steps.map(step => {
                                         return Object.assign(
                                             {},
                                             {
                                                 idea_id: idea_id,
+                                                id: step.id,
                                                 steps: step.steps
                                             }
                                         )
@@ -53,21 +56,21 @@ module.exports = function(app) {
 
 
 
-    // app.get('/api/concepts/:conecept', function(req, res) {
-    //     db.Concept.findAll({
-    //         where: {
-    //             concept: req.params.concept
-    //         }
-    //     }).then(function (result) {
-    //         res.json(result)
-    //     }).catch(err => {
-    //         console.log(err.message);
-    //         res.send(500);
-    //     });
-    // });
+    app.get('/api/brainstorm/:brainstorm', function(req, res) {
+        db.Brainstorom.findAll({
+            where: {
+                brainstorm: req.params.brainstorm
+            }
+        }).then(function (result) {
+            res.json(result)
+        }).catch(err => {
+            console.log(err.message);
+            res.send(500);
+        });
+    });
 
     app.post('/api/brainstorm', function(req, res) {
-        db.Concept.create({
+        db.Brainstorm.create({
              brainstorm: req.body.brainstorm
         }).then(result => res.json(result))
         .catch(function (err) {
@@ -88,7 +91,7 @@ module.exports = function(app) {
     });
 
     app.post('/api/brainstorm/concept/idea', function(req, res) {
-        db.Concept.create({
+        db.Idea.create({
              concept_id: req.body.id,
              idea: req.body.idea
         }).then(result => res.json(result))
@@ -99,7 +102,7 @@ module.exports = function(app) {
     });
 
     app.post('/api/brainstorm/concept/idea/steps', function(req, res) {
-        db.Concept.create({
+        db.Steps.create({
              idea_id: req.body.id,
              steps: req.body.steps
         }).then(result => res.json(result))
@@ -109,29 +112,29 @@ module.exports = function(app) {
         });
     });
 
-    // app.delete('/api/concepts/:id', function(req, res) {
-    //     db.Concept.delete({
-    //         where: {
-    //             id: req.params.id
-    //         }
-    //     }).then(result => res.json(result))
-    //     .catch(function (err) {
-    //         console.log(err.message);
-    //         res.send(500);
-    //     });
-    // });
+    app.delete('/api/brainstorm/:id', function(req, res) {
+        db.Brainstorm.delete({
+            where: {
+                id: req.params.id
+            }
+        }).then(result => res.json(result))
+        .catch(function (err) {
+            console.log(err.message);
+            res.send(500);
+        });
+    });
 
-    // app.put('/api/concepts', function(req, res) {
-    //     db.Concept.update({
-    //         name: req.body.name
-    //     },{
-    //         where: {
-    //             id: req.body.id
-    //         }
-    //     }).then(result => res.json(result))
-    //     .catch(function (err) {
-    //         console.log(err.message);
-    //         res.send(500);
-    //     });
-    // });
+    app.put('/api/brainstorm', function(req, res) {
+        db.Brainstorm.update({
+            brainstorm: req.body.brainstorm
+        },{
+            where: {
+                id: req.body.id
+            }
+        }).then(result => res.json(result))
+        .catch(function (err) {
+            console.log(err.message);
+            res.send(500);
+        });
+    });
 }

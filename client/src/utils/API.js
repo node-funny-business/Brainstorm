@@ -2,20 +2,20 @@ import axios from "axios";
 
 export default {
   // Gets all concepts
-  getConcepts: function() {
-    return axios.get("/api/concepts");
+  getBrainstorm: function() {
+    return axios.get("/api/brainstorm");
   },
   // Gets the concept with the given id
-  getConcept: function(id) {
-    return axios.get("/api/concept/" + id);
+  getBrainstorm: function(id) {
+    return axios.get("/api/brainstorm/" + id);
   },
   // Deletes the concept with the given id
-  deleteConcept: function(id) {
-    return axios.delete("/api/concept/" + id);
+  deleteBrainstorm: function(id) {
+    return axios.delete("/api/brainstorm/" + id);
   },
   // Saves a concept to the database
-  saveConcept: function(conceptData) {
-    return axios.post("/api/concepts", conceptData);
+  saveBrainstorm: function(brainstormData) {
+    return axios.post("/api/brainstorm", brainstormData);
   }
 };
 
