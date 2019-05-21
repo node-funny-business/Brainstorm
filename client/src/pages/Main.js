@@ -26,7 +26,7 @@ const theme = createMuiTheme({
 });
 
 
-class Home extends React.Component {
+class Main extends React.Component {
     state = {
         brainstorm: [
             { id: 1, name: "Pizza", user_id: 1 }],
@@ -177,4 +177,4 @@ class Home extends React.Component {
     }
 }
 
-export default Home;
+export default Main;

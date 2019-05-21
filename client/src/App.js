@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import AboutUs from "./pages/AboutUs"
 import Instructions from "./pages/Instructions"
 import Brainstorms from "./pages/Brainstorms"
-import Home from "./pages/Home";
+import Main from "./pages/Main";
 // import SignIn from "./pages/SignIn";
 
 
@@ -61,7 +61,7 @@ class App extends Component {
       // </div>
       <div>
       <Router>
-        <Route exact path ='/' component={Home} />
+        <Route exact path ='/' component={Main} />
         <Route exact path ='/aboutus' component={AboutUs} />
         <Route exact path ='/instructions' component={Instructions} />
         <Route exact path ='/brainstorms' component={Brainstorms} />
