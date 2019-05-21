@@ -1,5 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
     var Concept = sequelize.define('Concept', {
+        id: 11,
         brainstorm_id: 2,
         concept: {
             type: DataTypes.String,
