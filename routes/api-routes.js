@@ -3,7 +3,7 @@ var db = require('../controllers/db');
 // will need to add users as soon as we get a user up and going. GET route will need to be changed
 module.exports = function(app) {
     app.get('/api/brainstorm', function(req, res) {
-        db.Brainstorm.findAll({
+        db.brainstorm.findAll({
             include: [
                 {
                     model: db.concept,
@@ -24,7 +24,6 @@ module.exports = function(app) {
                 return Object.assign(
                     {},
                     {
-                        user_id: user_id,
                         id: brainstorm.id,
                         brainstorm: brainstorm.idea,
                         ideas: brainstorm.ideas.map(idea => {
@@ -54,10 +53,8 @@ module.exports = function(app) {
         });
     });
 
-
-
     app.get('/api/brainstorm/:brainstorm', function(req, res) {
-        db.Brainstorom.findAll({
+        db.brainstorm.findAll({
             where: {
                 brainstorm: req.params.brainstorm
             }
@@ -70,7 +67,7 @@ module.exports = function(app) {
     });
 
     app.post('/api/brainstorm', function(req, res) {
-        db.Brainstorm.create({
+        db.brainstorm.create({
              brainstorm: req.body.brainstorm
         }).then(result => res.json(result))
         .catch(function (err) {
@@ -80,7 +77,7 @@ module.exports = function(app) {
     });
 
     app.post('/api/brainstorm/concept', function(req, res) {
-        db.Concept.create({
+        db.concept.create({
              brainstorm_id: req.body.id,
              concept: req.body.concept
         }).then(result => res.json(result))
@@ -91,7 +88,7 @@ module.exports = function(app) {
     });
 
     app.post('/api/brainstorm/concept/idea', function(req, res) {
-        db.Idea.create({
+        db.idea.create({
              concept_id: req.body.id,
              idea: req.body.idea
         }).then(result => res.json(result))
@@ -102,7 +99,7 @@ module.exports = function(app) {
     });
 
     app.post('/api/brainstorm/concept/idea/steps', function(req, res) {
-        db.Steps.create({
+        db.steps.create({
              idea_id: req.body.id,
              steps: req.body.steps
         }).then(result => res.json(result))
@@ -113,7 +110,7 @@ module.exports = function(app) {
     });
 
     app.delete('/api/brainstorm/:id', function(req, res) {
-        db.Brainstorm.delete({
+        db.brainstorm.delete({
             where: {
                 id: req.params.id
             }
@@ -125,7 +122,7 @@ module.exports = function(app) {
     });
 
     app.put('/api/brainstorm', function(req, res) {
-        db.Brainstorm.update({
+        db.brainstorm.update({
             brainstorm: req.body.brainstorm
         },{
             where: {
