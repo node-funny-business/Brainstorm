@@ -107,12 +107,13 @@ class Main extends React.Component {
     }
 
     // UPDATE Request to load whenever updated
-    // componentDidUpdate(prevProps) {
-    //     // Typical usage (don't forget to compare props):
-    //     if (this.props.userID !== prevProps.userID) {
-    //       this.fetchData(this.props.userID);
-    //     }
-    //   }
+    
+    componentDidUpdate(prevProps) {
+        // Typical usage (don't forget to compare props):
+        if (this.props.userID !== prevProps.userID) {
+          this.fetchData(this.props.userID);
+        }
+      }
 
     // Or should UPDATE be run here?
     handleChange = (key, index, property) => event => {
