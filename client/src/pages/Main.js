@@ -106,13 +106,6 @@ class Main extends React.Component {
             .catch(err => console.log(err));
     }
 
-    // UPDATE Requests
-
-    updateBrainstorm = (id) => (event) => {
-
-        
-    }
-
     // UPDATE Request to load whenever updated
     // componentDidUpdate(prevProps) {
     //     // Typical usage (don't forget to compare props):
