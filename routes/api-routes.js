@@ -84,7 +84,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/api/:concept_id', function (req, res) {
+    app.get('/api/idea/:concept_id', function (req, res) {
         db.idea.findAll({
             where: {
                 concept_id: req.params.concept_id
