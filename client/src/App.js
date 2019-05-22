@@ -43,6 +43,7 @@ class App extends Component {
             <Route path='/aboutus' exact={true} component={AboutUs} />
             <Route path='/login' render={() => <Login baseUrl='https://dev-363275.okta.com' />} />
             <Route path='/implicit/callback' component={ImplicitCallback} />
+            <Route exact path="/main/:id" component={Main} />
           </Security>
         </Router>
       </MuiThemeProvider>

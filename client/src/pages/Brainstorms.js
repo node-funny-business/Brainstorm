@@ -8,6 +8,8 @@ import { spacing } from '@material-ui/system';
 import { withStyles } from '@material-ui/core/styles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import pink from '@material-ui/core/colors/pink';
+import API from "../utils/API";
+import { Link } from 'react-router-dom'
 
 
 const styles = theme => ({
@@ -16,39 +18,58 @@ const styles = theme => ({
     }
 })
 
+// sendToMain = (id) => {
+//     API.sendToMain(id)
+//         .then(res => console.log(res))
+//         .catch(err => console.log(err))
+// }
+
 class Brainstorms extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            brainstorm: {}
+            brainstorm: [
+                { id: 1, name: "Pizza", user_id: 1 },
+                { id: 2, name: "Burgers", user_id: 1 },
+                { id: 3, name: "Sushi", user_id: 1 }
+            ]
         }
     }
-    // const { classes } = props;
-    render() {
-        return (
-            <div>
-                <Grid container spacing={24}>
-                    <Grid item xs={3} />
-                    <Grid item xs={6}>
-                        <Card 
-                        // className={classes.card}
-                        >
-                            <Typography align="center">
-                                <CardHeader title="My Brainstorms" />
-                            </Typography>
-                            <CardContent>
-                                <Typography align="center" component="p">
-                                    <p>Brainstorm 1</p>
-                                    <p>Brainstorm 2</p>
-                                    <p>Brainstorm 3</p>
+    // componentDidMount() {
+    //     API.getAllBrainstorm(10)
+    //         .then(res =>
+    //             this.setState({
+    //                 brainstorm: res.body.data
+    //             })
+    //         )
+    //     }
+        // const { classes } = props;
+        render() {
+            return (
+                <div>
+                    <Grid container spacing={24}>
+                        <Grid item xs={3} />
+                        <Grid item xs={6}>
+                            <Card
+                            // className={classes.card}
+                            >
+                                <Typography align="center">
+                                    <CardHeader title="My Brainstorms" />
                                 </Typography>
-                            </CardContent>
-                        </Card>
+                                <CardContent>
+                                    {this.state.brainstorm.map((brainstorm) => (
+                                        <Typography align="center">
+                                            <Link to="/main/:id">{brainstorm.name}
+                                            </Link>
+                                        </Typography>
+                                    ))}
+                                </CardContent>
+                            </Card>
+                        </Grid>
                     </Grid>
-                </Grid>
-            </div>
-        )
+                </div>
+            )
+        }
     }
-}
 
-export default withStyles(styles)(Brainstorms);
+    export default withStyles(styles)(Brainstorms);
