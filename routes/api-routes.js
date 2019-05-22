@@ -4,17 +4,9 @@ var db = require('../controllers/db');
 module.exports = function (app) {
     // app.get('/api/brainstorm', function (req, res) {
     //     db.brainstorm.findAll({
-    //         include: [
-    //             {
-    //                 model: db.concept,
-    //                 include: [
-    //                     {
-    //                         model: db.idea,
-    //                         include: [
-    //                             {
-    //                                 model: db.steps
-    //                             }
-    //                         ]
+    //         include: [{model: db.concept,
+    //                 include: [{model: db.idea,
+    //                         include: [{model: db.steps}]
     //                     }
     //                 ]
     //             }
@@ -53,59 +45,69 @@ module.exports = function (app) {
     //     });
     // });
 
-    //not convoluted way: routes
-    // get all brainstorms
-    app.get('/api/brainstorm/', function(req, res) {
-        db.brainstorm.findAll({
-        }).then(function (result) {
-            res.json(result);
-        }).catch(err => {
-            console.log(err.message);
-        });
-    });
+    // //not convoluted way: routes
+    // // get all brainstorms
+    // app.get('/api/brainstorm/', function(req, res) {
+    //     db.brainstorm.findAll({
+    //     }).then(function (result) {
+    //         res.json(result);
+    //     }).catch(err => {
+    //         console.log(err.message);
+    //     });
+    // });
 
-    app.get('/api/brainstorm/concept', function(req, res) {
-        db.concept.findAll({
-            where: {
-                brainstorm_id: req.body.brainstorm_id
-            }
-        }).then(function (result) {
-            res.json(result);
-        }).catch(err => {
-            console.log(err.message);
-        });
-    });
+    // app.get('/api/brainstorm/concept', function(req, res) {
+    //     db.concept.findAll({
+    //         where: {
+    //             brainstorm_id: req.body.brainstorm_id
+    //         }
+    //     }).then(function (result) {
+    //         res.json(result);
+    //     }).catch(err => {
+    //         console.log(err.message);
+    //     });
+    // });
 
-    app.get('/api/brainstorm/concept/idea', function(req, res) {
-        db.idea.findAll({
-            where: {
-                concept_id: req.body.concept_id
-            }
-        }).then(function (result) {
-            res.json(result);
-        }).catch(err => {
-            console.log(err.message);
-        });
-    });
+    // app.get('/api/brainstorm/concept/idea', function(req, res) {
+    //     db.idea.findAll({
+    //         where: {
+    //             concept_id: req.body.concept_id
+    //         }
+    //     }).then(function (result) {
+    //         res.json(result);
+    //     }).catch(err => {
+    //         console.log(err.message);
+    //     });
+    // });
 
-    app.get('/api/brainstorm/concept/idea/steps', function(req, res) {
-        db.steps.findAll({
-            where: {
-                idea_id: req.body.idea_id
-            }
-        }).then(function (result) {
-            res.json(result);
-        }).catch(err => {
-            console.log(err.message);
-        });
-    });
+    // app.get('/api/brainstorm/concept/idea/steps', function(req, res) {
+    //     db.steps.findAll({
+    //         where: {
+    //             idea_id: req.body.idea_id
+    //         }
+    //     }).then(function (result) {
+    //         res.json(result);
+    //     }).catch(err => {
+    //         console.log(err.message);
+    //     });
+    // });
 
     //---------------------------------------------------------------------------
     // get one brainstorm
+    app.get('/api/brainstorm', function(req, res) {
+        db.brainstorm.findAll({})
+        .then(function (result) {
+            res.json(result);
+        }).catch(err => {
+            console.log(err.message);
+        });
+    });
+
     app.get('/api/brainstorm/:brainstorm', function (req, res) {
         db.brainstorm.findAll({
             where: {
-                id: req.params.id
+                id: req.params.id,
+                parent_id: req.params.parent_id
             }
         }).then(function (result) {
             res.json(result)
@@ -118,7 +120,9 @@ module.exports = function (app) {
     app.post('/api/brainstorm', function (req, res) {
         db.brainstorm.create({
             id: req.body.id,
-            brainstorm: req.body.brainstorm
+            parent_id: req.body.parent_id,
+            text_type: req.body.type,
+            name: req.body.name
         }).then(result => res.json(result))
             .catch(function (err) {
                 console.log(err.message);
@@ -126,46 +130,47 @@ module.exports = function (app) {
             });
     });
 
-    app.post('/api/brainstorm/concept', function (req, res) {
-        db.concept.create({
-            id: req.body.id,
-            brainstorm_id: req.body.id,
-            concept: req.body.concept
-        }).then(result => res.json(result))
-            .catch(function (err) {
-                console.log(err.message);
-                res.send(500);
-            });
-    });
+    // app.post('/api/brainstorm/concept', function (req, res) {
+    //     db.concept.create({
+    //         id: req.body.id,
+    //         brainstorm_id: req.body.id,
+    //         concept: req.body.concept
+    //     }).then(result => res.json(result))
+    //         .catch(function (err) {
+    //             console.log(err.message);
+    //             res.send(500);
+    //         });
+    // });
 
-    app.post('/api/brainstorm/concept/idea', function (req, res) {
-        db.idea.create({
-            id: req.body.id,
-            concept_id: req.body.id,
-            idea: req.body.idea
-        }).then(result => res.json(result))
-            .catch(function (err) {
-                console.log(err.message);
-                res.send(500);
-            });
-    });
+    // app.post('/api/brainstorm/concept/idea', function (req, res) {
+    //     db.idea.create({
+    //         id: req.body.id,
+    //         concept_id: req.body.id,
+    //         idea: req.body.idea
+    //     }).then(result => res.json(result))
+    //         .catch(function (err) {
+    //             console.log(err.message);
+    //             res.send(500);
+    //         });
+    // });
 
-    app.post('/api/brainstorm/concept/idea/steps', function (req, res) {
-        db.steps.create({
-            id: req.body.id,
-            idea_id: req.body.id,
-            steps: req.body.steps
-        }).then(result => res.json(result))
-            .catch(function (err) {
-                console.log(err.message);
-                res.send(500);
-            });
-    });
+    // app.post('/api/brainstorm/concept/idea/steps', function (req, res) {
+    //     db.steps.create({
+    //         id: req.body.id,
+    //         idea_id: req.body.id,
+    //         steps: req.body.steps
+    //     }).then(result => res.json(result))
+    //         .catch(function (err) {
+    //             console.log(err.message);
+    //             res.send(500);
+    //         });
+    // });
 
     app.delete('/api/brainstorm/:id', function (req, res) {
         db.brainstorm.delete({
             where: {
-                id: req.params.id
+                id: req.params.id,
+                parent_id: req.params.parent_id
             }
         }).then(result => res.json(result))
             .catch(function (err) {
@@ -176,7 +181,7 @@ module.exports = function (app) {
 
     app.put('/api/brainstorm', function (req, res) {
         db.brainstorm.update({
-            brainstorm: req.body.brainstorm
+            name: req.body.name
         }, {
                 where: {
                     id: req.body.id
@@ -187,3 +192,4 @@ module.exports = function (app) {
                 res.send(500);
             });
     });
+}
