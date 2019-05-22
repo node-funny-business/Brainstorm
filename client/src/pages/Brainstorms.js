@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -10,31 +10,29 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import pink from '@material-ui/core/colors/pink';
 
 
-const theme = createMuiTheme({
-    palette: {
-      primary: { main: pink[300] },
-      secondary: { main: "#D3D3D3" },
-    },
-    typography: { useNextVariants: true },
-  });
-
 const styles = theme => ({
     card: {
         marginTop: theme.spacing.unit * 8
     }
 })
 
-function Brainstorms(props) {
-    const { classes } = props;
-    return (
-        <div>
-            <MuiThemeProvider theme={theme}>
+class Brainstorms extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            brainstorm: {}
+        }
+    }
+    // const { classes } = props;
+    render() {
+        return (
+            <div>
                 <Grid container spacing={24}>
                     <Grid item xs={3} />
                     <Grid item xs={6}>
                         <Card className={classes.card}>
                             <Typography align="center">
-                                <CardHeader title="Username's Brainstorms" />
+                                <CardHeader title="My Brainstorms" />
                             </Typography>
                             <CardContent>
                                 <Typography align="center" component="p">
@@ -46,9 +44,9 @@ function Brainstorms(props) {
                         </Card>
                     </Grid>
                 </Grid>
-            </MuiThemeProvider>
-        </div>
-    )
+            </div>
+        )
+    }
 }
 
 export default withStyles(styles)(Brainstorms);
