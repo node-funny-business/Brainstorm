@@ -68,42 +68,49 @@ class Main extends React.Component {
     // GET Requests
     componentDidMount() {
         API.getBrainstorm(this.props.params.id)
-            .then(res => 
+            .then(res =>
                 this.setState({
                     brainstorm: res.body.data
-                })    
+                })
             )
-            .catch(err => console.log(err));        
+            .catch(err => console.log(err));
     }
 
     getConcepts() {
         API.getConcept(this.state.brainstorm[0].name)
-        .then(res => 
-            this.setState({
-                concept: res.body.data
-            })
-        )
-        .catch(err => console.log(err));
+            .then(res =>
+                this.setState({
+                    concept: res.body.data
+                })
+            )
+            .catch(err => console.log(err));
     }
 
     getIdeas() {
         API.getIdea(this.state.currconcept.name)
-        .then(res => 
-            this.setState({
-                idea: res.body.data
-            })
-        )
-        .catch(err => console.log(err));
+            .then(res =>
+                this.setState({
+                    idea: res.body.data
+                })
+            )
+            .catch(err => console.log(err));
     }
 
     getSteps() {
         API.getSteps(this.state.curridea.name)
-        .then(res => 
-            this.setState({
-                step: res.body.data
-            })
-        )
-        .catch(err => console.log(err));
+            .then(res =>
+                this.setState({
+                    step: res.body.data
+                })
+            )
+            .catch(err => console.log(err));
+    }
+
+    // UPDATE Requests
+
+    updateBrainstorm = (id) => (event) => {
+
+        
     }
 
     // UPDATE Request to load whenever updated
@@ -151,34 +158,87 @@ class Main extends React.Component {
     // POST Routes
     handleBrainstormSubmit = query => event => {
         event.preventDefault();
-        API.saveBrainstorm(query)
-            .then(res => console.log(res))
+        if (this.state.brainstorm[query].id) {
+            API.updateBrainstorm()
+            .then(res => 
+                this.setState({
+                    brainstorm: res.data
+                })
+            )
             .catch(err => console.log(err));
+        } else {
+            API.saveBrainstorm(query)
+                .then(res => 
+                    this.setState({
+                        brainstorm: res.data
+                    })
+                )
+                .catch(err => console.log(err));
+        }
     };
 
     handleConceptSubmit = query => event => {
         event.preventDefault();
-        API.saveConcept(query)
-            .then(res => console.log(res))
+        if (this.state.concept[query].id) {
+            API.updateConcept()
+            .then(res => 
+                this.setState({
+                    concept: res.data
+                })
+            )
             .catch(err => console.log(err));
+        } else {
+            API.saveConcept(query)
+                .then(res => 
+                    this.setState({
+                        concept: res.data
+                    })
+                )
+                .catch(err => console.log(err));
+        }
     };
 
     handleIdeaSubmit = query => event => {
         event.preventDefault();
-        API.saveIdea(query)
-            .then(res => console.log(res))
+        if (this.state.idea[query].id) {
+            API.updateIdea()
+            .then(res => 
+                this.setState({
+                    idea: res.data
+                })
+            )
             .catch(err => console.log(err));
+        } else {
+            API.saveIdea(query)
+                .then(res => 
+                    this.setState({
+                        idea: res.data
+                    })
+                )
+                .catch(err => console.log(err));
+        }
     };
 
     handleStepSubmit = query => event => {
         event.preventDefault();
-        API.saveStep(query)
-            .then(res => console.log(res))
+        if (this.state.step[query].id) {
+            API.updateStep()
+            .then(res => 
+                this.setState({
+                    step: res.data
+                })
+            )
             .catch(err => console.log(err));
+        } else {
+            API.saveStep(query)
+                .then(res => 
+                    this.setState({
+                        step: res.data
+                    })
+                )
+                .catch(err => console.log(err));
+        }
     };
-
-    // UPDATE Routes
-    
 
     render() {
         return (
@@ -192,7 +252,8 @@ class Main extends React.Component {
                                         <BrainstormText
                                             value={brainstorm.name}
                                             onChange={this.handleChange("brainstorm", i, "name")}
-                                            onSubmit={this.handleBrainstormSubmit(`${brainstorm.name}`)}
+                                            onSubmit={this.handleBrainstormSubmit(i)
+                                        }
                                         />
                                     ))
                                 }>
