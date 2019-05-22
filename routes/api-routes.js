@@ -60,7 +60,7 @@ module.exports = function (app) {
     });
 
     app.get('/api/brainstorm/:brainstorm', function (req, res) {
-        db.brainstorm.findOne({
+        db.brainstorm.findAll({
             where: {
                 id: req.params.id,
             }
@@ -124,6 +124,7 @@ module.exports = function (app) {
     app.post('/api/concept', function (req, res) {
         db.concept.create({
             concept: req.body.concept
+        },{
         }).then(result => res.json(result))
             .catch(function (err) {
                 console.log(err.message);
