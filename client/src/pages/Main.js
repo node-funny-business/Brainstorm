@@ -73,7 +73,6 @@ class Main extends React.Component {
                     brainstorm: res.body.data
                 })    
                 )
-
     }
 
     // UPDATE Request to load whenever updated
@@ -146,72 +145,70 @@ class Main extends React.Component {
 
     render() {
         return (
-            <div>
-                <Grid container spacing={24}>
-                    <Grid item xs={4}>
-                        <Styled>{({ classes }) =>
-                            <Card className={classes.card1}>
-                                <Typography align="center">
-                                    <CardHeader title={
-                                        this.state.brainstorm.map((brainstorm, i) => (
-                                        <BrainstormText 
+            <Grid container spacing={24}>
+                <Grid item xs={4}>
+                    <Styled>{({ classes }) =>
+                        <Card className={classes.card1}>
+                            <Typography align="center">
+                                <CardHeader title={
+                                    this.state.brainstorm.map((brainstorm, i) => (
+                                        <BrainstormText
                                             value={brainstorm.name}
                                             onChange={this.handleChange("brainstorm", i, "name")}
-                                            onSubmit={this.handleBrainstormSubmit(`${brainstorm.name}`)} 
-                                            />
-                                        ))
-                                    }>
-                                    </CardHeader>
-                                </Typography>
-                                <CardContent>
-                                    {this.state.concept.map((concept, i) => (
-                                        <ConceptText
-                                            onClick={this.selectCurrConcept(i)}
-                                            onChange={this.handleChange("concept", i, "name")}
-                                            onSubmit={this.handleConceptSubmit(`${concept.name}`)}
-                                            value={concept.name} />
-                                    ))}
-                                </CardContent>
-                            </Card>}
-                        </Styled>
-                    </Grid>
-                    <Grid item xs={4}>
-                        <Styled>{({ classes }) =>
-                            <Card className={classes.card2}>
-                                <Typography align="center">
-                                    <CardHeader title={this.state.currconcept.name} />
-                                </Typography>
-                                <CardContent>
-                                    {this.state.idea.map((idea, i) => (
-                                        <IdeaText
-                                            onClick={this.selectCurrIdea(i)}
-                                            onChange={this.handleChange("idea", i, "name")}
-                                            onSubmit={this.handleConceptSubmit(`${idea.name}`)}
-                                            value={idea.name} />
-                                    ))}
-                                </CardContent>
-                            </Card>}
-                        </Styled>
-                    </Grid>
-                    <Grid item xs={4}>
-                        <Styled>{({ classes }) =>
-                            <Card className={classes.card3}>
-                                <Typography align="center">
-                                    <CardHeader title={this.state.curridea.name} />
-                                </Typography>
-                                <CardContent>
-                                    {this.state.step.map((step, i) => (
-                                        <StepText
-                                            onChange={this.handleChange("step", i, "name")}
-                                            onSubmit={this.handleConceptSubmit(`${step.name}`)}
-                                            value={step.name} />
-                                    ))}
-                                </CardContent>
-                            </Card>}
-                        </Styled>
-                    </Grid>
+                                            onSubmit={this.handleBrainstormSubmit(`${brainstorm.name}`)}
+                                        />
+                                    ))
+                                }>
+                                </CardHeader>
+                            </Typography>
+                            <CardContent>
+                                {this.state.concept.map((concept, i) => (
+                                    <ConceptText
+                                        onClick={this.selectCurrConcept(i)}
+                                        onChange={this.handleChange("concept", i, "name")}
+                                        onSubmit={this.handleConceptSubmit(`${concept.name}`)}
+                                        value={concept.name} />
+                                ))}
+                            </CardContent>
+                        </Card>}
+                    </Styled>
                 </Grid>
-            </div>
+                <Grid item xs={4}>
+                    <Styled>{({ classes }) =>
+                        <Card className={classes.card2}>
+                            <Typography align="center">
+                                <CardHeader title={this.state.currconcept.name} />
+                            </Typography>
+                            <CardContent>
+                                {this.state.idea.map((idea, i) => (
+                                    <IdeaText
+                                        onClick={this.selectCurrIdea(i)}
+                                        onChange={this.handleChange("idea", i, "name")}
+                                        onSubmit={this.handleConceptSubmit(`${idea.name}`)}
+                                        value={idea.name} />
+                                ))}
+                            </CardContent>
+                        </Card>}
+                    </Styled>
+                </Grid>
+                <Grid item xs={4}>
+                    <Styled>{({ classes }) =>
+                        <Card className={classes.card3}>
+                            <Typography align="center">
+                                <CardHeader title={this.state.curridea.name} />
+                            </Typography>
+                            <CardContent>
+                                {this.state.step.map((step, i) => (
+                                    <StepText
+                                        onChange={this.handleChange("step", i, "name")}
+                                        onSubmit={this.handleConceptSubmit(`${step.name}`)}
+                                        value={step.name} />
+                                ))}
+                            </CardContent>
+                        </Card>}
+                    </Styled>
+                </Grid>
+            </Grid>
         )
     }
 }

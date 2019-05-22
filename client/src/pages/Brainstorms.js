@@ -59,7 +59,9 @@ class Brainstorms extends React.Component {
                                 <CardContent>
                                     {this.state.brainstorm.map((brainstorm) => (
                                         <Typography align="center">
-                                            <Link to="/main/:id">{brainstorm.name}
+                                            <Link 
+                                            to={"/main/"+brainstorm.id}
+                                            component="button">{brainstorm.name}
                                             </Link>
                                         </Typography>
                                     ))}
