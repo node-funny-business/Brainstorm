@@ -4,7 +4,6 @@ import Grid from '@material-ui/core/Grid';
 import CardHeader from '@material-ui/core/CardHeader';
 import { CardContent } from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';
-import { spacing } from '@material-ui/system';
 import { withStyles } from '@material-ui/core/styles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import pink from '@material-ui/core/colors/pink';
