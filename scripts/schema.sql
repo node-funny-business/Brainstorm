@@ -1,1 +1,1 @@
-create database brainstorm_db
+CREATE DATABASE Brainstorm_DB;
