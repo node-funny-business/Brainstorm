@@ -2,56 +2,56 @@ var db = require('../controllers/db');
 
 // will need to add users as soon as we get a user up and going. GET route will need to be changed
 module.exports = function (app) {
-    // app.get('/api/brainstorm', function (req, res) {
-    //     db.brainstorm.findAll({
-    //         include: [
-    //             {
-    //                 model: db.concept,
-    //                 include: [
-    //                     {
-    //                         model: db.idea,
-    //                         include: [
-    //                             {
-    //                                 model: db.steps
-    //                             }
-    //                         ]
-    //                     }
-    //                 ]
-    //             }
-    //         ]
-    //     }).then(brainstorms => {
-    //         const resObj = brainstorms.map(brainstorm => {
-    //             return Object.assign(
-    //                 {},
-    //                 {
-    //                     id: brainstorm.id,
-    //                     brainstorm: brainstorm.idea,
-    //                     ideas: brainstorm.ideas.map(idea => {
-    //                         return Object.assign(
-    //                             {},
-    //                             {
-    //                                 concept_id: concept_id,
-    //                                 id: idea.id,
-    //                                 idea: idea.steps,
-    //                                 steps: idea.steps.map(step => {
-    //                                     return Object.assign(
-    //                                         {},
-    //                                         {
-    //                                             idea_id: idea_id,
-    //                                             id: step.id,
-    //                                             steps: step.steps
-    //                                         }
-    //                                     )
-    //                                 })
-    //                             }
-    //                         )
-    //                     })
-    //                 }
-    //             )
-    //         });
-    //         res.json(resObj);
-    //     });
-    // });
+    app.get('/api/brainstorm', function (req, res) {
+        db.brainstorm.findAll({
+            include: [
+                {
+                    model: db.concept,
+                    include: [
+                        {
+                            model: db.idea,
+                            include: [
+                                {
+                                    model: db.steps
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }).then(brainstorms => {
+            const resObj = brainstorms.map(brainstorm => {
+                return Object.assign(
+                    {},
+                    {
+                        id: brainstorm.id,
+                        brainstorm: brainstorm.idea,
+                        ideas: brainstorm.ideas.map(idea => {
+                            return Object.assign(
+                                {},
+                                {
+                                    concept_id: concept_id,
+                                    id: idea.id,
+                                    idea: idea.steps,
+                                    steps: idea.steps.map(step => {
+                                        return Object.assign(
+                                            {},
+                                            {
+                                                idea_id: idea_id,
+                                                id: step.id,
+                                                steps: step.steps
+                                            }
+                                        )
+                                    })
+                                }
+                            )
+                        })
+                    }
+                )
+            });
+            res.json(resObj);
+        });
+    });
 
     //not convoluted way: routes
     // get all brainstorms
