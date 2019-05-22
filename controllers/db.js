@@ -16,16 +16,16 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.brainstorm = require('../models/brainstorm')(sequelize, Sequelize);
-db.concept = require('../models/concept-model')(sequelize, Sequelize);
-db.idea = require('../models/idea-model')(sequelize, Sequelize);
-db.steps = require('../models/steps')(sequelize, Sequelize);
+db.Brainstorm = require('../models/brainstorm')(sequelize, Sequelize);
+db.Concept = require('../models/concept-model')(sequelize, Sequelize);
+db.Idea = require('../models/idea-model')(sequelize, Sequelize);
+db.Steps = require('../models/steps')(sequelize, Sequelize);
 
-db.steps.belongsTo(db.idea);
-db.idea.hasMany(db.steps);
-db.idea.belongsTo(db.concept);
-db.concept.hasMany(db.idea);
-db.concept.belongsTo(db.brainstorm);
-db.brainstorm.hasMany(db.concept);
+db.Steps.belongsTo(db.Idea);
+db.Idea.hasMany(db.Steps);
+db.Idea.belongsTo(db.Concept);
+db.Concept.hasMany(db.Idea);
+db.Concept.belongsTo(db.Brainstorm);
+db.Brainstorm.hasMany(db.Concept);
 
 module.exports = db;

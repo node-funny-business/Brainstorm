@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import Nav from "../components/Nav"
 import Grid from '@material-ui/core/Grid';
 // import ConceptCard from "../components/ConceptCard"
 // import IdeaCard from "../components/IdeaCard"
-import StepCard from "../components/StepCard"
+// import StepCard from "../components/StepCard"
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
@@ -13,12 +12,12 @@ import ConceptText from "../components/ConceptText"
 import IdeaText from "../components/IdeaText"
 import StepText from "../components/StepText"
 import API from "../utils/API";
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import pink from '@material-ui/core/colors/pink';
-import classnames from 'classnames';
+// import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+// import pink from '@material-ui/core/colors/pink';
+// import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import { TextField } from '@material-ui/core/TextField';
+// import { TextField } from '@material-ui/core/TextField';
 
 
 function createStyled(styles, options) {
