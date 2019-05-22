@@ -8,6 +8,7 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import BrainstormText from "../components/BrainstormText"
 import ConceptText from "../components/ConceptText"
 import IdeaText from "../components/IdeaText"
 import StepText from "../components/StepText"
@@ -17,6 +18,7 @@ import pink from '@material-ui/core/colors/pink';
 import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import { TextField } from '@material-ui/core/TextField';
 
 
 function createStyled(styles, options) {
@@ -114,6 +116,13 @@ class Main extends React.Component {
         });
     };
 
+    handleBrainstormSubmit = query => event => {
+        event.preventDefault();
+        API.saveBrainstorm(query)
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+    };
+
     handleConceptSubmit = query => event => {
         event.preventDefault();
         API.saveConcept(query)
@@ -142,9 +151,18 @@ class Main extends React.Component {
                     <Grid item xs={4}>
                         <Styled>{({ classes }) =>
                             <Card className={classes.card1}>
-                                <Typography align="center">
-                                    <CardHeader title={this.state.brainstorm[0].name} />
-                                </Typography>
+                                {/* <Typography align="center"> */}
+                                    <CardHeader>
+                                    {/* {this.state.concept.map((brainstorm, i) => ( */}
+                                        {/* <BrainstormText 
+                                            // value={brainstorm.name}
+                                            // onChange={this.handleChange("brainstorm", i, "name")}
+                                            // onSubmit={this.handleBrainstormSubmit(`${brainstorm.name}`)} 
+                                            /> */}
+                                        {/* ))} */}
+                                        <TextField />
+                                    </CardHeader>
+                                {/* </Typography> */}
                                 <CardContent>
                                     {this.state.concept.map((concept, i) => (
                                         <ConceptText

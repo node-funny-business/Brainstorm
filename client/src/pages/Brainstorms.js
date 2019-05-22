@@ -30,7 +30,9 @@ class Brainstorms extends React.Component {
                 <Grid container spacing={24}>
                     <Grid item xs={3} />
                     <Grid item xs={6}>
-                        <Card className={classes.card}>
+                        <Card 
+                        // className={classes.card}
+                        >
                             <Typography align="center">
                                 <CardHeader title="My Brainstorms" />
                             </Typography>

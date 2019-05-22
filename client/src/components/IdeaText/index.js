@@ -32,7 +32,8 @@ function IdeaText(props) {
       <div className={classes.container}>
         <FormControl 
         className={classes.formControl}
-        onSubmit={props.handleIdeaSubmit}>
+        onSubmit={props.handleIdeaSubmit}
+        fullWidth>
           <Input
             onClick={props.onClick}
             id="component-helper"
