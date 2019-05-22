@@ -50,7 +50,7 @@ module.exports = function (app) {
 //--------------------------------------------------------------------------
     //  get routes
 
-    app.get('/api/brainstorm/', function (req, res) {
+    app.get('/api/brainstorm', function (req, res) {
         db.brainstorm.findAll({
         }).then(function (result) {
             res.json(result);
@@ -58,9 +58,10 @@ module.exports = function (app) {
             console.log(err.message);
         });
     });
+    
 
     app.get('/api/brainstorm/:brainstorm', function (req, res) {
-        db.brainstorm.findAll({
+        db.brainstorm.findOne({
             where: {
                 id: req.params.id,
             }
@@ -124,7 +125,10 @@ module.exports = function (app) {
     app.post('/api/concept', function (req, res) {
         db.concept.create({
             concept: req.body.concept
-        },{
+        }, {
+                where: {
+                    brainstorm_id: req.body.brainstorm_id
+                }
         }).then(result => res.json(result))
             .catch(function (err) {
                 console.log(err.message);
@@ -135,6 +139,10 @@ module.exports = function (app) {
     app.post('/api/idea', function (req, res) {
         db.idea.create({
             idea: req.body.idea
+        }, {
+                where: {
+                    concept_id: req.body.concept_id
+                }
         }).then(result => res.json(result))
             .catch(function (err) {
                 console.log(err.message);
@@ -144,7 +152,11 @@ module.exports = function (app) {
 
     app.post('/api/steps', function (req, res) {
         db.steps.create({
-            steps: req.body.steps
+            steps: req.body.idea
+        }, {
+                where: {
+                    idea_id: req.body.idea_id
+                }
         }).then(result => res.json(result))
             .catch(function (err) {
                 console.log(err.message);
@@ -188,6 +200,7 @@ module.exports = function (app) {
             concept: req.body.concept
         }, {
                 where: {
+
                     brainstorm_id: req.body.brainstorm_id
                 }
             }).then(result => res.json(result))
