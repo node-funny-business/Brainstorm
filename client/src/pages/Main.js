@@ -65,14 +65,45 @@ class Main extends React.Component {
         curridea: {}
     }
 
-    // GET Request to load data for Topic/Brainstorm
+    // GET Requests
     componentDidMount() {
         API.getBrainstorm(this.props.params.id)
             .then(res => 
                 this.setState({
                     brainstorm: res.body.data
                 })    
-                )
+            )
+            .catch(err => console.log(err));        
+    }
+
+    getConcepts() {
+        API.getConcept(this.state.brainstorm[0].name)
+        .then(res => 
+            this.setState({
+                concept: res.body.data
+            })
+        )
+        .catch(err => console.log(err));
+    }
+
+    getIdeas() {
+        API.getIdea(this.state.currconcept.name)
+        .then(res => 
+            this.setState({
+                idea: res.body.data
+            })
+        )
+        .catch(err => console.log(err));
+    }
+
+    getSteps() {
+        API.getSteps(this.state.curridea.name)
+        .then(res => 
+            this.setState({
+                step: res.body.data
+            })
+        )
+        .catch(err => console.log(err));
     }
 
     // UPDATE Request to load whenever updated
@@ -107,14 +138,17 @@ class Main extends React.Component {
         this.setState({
             currconcept: this.state.concept[index]
         });
+        getConcepts();
     };
 
     selectCurrIdea = (index) => () => {
         this.setState({
             curridea: this.state.idea[index]
         });
+        getIdeas();
     };
 
+    // POST Routes
     handleBrainstormSubmit = query => event => {
         event.preventDefault();
         API.saveBrainstorm(query)
@@ -142,6 +176,9 @@ class Main extends React.Component {
             .then(res => console.log(res))
             .catch(err => console.log(err));
     };
+
+    // UPDATE Routes
+    
 
     render() {
         return (
@@ -200,6 +237,7 @@ class Main extends React.Component {
                             <CardContent>
                                 {this.state.step.map((step, i) => (
                                     <StepText
+                                        onClick={this.getSteps()}
                                         onChange={this.handleChange("step", i, "name")}
                                         onSubmit={this.handleConceptSubmit(`${step.name}`)}
                                         value={step.name} />
