@@ -6,6 +6,7 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import Input from "@material-ui/core/Input";
 import Typography from "@material-ui/core/Typography";
 import DeleteBtn from "../DeleteBtn/"
+import TextField from "@material-ui/core/TextField";
 
 const styles = theme => ({
     container: {
@@ -43,10 +44,13 @@ function BrainstormText(props) {
                     value={props.value}
                     onChange={props.onChange}
                     aria-describedby="component-helper-text"
+                    inputProps={{
+                        style: { textAlign: "center" }
+                      }}
                 />
                 {/* Testing state */}
                 <Typography>
-                    {props.value}
+                    Add Brainstorm Here
                 </Typography>
             </FormControl>
             <DeleteBtn />

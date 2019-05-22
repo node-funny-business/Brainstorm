@@ -46,9 +46,9 @@ function ConceptText(props) {
                     aria-describedby="component-helper-text"
                 />
                 {/* Testing state */}
-                <Typography>
+                {/* <Typography>
                     {props.value}
-                </Typography>
+                </Typography> */}
                 <FormHelperText id="component-helper-text">
                     Add Concept Here
                 </FormHelperText>

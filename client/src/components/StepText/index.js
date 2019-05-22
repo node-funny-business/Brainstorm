@@ -41,9 +41,9 @@ function IdeaText(props) {
           aria-describedby="component-helper-text"
         />
         {/* Testing state */}
-        <Typography>
+        {/* <Typography>
           {props.value}
-        </Typography>
+        </Typography> */}
         <FormHelperText id="component-helper-text">
           Add Step Here
           </FormHelperText>

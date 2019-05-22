@@ -151,18 +151,18 @@ class Main extends React.Component {
                     <Grid item xs={4}>
                         <Styled>{({ classes }) =>
                             <Card className={classes.card1}>
-                                {/* <Typography align="center"> */}
-                                    <CardHeader>
-                                    {/* {this.state.concept.map((brainstorm, i) => ( */}
-                                        {/* <BrainstormText 
-                                            // value={brainstorm.name}
-                                            // onChange={this.handleChange("brainstorm", i, "name")}
-                                            // onSubmit={this.handleBrainstormSubmit(`${brainstorm.name}`)} 
-                                            /> */}
-                                        {/* ))} */}
-                                        <TextField />
+                                <Typography align="center">
+                                    <CardHeader title={
+                                        this.state.brainstorm.map((brainstorm, i) => (
+                                        <BrainstormText 
+                                            value={brainstorm.name}
+                                            onChange={this.handleChange("brainstorm", i, "name")}
+                                            onSubmit={this.handleBrainstormSubmit(`${brainstorm.name}`)} 
+                                            />
+                                        ))
+                                    }>
                                     </CardHeader>
-                                {/* </Typography> */}
+                                </Typography>
                                 <CardContent>
                                     {this.state.concept.map((concept, i) => (
                                         <ConceptText

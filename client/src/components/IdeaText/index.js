@@ -26,32 +26,32 @@ function IdeaText(props) {
   //   this.forceUpdate();
   // }
 
-    const { classes } = props;
+  const { classes } = props;
 
-    return (
-      <div className={classes.container}>
-        <FormControl 
+  return (
+    <div className={classes.container}>
+      <FormControl
         className={classes.formControl}
         onSubmit={props.handleIdeaSubmit}
         fullWidth>
-          <Input
-            onClick={props.onClick}
-            id="component-helper"
-            value={props.value}
-            onChange={props.onChange}
-            aria-describedby="component-helper-text"
-          />
-          {/* Testing state */}
-          <Typography>
-                    {props.value}
-                </Typography>
-          <FormHelperText id="component-helper-text">
-            Add Idea Here
+        <Input
+          onClick={props.onClick}
+          id="component-helper"
+          value={props.value}
+          onChange={props.onChange}
+          aria-describedby="component-helper-text"
+        />
+        {/* Testing state */}
+        {/* <Typography>
+          {props.value}
+        </Typography> */}
+        <FormHelperText id="component-helper-text">
+          Add Idea Here
           </FormHelperText>
-        </FormControl>
-        <DeleteBtn />
-      </div>
-    );
+      </FormControl>
+      <DeleteBtn />
+    </div>
+  );
 }
 
 IdeaText.propTypes = {
