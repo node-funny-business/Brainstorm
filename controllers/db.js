@@ -21,11 +21,11 @@ db.Concept = require('../models/concept-model')(sequelize, Sequelize);
 db.Idea = require('../models/idea-model')(sequelize, Sequelize);
 db.Steps = require('../models/steps-model')(sequelize, Sequelize);
 
-db.Steps.belongsTo(db.idea);
-db.Idea.hasMany(db.steps);
-db.Idea.belongsTo(db.concept);
-db.Concept.hasMany(db.idea);
-db.Concept.belongsTo(db.brainstorm);
-db.Brainstorm.hasMany(db.concept);
+db.Steps.belongsTo(db.Idea);
+db.Idea.hasMany(db.Steps);
+db.Idea.belongsTo(db.Concept);
+db.Concept.hasMany(db.Idea);
+db.Concept.belongsTo(db.Brainstorm);
+db.Brainstorm.hasMany(db.Concept);
 
 module.exports = db;
