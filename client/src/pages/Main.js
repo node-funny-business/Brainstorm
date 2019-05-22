@@ -15,34 +15,36 @@ import API from "../utils/API";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import pink from '@material-ui/core/colors/pink';
 import classnames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 
 
-
-// const theme = createMuiTheme({
-//     palette: {
-//         primary: { main: pink[500] },
-//         secondary: { main: "#D3D3D3" },
-//     },
-//     typography: { useNextVariants: true },
-//     overrides: {
-//         MuiCard: { // Name of the component ⚛️ / style sheet
-//           backgroundColor: { // Name of the rule
-//             color: '#d3d3d3', // Some CSS
-//           },
-//         }
-//     }
-// });
-
-const styles = {
-    card: {
-           backgroundColor: '#FFCDD2'
+function createStyled(styles, options) {
+    function Styled(props) {
+        const { children, ...other } = props;
+        return children(other);
     }
+    Styled.propTypes = {
+        children: PropTypes.func.isRequired,
+        classes: PropTypes.object.isRequired,
+    };
+    return withStyles(styles, options)(Styled);
 }
 
-const { classes, backgroundColor } = this.props; 
+const Styled = createStyled({
+    card1: {
+        backgroundColor: '#D7CCC8'
+    },
+    card2: {
+        backgroundColor: '#CFD8DC'
+    },
+    card3: {
+        backgroundColor: '#EEEEEE'
+    },
+});
 
 class Main extends React.Component {
-    
+
     state = {
         brainstorm: [
             { id: 1, name: "Pizza", user_id: 1 }],
@@ -69,7 +71,7 @@ class Main extends React.Component {
     //                 brainstorm: 
     //             })    
     //             )
-        
+
     // }
 
     // UPDATE Request to load whenever updated
@@ -136,13 +138,10 @@ class Main extends React.Component {
     render() {
         return (
             <div>
-                {/* <MuiThemeProvider theme={theme}> */}
-                    <Grid container spacing={24}>
-                        <Grid item xs={4}>
-                            <Card 
-                            className={classnames(classes.card)}
-                            style={{backgroundColor}}
-                            >
+                <Grid container spacing={24}>
+                    <Grid item xs={4}>
+                        <Styled>{({ classes }) =>
+                            <Card className={classes.card1}>
                                 <Typography align="center">
                                     <CardHeader title={this.state.brainstorm[0].name} />
                                 </Typography>
@@ -155,10 +154,12 @@ class Main extends React.Component {
                                             value={concept.name} />
                                     ))}
                                 </CardContent>
-                            </Card>
-                        </Grid>
-                        <Grid item xs={4}>
-                            <Card>
+                            </Card>}
+                        </Styled>
+                    </Grid>
+                    <Grid item xs={4}>
+                        <Styled>{({ classes }) =>
+                            <Card className={classes.card2}>
                                 <Typography align="center">
                                     <CardHeader title={this.state.currconcept.name} />
                                 </Typography>
@@ -171,10 +172,12 @@ class Main extends React.Component {
                                             value={idea.name} />
                                     ))}
                                 </CardContent>
-                            </Card>
-                        </Grid>
-                        <Grid item xs={4}>
-                            <Card>
+                            </Card>}
+                        </Styled>
+                    </Grid>
+                    <Grid item xs={4}>
+                        <Styled>{({ classes }) =>
+                            <Card className={classes.card3}>
                                 <Typography align="center">
                                     <CardHeader title={this.state.curridea.name} />
                                 </Typography>
@@ -186,13 +189,12 @@ class Main extends React.Component {
                                             value={step.name} />
                                     ))}
                                 </CardContent>
-                            </Card>
-                        </Grid>
+                            </Card>}
+                        </Styled>
                     </Grid>
-                {/* </MuiThemeProvider> */}
+                </Grid>
             </div>
         )
     }
 }
-
 export default Main;
