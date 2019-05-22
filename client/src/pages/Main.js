@@ -14,19 +14,35 @@ import StepText from "../components/StepText"
 import API from "../utils/API";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import pink from '@material-ui/core/colors/pink';
+import classnames from 'classnames';
 
 
 
-const theme = createMuiTheme({
-    palette: {
-        primary: { main: pink[500] },
-        secondary: { main: "#D3D3D3" },
-    },
-    typography: { useNextVariants: true },
-});
+// const theme = createMuiTheme({
+//     palette: {
+//         primary: { main: pink[500] },
+//         secondary: { main: "#D3D3D3" },
+//     },
+//     typography: { useNextVariants: true },
+//     overrides: {
+//         MuiCard: { // Name of the component ⚛️ / style sheet
+//           backgroundColor: { // Name of the rule
+//             color: '#d3d3d3', // Some CSS
+//           },
+//         }
+//     }
+// });
 
+const styles = {
+    card: {
+           backgroundColor: '#FFCDD2'
+    }
+}
+
+const { classes, backgroundColor } = this.props; 
 
 class Main extends React.Component {
+    
     state = {
         brainstorm: [
             { id: 1, name: "Pizza", user_id: 1 }],
@@ -46,15 +62,15 @@ class Main extends React.Component {
     }
 
     // GET Request to load data for Topic/Brainstorm
-    componentDidMount() {
-        API.getBrainstorm(10)
-            .then(res => 
-                this.setState(()=>{
-                    return
-                })    
-                )
+    // componentDidMount() {
+    //     API.getBrainstorm(10)
+    //         .then(res => 
+    //             this.setState({
+    //                 brainstorm: 
+    //             })    
+    //             )
         
-    }
+    // }
 
     // UPDATE Request to load whenever updated
     // componentDidUpdate(prevProps) {
@@ -120,10 +136,13 @@ class Main extends React.Component {
     render() {
         return (
             <div>
-                <MuiThemeProvider theme={theme}>
+                {/* <MuiThemeProvider theme={theme}> */}
                     <Grid container spacing={24}>
                         <Grid item xs={4}>
-                            <Card>
+                            <Card 
+                            className={classnames(classes.card)}
+                            style={{backgroundColor}}
+                            >
                                 <Typography align="center">
                                     <CardHeader title={this.state.brainstorm[0].name} />
                                 </Typography>
@@ -170,7 +189,7 @@ class Main extends React.Component {
                             </Card>
                         </Grid>
                     </Grid>
-                </MuiThemeProvider>
+                {/* </MuiThemeProvider> */}
             </div>
         )
     }
