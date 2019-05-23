@@ -85,7 +85,7 @@ class Main extends React.Component {
   // GET Requests
   componentDidMount() {
     API.getAllConcepts(this.state.currbrainstorm.id).then(data => {
-      var viewModels = data.data.map(oldConcept => ({ id: oldConcept.id, name: oldConcept.concept }));
+      var viewModels = data.data;
       this.setState({
         concept: [...viewModels, createEmptyConcept()]
       });
@@ -170,14 +170,14 @@ class Main extends React.Component {
     this.setState({
       currconcept: this.state.concept[index]
     });
-    // getConcepts();
+    // getIdeas();
   };
 
   selectCurrIdea = (index) => () => {
     this.setState({
       curridea: this.state.idea[index]
     });
-    // getIdeas();
+    // getSteps();
   };
 
   // POST Routes
@@ -229,7 +229,8 @@ class Main extends React.Component {
         )
         .catch(err => console.log(err));
     } else {
-      API.saveConcept(concept[index])
+      let newData = this.conceptData(index);
+      API.saveConcept(newData)
         .then(res =>
           this.setState({
             concept: [...concept.slice(0, concept.length - 1), res.data, createEmptyConcept()]
@@ -238,6 +239,11 @@ class Main extends React.Component {
         .catch(err => console.log(err));
     }
   };
+  // Reassigns conceptData for axios
+  conceptData (index) {
+    let data = Object.assign({}, this.state.concept[index], {BrainstormId: this.state.currbrainstorm.id});
+    return data;
+  }
 
   handleIdeaSubmit = index => event => {
     event.preventDefault();
@@ -333,7 +339,7 @@ class Main extends React.Component {
           <Styled>{({ classes }) =>
             <Card className={classes.card2}>
               <Typography align="center">
-                <CardHeader title={this.state.currconcept.name} />
+                <CardHeader title={this.state.currconcept.concept} />
               </Typography>
               <CardContent>
                 {this.state.idea.map((idea, i) => (
@@ -352,7 +358,7 @@ class Main extends React.Component {
           <Styled>{({ classes }) =>
             <Card className={classes.card3}>
               <Typography align="center">
-                <CardHeader title={this.state.curridea.name} />
+                <CardHeader title={this.state.curridea.idea} />
               </Typography>
               <CardContent>
                 {this.state.step.map((step, i) => (
