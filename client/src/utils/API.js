@@ -18,8 +18,8 @@ export default {
     return axios.post("/api/brainstorm/save", brainstormData);
   },
   updateBrainstorm: function(brainstormData) {
-    return axios.put('/api/concept/id/' + brainstormData.id, brainstormData)
-  },
+    return axios.put('/api/brainstorm/id/' + brainstormData.id, brainstormData)
+  }, //???
   getAllConcepts: function(brainstorm_id) {
     return axios.get("/api/concept/brainstorm/" + brainstorm_id);
   },
