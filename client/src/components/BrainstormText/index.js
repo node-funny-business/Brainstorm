@@ -34,11 +34,14 @@ function BrainstormText(props) {
     const { classes } = props;
 
     return (
-        <div className={classes.container}>
-            <DeleteBtn />
+        <form 
+        className={classes.container}
+        onSubmit={props.onSubmit}
+        >
+            <DeleteBtn id={props.id}/>
             <FormControl 
             className={classes.formControl}
-            onSubmit={props.handleBrainstormSubmit}
+            
             fullWidth>
                 <Input
                     id="component-helper"
@@ -53,7 +56,7 @@ function BrainstormText(props) {
                     Add Brainstorm Here
                 </Typography>
             </FormControl>
-        </div>
+        </form>
     );
 }
 
