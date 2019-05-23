@@ -6,6 +6,7 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import Input from "@material-ui/core/Input";
 import Typography from "@material-ui/core/Typography";
 import DeleteBtn from "../DeleteBtn/"
+import TextField from "@material-ui/core/TextField";
 
 const styles = theme => ({
     container: {
@@ -20,7 +21,7 @@ const styles = theme => ({
 
 
 
-function ConceptText(props) {
+function BrainstormText(props) {
     // state = {
     //   name: "Composed TextField"
     // };
@@ -36,30 +37,29 @@ function ConceptText(props) {
         <div className={classes.container}>
             <FormControl 
             className={classes.formControl}
-            onSubmit={props.handleConceptSubmit}
+            onSubmit={props.handleBrainstormSubmit}
             fullWidth>
                 <Input
-                    onClick={props.onClick}
                     id="component-helper"
                     value={props.value}
                     onChange={props.onChange}
                     aria-describedby="component-helper-text"
+                    inputProps={{
+                        style: { textAlign: "center" }
+                      }}
                 />
                 {/* Testing state */}
-                {/* <Typography>
-                    {props.value}
-                </Typography> */}
-                <FormHelperText id="component-helper-text">
-                    Add Concept Here
-                </FormHelperText>
+                <Typography>
+                    Add Brainstorm Here
+                </Typography>
             </FormControl>
             <DeleteBtn />
         </div>
     );
 }
 
-ConceptText.propTypes = {
+BrainstormText.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(ConceptText);
+export default withStyles(styles)(BrainstormText);

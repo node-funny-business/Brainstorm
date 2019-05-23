@@ -32,7 +32,8 @@ function IdeaText(props) {
     <div className={classes.container}>
       <FormControl
         className={classes.formControl}
-        onSubmit={props.handleStepSubmit}>
+        onSubmit={props.handleStepSubmit}
+        fullWidth>
         <Input
           id="component-helper"
           value={props.value}
@@ -40,9 +41,9 @@ function IdeaText(props) {
           aria-describedby="component-helper-text"
         />
         {/* Testing state */}
-        <Typography>
+        {/* <Typography>
           {props.value}
-        </Typography>
+        </Typography> */}
         <FormHelperText id="component-helper-text">
           Add Step Here
           </FormHelperText>

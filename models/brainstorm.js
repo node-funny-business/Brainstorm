@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
     var Brainstorm = sequelize.define('Brainstorm', {
-        name: DataTypes.STRING,s
+        name: DataTypes.STRING
     });
     return Brainstorm;
 };

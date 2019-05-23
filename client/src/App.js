@@ -15,7 +15,7 @@ import pink from '@material-ui/core/colors/pink';
 
 const theme = createMuiTheme({
   palette: {
-    primary: { main: pink[300] },
+    primary: { main: pink[100] },
     secondary: { main: "#D3D3D3" },
   },
   typography: { useNextVariants: true },
@@ -43,6 +43,7 @@ class App extends Component {
             <Route path='/aboutus' exact={true} component={AboutUs} />
             <Route path='/login' render={() => <Login baseUrl='https://dev-363275.okta.com' />} />
             <Route path='/implicit/callback' component={ImplicitCallback} />
+            <Route exact path="/main/:id" component={Main} />
           </Security>
         </Router>
       </MuiThemeProvider>
