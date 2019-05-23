@@ -29,7 +29,7 @@ function onAuthRequired({ history }) {
 
 class App extends Component {
   componentDidMount() {
-    API.updateConcept({id: 1, concept: "mo concepts mo problems", BrainstormId: 1}).then(data => {
+    API.deleteConcept(2).then(data => {
       console.log("test-concept", data)
     })
   }

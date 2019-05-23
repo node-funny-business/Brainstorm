@@ -225,7 +225,7 @@ module.exports = function (app) {
 
     app.put('/api/concept/id/', function (req, res) {
         db.Concept.update({
-            concept: req.body.concept
+            concept: req.body.concept,
         }, {
                 where: {
                     id: req.body.id,
