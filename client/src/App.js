@@ -12,6 +12,7 @@ import Login from "./components/auth/login";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
 import pink from '@material-ui/core/colors/pink';
+import API from './utils/API';
 
 const theme = createMuiTheme({
   palette: {
@@ -27,6 +28,11 @@ function onAuthRequired({ history }) {
 
 
 class App extends Component {
+  componentDidMount() {
+    // API.getAllConcepts(1).then(data => {
+    //   console.log("test-concept", data)
+    // })
+  }
   render() {
     return (
       <MuiThemeProvider theme={theme}>

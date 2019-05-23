@@ -31,7 +31,7 @@ module.exports = function (app) {
     app.get('/api/concept/brainstorm/:brainstorm_id', function (req, res) {
         db.Concept.findAll({
             where: {
-                brainstorm_id: req.params.brainstorm_id
+                BrainstormId: req.params.brainstorm_id
             }
         }).then(function (result) {
             res.json(result);
@@ -40,10 +40,10 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/api/concept/id/:brainstorm_id', function (req, res) {
+    app.get('/api/concept/id/:id', function (req, res) {
         db.Concept.findOne({
             where: {
-                brainstorm_id: req.params.brainstorm_id,
+                id: req.params.id,
             }
         }).then(function (result) {
             res.json(result)

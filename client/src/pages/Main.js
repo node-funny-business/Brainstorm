@@ -13,14 +13,6 @@ import ConceptText from "../components/ConceptText"
 import IdeaText from "../components/IdeaText"
 import StepText from "../components/StepText"
 import API from "../utils/API";
-<<<<<<< HEAD
-// import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-// import pink from '@material-ui/core/colors/pink';
-// import classnames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
-// import { TextField } from '@material-ui/core/TextField';
-=======
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
@@ -39,7 +31,6 @@ function createEmptyIdea() {
 function createEmptyStep() {
   return { name: "" }
 }
->>>>>>> e0356f1b5df0810551dfa999cd4fa845a8d3c61c
 
 
 function createStyled(styles, options) {
@@ -84,21 +75,29 @@ class Main extends React.Component {
       { id: 1, name: "Buy Organic Pepperoni from Sprouts", idea_id: 1 },
       { id: 2, name: "Place Pepperoni on Pizza", idea_id: 1 }
     ],
-    currbrainstorm: {},
+    currbrainstorm: {
+      id: 1
+    },
     currconcept: {},
     curridea: {}
   }
 
   // GET Requests
   componentDidMount() {
-    this.setState({
-      brainstorm: [createEmptyBrainstorm()],
-      concept: [...this.state.concept
-        // , createEmptyConcept()
-      ],
-      idea: [...this.state.idea, createEmptyIdea()],
-      step: [...this.state.step, createEmptyStep()]
+    API.getAllConcepts(this.state.currbrainstorm.id).then(data => {
+      var viewModels = data.data.map(oldConcept => ({ id: oldConcept.id, name: oldConcept.concept }));
+      this.setState({
+        concept: [...viewModels, createEmptyConcept()]
+      });
     })
+    // this.setState({
+    //   brainstorm: [createEmptyBrainstorm()],
+    //   concept: [...this.state.concept
+    //     // , createEmptyConcept()
+    //   ],
+    //   idea: [...this.state.idea, createEmptyIdea()],
+    //   step: [...this.state.step, createEmptyStep()]
+    // })
     // API.getBrainstorm(this.props.params.id)
     //     .then(res =>
     //         this.setState({
