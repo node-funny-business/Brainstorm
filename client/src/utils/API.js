@@ -22,7 +22,7 @@ export default {
   }, 
   getAllConcepts: function(brainstorm_id) {
     return axios.get("/api/concept/brainstorm/" + brainstorm_id);
-  },
+  }, //change to BrainstormId possibly
   getConcept: function(id) {
     return axios.get("/api/concept/id/" + id);
   },
