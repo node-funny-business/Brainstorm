@@ -68,7 +68,10 @@ class Brainstorms extends React.Component {
                                         </Link>
                                     </Typography>
                                 ))}
-                                <Button variant="contained" className={classes.button}>
+                                <Button 
+                                href="/main"
+                                variant="contained" 
+                                className={classes.button}>
                                     Create New Brainstorm</Button>
                             </CardContent>
                         </Card>
