@@ -40,7 +40,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/api/brainstorm/id/:brainstorm', function (req, res) {
+    app.get('/api/concept/id/:brainstorm_id', function (req, res) {
         db.concept.findOne({
             where: {
                 brainstorm_id: req.params.brainstorm_id,
@@ -62,6 +62,19 @@ module.exports = function (app) {
             res.json(result);
         }).catch(err => {
             console.log(err.message);
+        });
+    });
+
+    app.get('/api/brainstorm/id/:brainstorm', function (req, res) {
+        db.idea.findOne({
+            where: {
+                brainstorm_id: req.params.brainstorm_id,
+            }
+        }).then(function (result) {
+            res.json(result)
+        }).catch(err => {
+            console.log(err.message);
+            res.send(500);
         });
     });
 
