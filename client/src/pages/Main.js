@@ -13,14 +13,6 @@ import ConceptText from "../components/ConceptText"
 import IdeaText from "../components/IdeaText"
 import StepText from "../components/StepText"
 import API from "../utils/API";
-<<<<<<< HEAD
-// import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-// import pink from '@material-ui/core/colors/pink';
-// import classnames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
-// import { TextField } from '@material-ui/core/TextField';
-=======
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
@@ -39,7 +31,6 @@ function createEmptyIdea() {
 function createEmptyStep() {
   return { name: "" }
 }
->>>>>>> e0356f1b5df0810551dfa999cd4fa845a8d3c61c
 
 
 function createStyled(styles, options) {

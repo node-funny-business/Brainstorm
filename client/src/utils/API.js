@@ -23,11 +23,7 @@ export default {
   },
   updateBrainstorm: function(brainstormData) {
     return axios.put('/api/brainstorm/id/' + brainstormData.id, brainstormData)
-<<<<<<< HEAD
-  }, //???
-=======
   },
->>>>>>> 95ed6483be0cd9fb61aeadbfe643ca057c8a3d96
   getAllConcepts: function(brainstorm_id) {
     return axios.get("/api/concept/brainstorm/" + brainstorm_id);
   },
