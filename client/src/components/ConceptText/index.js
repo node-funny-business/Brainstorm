@@ -22,37 +22,31 @@ const styles = theme => ({
 function ConceptText(props) {
 
     const { classes } = props;
-    // handleKeyPress = (event) => {
-    //     if (event.key == 'Enter') {
-    //         // console.log('enter press here! ')
-    //         props.onKeyPress
-    //     }
-    // }
 
     return (
-        <div className={classes.container}>
+        <form
+            className={classes.container}
+            onSubmit={props.onSubmit}>
             <DeleteBtn />
             <FormControl
                 className={classes.formControl}
-                // onSubmit={props.handleConceptSubmit}
                 fullWidth>
                 <Input
                     onClick={props.onClick}
                     id="component-helper"
                     value={props.value}
                     onChange={props.onChange}
-                    // onKeyPress={this.handleKeyPress}
                     aria-describedby="component-helper-text"
                 />
                 {/* Testing state */}
                 {/* <Typography>
                     {props.value}
                 </Typography> */}
-                <FormHelperText id="component-helper-text">
+                {/* <FormHelperText id="component-helper-text">
                     Add Concept Here
-                </FormHelperText>
+                </FormHelperText> */}
             </FormControl>
-        </div>
+        </form>
     );
 }
 

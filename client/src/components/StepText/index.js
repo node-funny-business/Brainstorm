@@ -29,11 +29,12 @@ function IdeaText(props) {
   const { classes } = props;
 
   return (
-    <div className={classes.container}>
+    <form 
+    className={classes.container}
+    onSubmit={props.onSubmit}>
       <DeleteBtn />
       <FormControl
         className={classes.formControl}
-        onSubmit={props.handleStepSubmit}
         fullWidth>
         <Input
           id="component-helper"
@@ -45,11 +46,11 @@ function IdeaText(props) {
         {/* <Typography>
           {props.value}
         </Typography> */}
-        <FormHelperText id="component-helper-text">
+        {/* <FormHelperText id="component-helper-text">
           Add Step Here
-          </FormHelperText>
+          </FormHelperText> */}
       </FormControl>
-    </div>
+    </form>
   );
 }
 
