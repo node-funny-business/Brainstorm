@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
   // Gets all concepts
-  getBrainstorm: function() {
+  getAllBrainstorm: function() {
     return axios.get("/api/brainstorm");
   },
   // Gets the concept with the given id
@@ -26,20 +26,6 @@ export default {
   getConcept: function(id) {
     return axios.get("/api/concept/id/" + id);
   },
-<<<<<<< HEAD
-  // saveConcept: function(conceptData) {
-  //   return axios.post('/api/brainstorm/concept', conceptData);
-  // },
-  // saveIdea: function(ideaData) {
-  //   return axios.post('/api/brainstorm/concept/idea', ideaData);
-  // },
-  // saveSteps: function(stepsData) {
-  //   return axios.post('/api/brainstorm/concept/idea/steps', stepsData);
-  // },
-  updateBrainstorm: function(updateData) {
-    return axios.put('/api/brainstorm', updateData);
-  }
-=======
   saveConcept: function(conceptData) {
     return axios.post('/api/concept/save/', conceptData);
   },
@@ -73,6 +59,5 @@ export default {
   deleteStep: function(id) {
     return axios.delete("/api/step/id/" + id);
   },
->>>>>>> e0356f1b5df0810551dfa999cd4fa845a8d3c61c
 };
 
