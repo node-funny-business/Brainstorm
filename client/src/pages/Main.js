@@ -62,7 +62,7 @@ class Main extends React.Component {
 
   state = {
     brainstorm: [
-      // { id: 1, name: "Pizza", user_id: 1 }
+      { id: 1, name: "Pizza", user_id: 1 }
     ],
     concept: [
       // { id: 1, name: "Pepperoni", brainstorm_id: 1 },
