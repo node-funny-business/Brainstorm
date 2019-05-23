@@ -65,16 +65,16 @@ class Main extends React.Component {
       { id: 1, name: "Pizza", user_id: 1 }
     ],
     concept: [
-      // { id: 1, name: "Pepperoni", brainstorm_id: 1 },
-      // { id: 2, name: "Hawaiian", brainstorm_id: 1 }
+      { id: 1, name: "Pepperoni", brainstorm_id: 1 },
+      { id: 2, name: "Hawaiian", brainstorm_id: 1 }
     ],
     idea: [
-      // { id: 1, name: "Organic Pepperoni", concept_id: 1 },
-      // { id: 2, name: "Organic Cheese", concept_id: 1 },
+      { id: 1, name: "Organic Pepperoni", concept_id: 1 },
+      { id: 2, name: "Organic Cheese", concept_id: 1 },
     ],
     step: [
-      // { id: 1, name: "Buy Organic Pepperoni from Sprouts", idea_id: 1 },
-      // { id: 2, name: "Place Pepperoni on Pizza", idea_id: 1 }
+      { id: 1, name: "Buy Organic Pepperoni from Sprouts", idea_id: 1 },
+      { id: 2, name: "Place Pepperoni on Pizza", idea_id: 1 }
     ],
     currbrainstorm: {},
     currconcept: {},
