@@ -30,6 +30,7 @@ function IdeaText(props) {
 
   return (
     <div className={classes.container}>
+      <DeleteBtn />
       <FormControl
         className={classes.formControl}
         onSubmit={props.handleStepSubmit}
@@ -48,7 +49,6 @@ function IdeaText(props) {
           Add Step Here
           </FormHelperText>
       </FormControl>
-      <DeleteBtn />
     </div>
   );
 }

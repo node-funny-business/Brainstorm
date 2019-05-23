@@ -19,30 +19,29 @@ const styles = theme => ({
 
 
 
-
 function ConceptText(props) {
-    // state = {
-    //   name: "Composed TextField"
-    // };
-
-    // componentDidMount() {
-    //     this.forceUpdate();
-    // }
-
 
     const { classes } = props;
+    // handleKeyPress = (event) => {
+    //     if (event.key == 'Enter') {
+    //         // console.log('enter press here! ')
+    //         props.onKeyPress
+    //     }
+    // }
 
     return (
         <div className={classes.container}>
-            <FormControl 
-            className={classes.formControl}
-            onSubmit={props.handleConceptSubmit}
-            fullWidth>
+            <DeleteBtn />
+            <FormControl
+                className={classes.formControl}
+                // onSubmit={props.handleConceptSubmit}
+                fullWidth>
                 <Input
                     onClick={props.onClick}
                     id="component-helper"
                     value={props.value}
                     onChange={props.onChange}
+                    // onKeyPress={this.handleKeyPress}
                     aria-describedby="component-helper-text"
                 />
                 {/* Testing state */}
@@ -53,7 +52,6 @@ function ConceptText(props) {
                     Add Concept Here
                 </FormHelperText>
             </FormControl>
-            <DeleteBtn />
         </div>
     );
 }
