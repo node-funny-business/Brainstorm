@@ -29,9 +29,9 @@ function onAuthRequired({ history }) {
 
 class App extends Component {
   componentDidMount() {
-    // API.getAllConcepts(1).then(data => {
-    //   console.log("test-concept", data)
-    // })
+    API.saveConcept({name: "test", BrainstormId: 1}).then(data => {
+      console.log("test-concept", data)
+    })
   }
   render() {
     return (

@@ -64,8 +64,8 @@ class Main extends React.Component {
       { id: 1, name: "Pizza", user_id: 1 }
     ],
     concept: [
-      { id: 1, name: "Pepperoni", brainstorm_id: 1 },
-      { id: 2, name: "Hawaiian", brainstorm_id: 1 }
+      { id: 1, name: "Pepperoni", BrainstormId: 1 },
+      { id: 2, name: "Hawaiian", BrainstormId: 1 }
     ],
     idea: [
       { id: 1, name: "Organic Pepperoni", concept_id: 1 },
@@ -304,28 +304,26 @@ class Main extends React.Component {
               <Typography align="center">
                 <CardHeader title={
                   this.state.brainstorm.map((brainstorm, i) => (
-                    <div>
                       <BrainstormText
+                        key={brainstorm.id}
                         value={brainstorm.name}
                         onChange={this.handleChange("brainstorm", i, "name")}
                         onSubmit={this.handleBrainstormSubmit(i)}
                         id={this.state.brainstorm[i].id}
                         typ3={"brainstorm"}
                       />
-                    </div>
                   ))
                 }>
                 </CardHeader>
               </Typography>
               <CardContent>
                 {this.state.concept.map((concept, i) => (
-                  <div>
                     <ConceptText
+                      key={concept.id}
                       onClick={this.selectCurrConcept(i)}
                       onChange={this.handleChange("concept", i, "name")}
                       onSubmit={this.handleConceptSubmit(i)}
                       value={concept.name} />
-                  </div>
                 ))}
               </CardContent>
             </Card>}
@@ -339,13 +337,12 @@ class Main extends React.Component {
               </Typography>
               <CardContent>
                 {this.state.idea.map((idea, i) => (
-                  <div>
                     <IdeaText
+                      key={idea.id}
                       onClick={this.selectCurrIdea(i)}
                       onChange={this.handleChange("idea", i, "name")}
                       onSubmit={this.handleIdeaSubmit(i)}
                       value={idea.name} />
-                  </div>
                 ))}
               </CardContent>
             </Card>}
@@ -359,13 +356,12 @@ class Main extends React.Component {
               </Typography>
               <CardContent>
                 {this.state.step.map((step, i) => (
-                  <div>
                     <StepText
+                      key={step.id}
                       // onClick={this.getSteps()}
                       onChange={this.handleChange("step", i, "name")}
                       onSubmit={this.handleStepSubmit(i)}
                       value={step.name} />
-                  </div>
                 ))}
               </CardContent>
             </Card>}

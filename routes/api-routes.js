@@ -28,10 +28,10 @@ module.exports = function (app) {
         });
     }); // works
 
-    app.get('/api/concept/brainstorm/:brainstorm_id', function (req, res) {
+    app.get('/api/concept/brainstorm/:BrainstormId', function (req, res) {
         db.Concept.findAll({
             where: {
-                BrainstormId: req.params.brainstorm_id
+                BrainstormId: req.params.BrainstormId
             }
         }).then(function (result) {
             res.json(result);
