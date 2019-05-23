@@ -16,8 +16,11 @@ class SignInWidget extends Component {
   componentWillUnmount() {
     this.widget.remove();
   }
+  
 
   render() {
+
+    
     return <div />;
   }
 }
