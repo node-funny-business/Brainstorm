@@ -9,6 +9,9 @@ import Link from '@material-ui/core/Link';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Divider from '@material-ui/core/Divider';
+import DanielImg from '../images/DanielOlson.jpg'
+import JonImg from '../images/JonatanViera.jpg'
+import JasonImg from '../images/JasonLee.jpg'
 
 
 
@@ -60,7 +63,7 @@ function AboutUs(props) {
               </Typography>
               <CardMedia
                 className={classes.media}
-                image="https://via.placeholder.com/500x350.jpg"
+                image={DanielImg}
                 title="Daniel Olson"
               />
               <CardContent>
@@ -97,7 +100,7 @@ function AboutUs(props) {
               </Typography>
               <CardMedia
                 className={classes.media}
-                image="https://via.placeholder.com/500x350.jpg"
+                image={JonImg}
                 title="Jonatan Viera"
               />
               <CardContent>
@@ -134,7 +137,7 @@ function AboutUs(props) {
               </Typography>
               <CardMedia
                 className={classes.media}
-                image="https://via.placeholder.com/500x350.jpg"
+                image={JasonImg}
                 title="Jason Lee"
               />
               <CardContent>
