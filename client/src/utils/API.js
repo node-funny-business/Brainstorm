@@ -44,6 +44,9 @@ export default {
   saveIdea: function(IdeaData) {
     return axios.post('/api/idea/save/', IdeaData);
   },
+  updateIdea: function(ideaData) {
+    return axios.put('/api/idea/id/' + ideaData.id, ideaData)
+  },
   deleteIdea: function(id) {
     return axios.delete("/api/idea/id/" + id);
   },
@@ -55,6 +58,9 @@ export default {
   },
   saveStep: function(StepData) {
     return axios.post('/api/step/save/', StepData);
+  },
+  updateStep: function(stepData) {
+    return axios.put('/api/step/id/' + stepData.id, stepData)
   },
   deleteStep: function(id) {
     return axios.delete("/api/step/id/" + id);
