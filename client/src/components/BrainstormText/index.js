@@ -35,6 +35,7 @@ function BrainstormText(props) {
 
     return (
         <div className={classes.container}>
+            <DeleteBtn />
             <FormControl 
             className={classes.formControl}
             onSubmit={props.handleBrainstormSubmit}
@@ -48,12 +49,10 @@ function BrainstormText(props) {
                         style: { textAlign: "center" }
                       }}
                 />
-                {/* Testing state */}
                 <Typography>
                     Add Brainstorm Here
                 </Typography>
             </FormControl>
-            <DeleteBtn />
         </div>
     );
 }

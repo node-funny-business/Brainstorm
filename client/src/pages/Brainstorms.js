@@ -6,22 +6,23 @@ import { CardContent } from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import pink from '@material-ui/core/colors/pink';
-import API from "../utils/API";
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
+import Button from '@material-ui/core/Button';
 
 
 const styles = theme => ({
     card: {
         marginTop: theme.spacing.unit * 8
+    },
+    button: {
+        margin: theme.spacing.unit,
+      },
+    input: {
+        display: 'none',
     }
 })
 
-// sendToMain = (id) => {
-//     API.sendToMain(id)
-//         .then(res => console.log(res))
-//         .catch(err => console.log(err))
-// }
 
 class Brainstorms extends React.Component {
     constructor(props) {
@@ -34,6 +35,8 @@ class Brainstorms extends React.Component {
             ]
         }
     }
+
+
     // componentDidMount() {
     //     API.getAllBrainstorm(10)
     //         .then(res =>
@@ -42,35 +45,42 @@ class Brainstorms extends React.Component {
     //             })
     //         )
     //     }
-        // const { classes } = props;
-        render() {
-            return (
-                <div>
-                    <Grid container spacing={24}>
-                        <Grid item xs={3} />
-                        <Grid item xs={6}>
-                            <Card
-                            // className={classes.card}
-                            >
-                                <Typography align="center">
-                                    <CardHeader title="My Brainstorms" />
-                                </Typography>
-                                <CardContent>
-                                    {this.state.brainstorm.map((brainstorm) => (
-                                        <Typography align="center">
-                                            <Link 
-                                            to={"/main/"+brainstorm.id}
+ 
+    render() {
+        const { classes } = this.props;
+        return (
+            <div>
+                <Grid container spacing={24}>
+                    <Grid item xs={3} />
+                    <Grid item xs={6}>
+                        <Card
+                        className={classes.card}
+                        >
+                            <Typography align="center">
+                                <CardHeader title="My Brainstorms" />
+                            </Typography>
+                            <CardContent align="center">
+                                {this.state.brainstorm.map((brainstorm) => (
+                                    <Typography align="center">
+                                        <Link
+                                            to={"/main/" + brainstorm.id}
                                             component="button">{brainstorm.name}
-                                            </Link>
-                                        </Typography>
-                                    ))}
-                                </CardContent>
-                            </Card>
-                        </Grid>
+                                        </Link>
+                                    </Typography>
+                                ))}
+                                <Button variant="contained" className={classes.button}>
+                                    Create New Brainstorm</Button>
+                            </CardContent>
+                        </Card>
                     </Grid>
-                </div>
-            )
-        }
+                </Grid>
+            </div>
+        )
     }
+}
 
-    export default withStyles(styles)(Brainstorms);
+Brainstorms.propTypes = {
+    classes: PropTypes.object.isRequired,
+  };
+
+export default withStyles(styles)(Brainstorms);
