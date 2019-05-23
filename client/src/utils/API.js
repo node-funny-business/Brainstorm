@@ -3,7 +3,7 @@ import { object } from "prop-types";
 
 export default {
   // Gets all concepts
-  getAllBrainstorms: function() {
+  getAllBrainstorm: function() {
     return axios.get("/api/brainstorm");
   },
   // Gets the concept with the given id

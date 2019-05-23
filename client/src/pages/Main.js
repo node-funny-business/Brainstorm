@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Nav from "../components/Nav"
 import Grid from '@material-ui/core/Grid';
 // import ConceptCard from "../components/ConceptCard"
 // import IdeaCard from "../components/IdeaCard"
