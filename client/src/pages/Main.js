@@ -61,19 +61,19 @@ class Main extends React.Component {
 
   state = {
     brainstorm: [
-      { id: 1, name: "Pizza", user_id: 1 }
+      { id: 1, brainstorm: "Pizza", user_id: 1 }
     ],
     concept: [
-      { id: 1, name: "Pepperoni", BrainstormId: 1 },
-      { id: 2, name: "Hawaiian", BrainstormId: 1 }
+      { id: 1, concept: "Pepperoni", BrainstormId: 1 },
+      { id: 2, concept: "Hawaiian", BrainstormId: 1 }
     ],
     idea: [
-      { id: 1, name: "Organic Pepperoni", concept_id: 1 },
-      { id: 2, name: "Organic Cheese", concept_id: 1 },
+      { id: 1, idea: "Organic Pepperoni", concept_id: 1 },
+      { id: 2, idea: "Organic Cheese", concept_id: 1 },
     ],
     step: [
-      { id: 1, name: "Buy Organic Pepperoni from Sprouts", idea_id: 1 },
-      { id: 2, name: "Place Pepperoni on Pizza", idea_id: 1 }
+      { id: 1, step: "Buy Organic Pepperoni from Sprouts", idea_id: 1 },
+      { id: 2, step: "Place Pepperoni on Pizza", idea_id: 1 }
     ],
     currbrainstorm: {
       id: 1
@@ -321,9 +321,9 @@ class Main extends React.Component {
                     <ConceptText
                       key={concept.id}
                       onClick={this.selectCurrConcept(i)}
-                      onChange={this.handleChange("concept", i, "name")}
+                      onChange={this.handleChange("concept", i, "concept")}
                       onSubmit={this.handleConceptSubmit(i)}
-                      value={concept.name} />
+                      value={concept.concept} />
                 ))}
               </CardContent>
             </Card>}
