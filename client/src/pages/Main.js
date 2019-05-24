@@ -95,8 +95,8 @@ class Main extends React.Component {
 
 
 
-  // getConcepts() {
-  //     API.getConcept(this.state.brainstorm[0].name)
+  // getConcept() {
+  //     API.getConcept(this.state.currbrainstorm.id)
   //         .then(res =>
   //             this.setState({
   //                 concept: res.body.data
@@ -105,8 +105,8 @@ class Main extends React.Component {
   //         .catch(err => console.log(err));
   // }
 
-  // getIdeas() {
-  //     API.getIdea(this.state.currconcept.name)
+  // getIdea() {
+  //     API.getIdea(this.state.currconcept.id)
   //         .then(res =>
   //             this.setState({
   //                 idea: res.body.data
@@ -115,8 +115,8 @@ class Main extends React.Component {
   //         .catch(err => console.log(err));
   // }
 
-  // getSteps() {
-  //     API.getSteps(this.state.curridea.name)
+  // getStep() {
+  //     API.getSteps(this.state.curridea.id)
   //         .then(res =>
   //             this.setState({
   //                 step: res.body.data
@@ -125,16 +125,7 @@ class Main extends React.Component {
   //         .catch(err => console.log(err));
   // }
 
-  // UPDATE Request to load whenever updated
 
-  // componentDidUpdate(prevProps) {
-  //   // Typical usage (don't forget to compare props):
-  //   if (this.props.userID !== prevProps.userID) {
-  //     this.fetchData(this.props.userID);
-  //   }
-  // }
-
-  // Or should UPDATE be run here?
   handleChange = (key, index, property) => event => {
     const value = event.target.value;
     let currValue = null;
