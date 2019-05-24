@@ -60,7 +60,7 @@ class Main extends React.Component {
     concept: [],
     idea: [],
     step: [],
-    currbrainstorm: {},
+    currbrainstorm: {id:1},
     currconcept: null,
     curridea: null
   }
@@ -397,7 +397,9 @@ class Main extends React.Component {
                       // onClick={this.getSteps()}
                       onChange={this.handleChange("step", i, "step")}
                       onSubmit={this.handleStepSubmit(i)}
-                      value={step.step} />
+                      value={step.step}
+                      typ3={"step"}
+                      />
                   ))}
                 </CardContent>
               </Card>}
