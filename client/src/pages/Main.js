@@ -59,11 +59,8 @@ class Main extends React.Component {
   state = {
     concept: [],
     idea: [],
-    step: [
-      { id: 1, step: "Buy Organic Pepperoni from Sprouts", idea_id: 1 },
-      { id: 2, step: "Place Pepperoni on Pizza", idea_id: 1 }
-    ],
-    currbrainstorm: {},
+    step: [],
+    currbrainstorm: { id: 1 },
     currconcept: null,
     curridea: null
   }
@@ -73,44 +70,40 @@ class Main extends React.Component {
     if (this.state.currbrainstorm.id) {
       API.getBrainstorm(this.state.currbrainstorm.id)
         .then(res =>
-          this.setState({
-            currbrainstorm: res.data
+          API.getAllConcepts(this.state.currbrainstorm.id).then(data => {
+            var viewModels = data.data;
+            this.setState({
+              concept: [...viewModels, createEmptyConcept()],
+              currbrainstorm: res.data
+            });
           })
         )
         .catch(err => console.log(err));
-      API.getAllConcepts(this.state.currbrainstorm.id).then(res => {
-        var viewModels = res.data;
-        this.setState({
-          concept: [...viewModels, createEmptyConcept()]
-        });
-      })
     } else {
-      return;
+      API.saveBrainstorm({ brainstorm: "" })
+        .then(res =>
+          this.setState({
+            currbrainstorm: res.data,
+            concept: [createEmptyConcept()]
+          })
+
+        )
+        .catch(err => console.log(err));
     }
   }
 
 
 
 
-  // getConcept() {
-  //     API.getConcept(this.state.currbrainstorm.id)
-  //         .then(res =>
-  //             this.setState({
-  //                 concept: res.body.data
-  //             })
-  //         )
-  //         .catch(err => console.log(err));
-  // }
-
-  // getIdea() {
-  //     API.getIdea(this.state.currconcept.id)
-  //         .then(res =>
-  //             this.setState({
-  //                 idea: res.body.data
-  //             })
-  //         )
-  //         .catch(err => console.log(err));
-  // }
+  getConcept() {
+    API.getConcept(this.state.currbrainstorm.id)
+      .then(res =>
+        this.setState({
+          concept: res.body.data
+        })
+      )
+      .catch(err => console.log(err));
+  }
 
   // getStep() {
   //     API.getSteps(this.state.curridea.id)
@@ -152,22 +145,41 @@ class Main extends React.Component {
 
 
   selectCurrConcept = (index) => () => {
-    this.setState({
-      currconcept: this.state.concept[index]
-    });
-    // API.getAllIdeas(this.state.currconcept.id).then(res => {
-    //   var viewModels = res.data;
-    //   this.setState({
-    //     idea: [...viewModels, createEmptyIdea()]
-    //   });
-    // })
+    API.getConcept(this.state.currbrainstorm.id)
+      .then(res =>
+        this.setState({
+          currconcept: this.state.concept[index]
+        })
+      )
+      .then(res => {
+        API.getAllIdeas(this.state.currconcept.id)
+          .then(data => {
+            var viewModels = data.data;
+            this.setState({
+              idea: [...viewModels, createEmptyIdea()]
+            });
+          })
+      })
+      .catch(err => console.log(err));
   };
 
   selectCurrIdea = (index) => () => {
-    this.setState({
-      curridea: this.state.idea[index]
-    });
-    // getSteps();
+    API.getIdea(this.state.currconcept.id)
+      .then(res =>
+        this.setState({
+          curridea: this.state.idea[index]
+        })
+      )
+      .then(res => {
+        API.getAllSteps(this.state.curridea.id)
+          .then(data => {
+            var viewModels = data.data;
+            this.setState({
+              step: [...viewModels, createEmptyStep()]
+            });
+          })
+      })
+      .catch(err => console.log(err));
   };
 
   // POST Routes
@@ -359,7 +371,7 @@ class Main extends React.Component {
                       onSubmit={this.handleIdeaSubmit(i)}
                       value={idea.idea}
                       typ3={"idea"}
-                       />
+                    />
                   ))}
                 </CardContent>
               </Card>}
