@@ -110,7 +110,7 @@ module.exports = function (app) {
 
     app.post('/api/brainstorm/save/', function (req, res) {
         db.Brainstorm.create({
-            name: req.body.name
+            concept: req.body.name
         }).then(result => res.json(result))
             .catch(function (err) {
                 console.log(err.message);

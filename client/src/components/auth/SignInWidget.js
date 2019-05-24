@@ -9,6 +9,7 @@ class SignInWidget extends Component {
     const el = ReactDOM.findDOMNode(this);
     this.widget = new OktaSignIn({
       baseUrl: this.props.baseUrl,
+      logo: ''
     });
     this.widget.renderEl({ el }, this.props.onSuccess, this.props.onError);
   }
@@ -16,8 +17,11 @@ class SignInWidget extends Component {
   componentWillUnmount() {
     this.widget.remove();
   }
+  
 
   render() {
+
+    
     return <div />;
   }
 }

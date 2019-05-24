@@ -38,13 +38,13 @@ class App extends Component {
       <MuiThemeProvider theme={theme}>
         <Router>
           <Security issuer='https://dev-363275.okta.com/oauth2/default'
-            client_id='0oam45rndnEWAIpaA356'
+            client_id='0oamv91dwmixCU5FL356'
             redirect_uri={window.location.origin + '/implicit/callback'}
             onAuthRequired={onAuthRequired} >
             <Nav color="primary" />
             <Route path='/' exact={true} component={Instructions} />
             <Route path='/Instructions' exact={true} component={Instructions} />
-            <SecureRoute path='/Main' exact={true} component={Main} />
+            <Route path='/Main' exact={true} component={Main} />
             <Route path='/brainstorms' exact={true} component={Brainstorms} />
             <Route path='/aboutus' exact={true} component={AboutUs} />
             <Route path='/login' render={() => <Login baseUrl='https://dev-363275.okta.com' />} />
