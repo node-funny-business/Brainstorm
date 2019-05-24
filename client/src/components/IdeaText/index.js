@@ -38,10 +38,12 @@ function IdeaText(props) {
         fullWidth>
         <Input
           onClick={props.onClick}
-          id="component-helper"
           value={props.value}
           onChange={props.onChange}
           aria-describedby="component-helper-text"
+          inputProps={{
+            style: { textAlign: "center" }
+          }}
         />
         {/* Testing state */}
         {/* <Typography>

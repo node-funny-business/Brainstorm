@@ -58,10 +58,7 @@ class Main extends React.Component {
 
   state = {
     concept: [],
-    idea: [
-      { id: 1, idea: "Organic Pepperoni", concept_id: 1 },
-      { id: 2, idea: "Organic Cheese", concept_id: 1 },
-    ],
+    idea: [],
     step: [
       { id: 1, step: "Buy Organic Pepperoni from Sprouts", idea_id: 1 },
       { id: 2, step: "Place Pepperoni on Pizza", idea_id: 1 }
@@ -228,12 +225,15 @@ class Main extends React.Component {
       API.saveConcept(newData)
         .then(res =>
           this.setState({
-            concept: [...concept.slice(0, concept.length - 1), res.data, createEmptyConcept()]
+            concept: [...concept.slice(0, concept.length - 1), res.data, createEmptyConcept()],
+            idea: [createEmptyIdea()],
+            currconcept: res.data
           })
         )
         .catch(err => console.log(err));
     }
   };
+
   // Reassigns conceptData for axios
   conceptData(index) {
     let data = Object.assign({}, this.state.concept[index], { BrainstormId: this.state.currbrainstorm.id });
@@ -245,7 +245,7 @@ class Main extends React.Component {
     const idea = this.state.idea;
     const id = idea[index].id
     if (id) {
-      API.updateIdea()
+      API.updateIdea(idea[index])
         .then(res =>
           this.setState({
             idea: idea.map(item => {
@@ -258,15 +258,22 @@ class Main extends React.Component {
         )
         .catch(err => console.log(err));
     } else {
-      API.saveIdea(index)
+      let newData = this.ideaData(index)
+      API.saveIdea(newData)
         .then(res =>
           this.setState({
-            idea: [...idea.slice(0, idea.length - 1), res.data, createEmptyIdea()]
+            idea: [...idea.slice(0, idea.length - 1), res.data, createEmptyIdea()],
+            step: [createEmptyStep()]
           })
         )
         .catch(err => console.log(err));
     }
   };
+
+  ideaData(index) {
+    let data = Object.assign({}, this.state.idea[index], { ConceptId: this.state.currconcept.id });
+    return data;
+  }
 
   handleStepSubmit = index => event => {
     event.preventDefault();
@@ -346,10 +353,13 @@ class Main extends React.Component {
                   {this.state.idea.map((idea, i) => (
                     <IdeaText
                       key={idea.id}
+                      id={idea.id}
                       onClick={this.selectCurrIdea(i)}
-                      onChange={this.handleChange("idea", i, "name")}
+                      onChange={this.handleChange("idea", i, "idea")}
                       onSubmit={this.handleIdeaSubmit(i)}
-                      value={idea.name} />
+                      value={idea.idea}
+                      typ3={"idea"}
+                       />
                   ))}
                 </CardContent>
               </Card>}
@@ -365,9 +375,9 @@ class Main extends React.Component {
                     <StepText
                       key={step.id}
                       // onClick={this.getSteps()}
-                      onChange={this.handleChange("step", i, "name")}
+                      onChange={this.handleChange("step", i, "step")}
                       onSubmit={this.handleStepSubmit(i)}
-                      value={step.name} />
+                      value={step.step} />
                   ))}
                 </CardContent>
               </Card>}
