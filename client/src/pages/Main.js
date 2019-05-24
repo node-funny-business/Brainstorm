@@ -60,10 +60,7 @@ class Main extends React.Component {
     // brainstorm: [
     //   { id: 1 }
     // ],
-    concept: [
-      { id: 1, concept: "Pepperoni", BrainstormId: 1 },
-      { id: 2, concept: "Hawaiian", BrainstormId: 1 }
-    ],
+    concept: [],
     idea: [
       { id: 1, idea: "Organic Pepperoni", concept_id: 1 },
       { id: 2, idea: "Organic Cheese", concept_id: 1 },
@@ -72,22 +69,24 @@ class Main extends React.Component {
       { id: 1, step: "Buy Organic Pepperoni from Sprouts", idea_id: 1 },
       { id: 2, step: "Place Pepperoni on Pizza", idea_id: 1 }
     ],
-    currbrainstorm: {
-      id: 1,
-      brainstorm: ""
-    },
+    currbrainstorm: {},
     currconcept: null,
     curridea: null
   }
 
   // GET Requests
   componentDidMount() {
-    API.getAllConcepts(this.state.currbrainstorm.id).then(data => {
-      var viewModels = data.data;
-      this.setState({
-        concept: [...viewModels, createEmptyConcept()]
-      });
-    })
+    // if (this.state.currbrainstorm.id) {
+    //   API.getAllConcepts(this.state.currbrainstorm.id).then(data => {
+    //     var viewModels = data.data;
+    //     this.setState({
+    //       concept: [...viewModels, createEmptyConcept()]
+    //     });
+    //   })
+    // } else {
+    //   return;
+    // }
+ 
     // API.getBrainstorm(1)
     //     .then(res =>
     //         this.setState({
@@ -156,6 +155,15 @@ class Main extends React.Component {
     // console.log(newState)
   };
 
+  handleBrainstormChange = (key, index, property) => event => {
+    const value = event.target.value;
+    let currValue = Object.assign({}, this.state[key][index], { [property]: value });
+    this.setState({
+      [key]: currValue
+    })
+  };
+
+
   selectCurrConcept = (index) => () => {
     this.setState({
       currconcept: this.state.concept[index]
@@ -173,13 +181,13 @@ class Main extends React.Component {
   // POST Routes
   handleBrainstormSubmit = index => event => {
     event.preventDefault();
-    const brainstorm = this.state.brainstorm;
+    const brainstorm = this.state.currbrainstorm;
     const id = brainstorm[index].id
     if (id) {
       API.updateBrainstorm()
         .then(res =>
           this.setState({
-            brainstorm: brainstorm.map(item => {
+            currbrainstorm: brainstorm.map(item => {
               if (item.id === res.data.id) {
                 return res.data;
               }
@@ -192,7 +200,7 @@ class Main extends React.Component {
       API.saveBrainstorm(index)
         .then(res =>
           this.setState({
-            brainstorm: res.data,
+            currbrainstorm: res.data,
             concept: [createEmptyConcept()]
           })
 
@@ -303,7 +311,9 @@ class Main extends React.Component {
                   <BrainstormText
                     key={this.state.currbrainstorm.id}
                     value={this.state.currbrainstorm.brainstorm}
-                    onChange={this.handleChange("brainstorm", 0, "brainstorm")}
+                    onChange= 
+                    {this.handleBrainstormChange(
+                      "currbrainstorm", 0, "brainstorm")}
                     onSubmit={this.handleBrainstormSubmit(0)}
                     id={this.state.currbrainstorm.id}
                     typ3={"brainstorm"}
