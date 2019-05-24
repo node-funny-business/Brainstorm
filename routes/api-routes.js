@@ -80,10 +80,10 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/api/step/idea/:idea_id', function (req, res) {
+    app.get('/api/step/idea/:IdeaId', function (req, res) {
         db.Steps.findAll({
             where: {
-                IdeaId: req.params.idea_id
+                IdeaId: req.params.IdeaId
             }
         }).then(function (result) {
             res.json(result);
