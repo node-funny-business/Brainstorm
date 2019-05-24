@@ -40,7 +40,7 @@ class App extends Component {
             <Nav color="primary" />
             <Route path='/' exact={true} component={Instructions} />
             <Route path='/Instructions' exact={true} component={Instructions} />
-            <SecureRoute path='/Main' exact={true} component={Main} />
+            <Route path='/Main' exact={true} component={Main} />
             <Route path='/brainstorms' exact={true} component={Brainstorms} />
             <Route path='/aboutus' exact={true} component={AboutUs} />
             <Route path='/login' render={() => <Login baseUrl='https://dev-363275.okta.com' />} />
