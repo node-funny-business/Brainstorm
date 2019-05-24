@@ -32,9 +32,9 @@ function IdeaText(props) {
     <form
       className={classes.container}
       onSubmit={props.onSubmit}>
-      <DeleteBtn
+      {/* <DeleteBtn
         id={props.id}
-        typ3={props.typ3} />
+        typ3={props.typ3} /> */}
       <FormControl
         className={classes.formControl}
         fullWidth>
@@ -43,6 +43,9 @@ function IdeaText(props) {
           value={props.value}
           onChange={props.onChange}
           aria-describedby="component-helper-text"
+          inputProps={{
+            style: { textAlign: "center" }
+          }}
         />
         {/* Testing state */}
         {/* <Typography>

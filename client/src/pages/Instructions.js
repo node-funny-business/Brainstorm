@@ -63,9 +63,9 @@ const styles = theme => ({
                                 </Typography>
                                 <CardContent>
                                     <Typography align="center" component="p">
-                                        <p>Create as many concepts as you like.</p>
-                                        <p>Within your concept, create as many ideas as you like.</p>
-                                        <p>Within your idea, create as many steps as are necessary.</p>
+                                        <p>A Brainstorm app to help you organize your ideas!</p>
+                                        <p>Once you press ENTER, new lines will show up.</p>
+                                        <p>You can then expand on your current idea, or create a new one!</p>
                                         {button}
                                     </Typography>
                                 </CardContent>

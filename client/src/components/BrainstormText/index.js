@@ -46,7 +46,7 @@ function BrainstormText(props) {
         />
         <Typography>
           Add Brainstorm Here
-                </Typography>
+        </Typography>
       </FormControl>
     </form>
   );

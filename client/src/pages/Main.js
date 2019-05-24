@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import Grid from '@material-ui/core/Grid';
-// import ConceptCard from "../components/ConceptCard"
-// import IdeaCard from "../components/IdeaCard"
-// import StepCard from "../components/StepCard"
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
@@ -60,7 +57,7 @@ class Main extends React.Component {
     concept: [],
     idea: [],
     step: [],
-    currbrainstorm: {id:1},
+    currbrainstorm: {},
     currconcept: null,
     curridea: null
   }
@@ -86,7 +83,6 @@ class Main extends React.Component {
           this.setState({
             currbrainstorm: {name: res.data.brainstorm},
           })
-
         )
         .catch(err => console.log(err));
     }
@@ -257,6 +253,7 @@ class Main extends React.Component {
   // Reassigns conceptData for axios
   conceptData(index) {
     let data = Object.assign({}, this.state.concept[index], { BrainstormId: this.state.currbrainstorm.id });
+    console.log("concept: " + this.state.currbrainstorm)
     return data;
   }
 
@@ -283,7 +280,8 @@ class Main extends React.Component {
         .then(res =>
           this.setState({
             idea: [...idea.slice(0, idea.length - 1), res.data, createEmptyIdea()],
-            step: [createEmptyStep()]
+            step: [createEmptyStep()],
+            curridea: res.data
           })
         )
         .catch(err => console.log(err));
@@ -292,6 +290,7 @@ class Main extends React.Component {
 
   ideaData(index) {
     let data = Object.assign({}, this.state.idea[index], { ConceptId: this.state.currconcept.id });
+    console.log("idea: " + this.state.currconcept.id)
     return data;
   }
 
@@ -303,7 +302,7 @@ class Main extends React.Component {
       API.updateStep(step[index])
         .then(res =>
           this.setState({
-            Step: step.map(item => {
+            step: step.map(item => {
               if (item.id === res.data.id) {
                 return res.data;
               }
@@ -326,6 +325,7 @@ class Main extends React.Component {
 
   stepData(index) {
     let data = Object.assign({}, this.state.step[index], { IdeaId: this.state.curridea.id });
+    console.log(this.state.curridea.id)
     return data;
   }
 
@@ -337,7 +337,6 @@ class Main extends React.Component {
             <Card className={classes.card1}>
               <CardHeader align="center"
                 title={
-                  // this.state.brainstorm.map((brainstorm, i) => (
                   <BrainstormText
                     key={this.state.currbrainstorm.id}
                     value={
@@ -350,7 +349,6 @@ class Main extends React.Component {
                     id={this.state.currbrainstorm.id}
                     typ3={"brainstorm"}
                   />
-                  // ))
                 }
               >
               </CardHeader>

@@ -27,10 +27,10 @@ function ConceptText(props) {
     <form
       className={classes.container}
       onSubmit={props.onSubmit}>
-      <DeleteBtn
+      {/* <DeleteBtn
         id={props.id}
         typ3={props.typ3}
-      />
+      /> */}
       <FormControl
         className={classes.formControl}
         fullWidth
@@ -46,11 +46,13 @@ function ConceptText(props) {
         />
         {/* Testing state */}
         {/* <Typography>
-                    {props.value}
-                </Typography> */}
-        {/* <FormHelperText id="component-helper-text">
-                    Add Concept Here
-                </FormHelperText> */}
+            {props.value}
+        </Typography> */}
+        {/* <FormHelperText 
+        id="component-helper-text"
+        >
+          Add Concept Here
+        </FormHelperText> */}
       </FormControl>
     </form>
   );
