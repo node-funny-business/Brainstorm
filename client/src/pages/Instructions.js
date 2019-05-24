@@ -9,7 +9,7 @@ import { withAuth } from '@okta/okta-react';
 import style from "@material-ui/system/style";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import pink from '@material-ui/core/colors/pink';
-
+import {Link} from 'react-router-dom'
 
 const theme = createMuiTheme({
     palette: {
@@ -47,11 +47,19 @@ const styles = theme => ({
         }
 
         render() {
-            if (this.state.authenticated === null) return null;
-
-            const button = this.state.authenticated ?
-              <button onClick={this.props.auth.logout}>Logout</button> :
-              <button onClick={this.props.auth.login}>Login</button>;
+            const mainContent = this.state.authenticated ? (
+                <div>
+                  <button className="btn btn-light btn-lg" onClick={this.logout}>
+                  Logout
+                  </button>
+                </div>
+              ) : (
+                <div>
+                  <button className="btn btn-light btn-lg" onClick={this.login}>
+                  <Link to="/main">Login</Link>
+                  </button>
+                </div>
+              );
             return (
                 <div>
                     <Grid container spacing={24}>
@@ -66,7 +74,7 @@ const styles = theme => ({
                                         <p>Create as many concepts as you like.</p>
                                         <p>Within your concept, create as many ideas as you like.</p>
                                         <p>Within your idea, create as many steps as are necessary.</p>
-                                        {button}
+                                        {mainContent}
                                     </Typography>
                                 </CardContent>
                             </Card>

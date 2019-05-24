@@ -68,7 +68,7 @@ function AboutUs(props) {
               />
               <CardContent>
                 <Typography component="p">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  Hi, my name is Daniel Olson. I am 25 and a Full Stack developer based in southern California. I enjoy a good trading card game, PC gaming and long walks on the beach. Visit any of my links if youd like to know more.
                   </Typography>
                 <div><br /></div>
                 <Grid container spacing={24}>
