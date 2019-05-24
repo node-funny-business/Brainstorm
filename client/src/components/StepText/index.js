@@ -29,10 +29,12 @@ function IdeaText(props) {
   const { classes } = props;
 
   return (
-    <form 
-    className={classes.container}
-    onSubmit={props.onSubmit}>
-      <DeleteBtn />
+    <form
+      className={classes.container}
+      onSubmit={props.onSubmit}>
+      <DeleteBtn
+        id={props.id}
+        typ3={props.typ3} />
       <FormControl
         className={classes.formControl}
         fullWidth>

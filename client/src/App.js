@@ -32,9 +32,6 @@ class App extends Component {
     // API.updateBrainstorm({ brainstorm: "ramen", id:1 }).then(data => {
     //   console.log("test-concept", data)
     // })
-    API.deleteStep(1).then(data => {
-      console.log("test-concept", data)
-    })
   }
   render() {
     return (

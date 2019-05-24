@@ -400,7 +400,7 @@ class Main extends React.Component {
                   {this.state.step.map((step, i) => (
                     <StepText
                       key={step.id}
-                      // onClick={this.getStep()}
+                      id={step.id}
                       onChange={this.handleChange("step", i, "step")}
                       onSubmit={this.handleStepSubmit(i)}
                       value={step.step}
