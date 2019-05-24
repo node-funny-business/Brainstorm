@@ -28,8 +28,8 @@ function ConceptText(props) {
       className={classes.container}
       onSubmit={props.onSubmit}>
       <DeleteBtn
-        typ3={props.typ3}
         id={props.id}
+        typ3={props.typ3}
       />
       <FormControl
         className={classes.formControl}
@@ -40,6 +40,9 @@ function ConceptText(props) {
           value={props.value}
           onChange={props.onChange}
           aria-describedby="component-helper-text"
+          inputProps={{
+            style: { textAlign: "center" }
+          }}
         />
         {/* Testing state */}
         {/* <Typography>

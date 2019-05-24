@@ -57,9 +57,6 @@ function createEmptyStep() {
 class Main extends React.Component {
 
   state = {
-    // brainstorm: [
-    //   { id: 1 }
-    // ],
     concept: [],
     idea: [
       { id: 1, idea: "Organic Pepperoni", concept_id: 1 },
@@ -322,7 +319,8 @@ class Main extends React.Component {
                     typ3={"brainstorm"}
                   />
                 // ))
-              }>
+              }
+              >
               </CardHeader>
               <CardContent>
                 {this.state.concept.map((concept, i) => (

@@ -9,58 +9,51 @@ import DeleteBtn from "../DeleteBtn/"
 import TextField from "@material-ui/core/TextField";
 
 const styles = theme => ({
-    container: {
-        display: "flex",
-        flexWrap: "wrap"
-    },
-    formControl: {
-        margin: theme.spacing.unit
-    }
+  container: {
+    display: "flex",
+    flexWrap: "wrap"
+  },
+  formControl: {
+    margin: theme.spacing.unit
+  }
 });
 
 
 
 
 function BrainstormText(props) {
-    // state = {
-    //   name: "Composed TextField"
-    // };
 
-    // componentDidMount() {
-    //     this.forceUpdate();
-    // }
+  const { classes } = props;
 
-
-    const { classes } = props;
-
-    return (
-        <form 
-        className={classes.container}
-        onSubmit={props.onSubmit}
-        >
-            {/* <DeleteBtn id={props.id}/> */}
-            <FormControl 
-            className={classes.formControl}
-            fullWidth>
-                <Input
-                    id="component-helper"
-                    value={props.value}
-                    onChange={props.onChange}
-                    aria-describedby="component-helper-text"
-                    inputProps={{
-                        style: { textAlign: "center" }
-                      }}
-                />
-                <Typography>
-                    Add Brainstorm Here
+  return (
+    <form
+      className={classes.container}
+      onSubmit={props.onSubmit}>
+      {/* <DeleteBtn
+        id={props.id}
+        type3={props.typ3}
+      /> */}
+      <FormControl
+        className={classes.formControl}
+        fullWidth>
+        <Input
+          value={props.value}
+          onChange={props.onChange}
+          aria-describedby="component-helper-text"
+          inputProps={{
+            style: { textAlign: "center" }
+          }}
+        />
+        <Typography>
+          Add Brainstorm Here
                 </Typography>
-            </FormControl>
-        </form>
-    );
+      </FormControl>
+    </form>
+  );
 }
 
 BrainstormText.propTypes = {
-    classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(BrainstormText);

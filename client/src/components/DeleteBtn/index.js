@@ -10,9 +10,10 @@ function DeleteBtn(props) {
   const deleteLine = (id) => () => {
     switch (props.typ3) {
       case "brainstorm":
-        API.deleteBrainstorm(id)
-          .then(res => window.location.reload())
-          .catch(err => console.log(err))
+        // API.deleteBrainstorm(id)
+        //   .then(res => window.location.reload())
+        //   .catch(err => console.log(err))
+        alert(`clicked`)
         break;
       case "concept":
         API.deleteConcept(id)

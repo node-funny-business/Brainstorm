@@ -55,10 +55,10 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/api/idea/concept/:concept_id', function (req, res) {
+    app.get('/api/idea/concept/:ConceptId', function (req, res) {
         db.Idea.findAll({
             where: {
-                ConceptId: req.params.concept_id
+                ConceptId: req.params.ConceptId
             }
         }).then(function (result) {
             res.json(result);
