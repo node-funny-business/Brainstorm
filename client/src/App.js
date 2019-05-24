@@ -29,7 +29,7 @@ function onAuthRequired({ history }) {
 
 class App extends Component {
   componentDidMount() {
-    // API.getAllConcepts(1).then(data => {
+    // API.updateBrainstorm({ brainstorm: "ramen", id:1 }).then(data => {
     //   console.log("test-concept", data)
     // })
   }

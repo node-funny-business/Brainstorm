@@ -2,11 +2,11 @@ var db = require("../controllers/db")
 
 var seeds = [{
     Brainstorm: [{
-    name: "pizza"
+    brainstorm: "pizza"
 },{
-    name: "Pie"
+    brainstorm: "Pie"
 },{
-    name: "Sandwhich"
+    brainstorm: "Sandwhich"
 }]}, { Concept: [{
     concept: "hello boys",
     BrainstormId: 1
@@ -26,13 +26,13 @@ var seeds = [{
     idea: "ey",
     ConceptId: 1
 }]}, {Steps: [{
-    steps: "dsjaklfl",
+    step: "dsjaklfl",
     IdeaId: 1
 },{
-    steps: "fioejfi",
+    step: "fioejfi",
     IdeaId: 1
 },{
-    steps: "fewjhfewhfoiwh",
+    step: "fewjhfewhfoiwh",
     IdeaId: 1
 }]}];
 db.sequelize.sync({ force: true }).then(async function () {

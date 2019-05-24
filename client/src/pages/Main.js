@@ -1,37 +1,15 @@
 import React, { Component } from "react";
 import Grid from '@material-ui/core/Grid';
-// import ConceptCard from "../components/ConceptCard"
-// import IdeaCard from "../components/IdeaCard"
-// import StepCard from "../components/StepCard"
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import BrainstormText from "../components/BrainstormText"
-import DeleteBtn from "../components/DeleteBtn"
 import ConceptText from "../components/ConceptText"
 import IdeaText from "../components/IdeaText"
 import StepText from "../components/StepText"
 import API from "../utils/API";
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-
-function createEmptyBrainstorm() {
-  return { name: "" }
-}
-
-function createEmptyConcept() {
-  return { name: "" }
-}
-
-function createEmptyIdea() {
-  return { name: "" }
-}
-
-function createEmptyStep() {
-  return { name: "" }
-}
-
 
 function createStyled(styles, options) {
   function Styled(props) {
@@ -57,78 +35,82 @@ const Styled = createStyled({
   },
 });
 
+function createEmptyBrainstorm() {
+  return { name: "" }
+}
+
+function createEmptyConcept() {
+  return { name: "" }
+}
+
+function createEmptyIdea() {
+  return { name: "" }
+}
+
+function createEmptyStep() {
+  return { name: "" }
+}
+
 class Main extends React.Component {
 
   state = {
-    brainstorm: [
-      { id: 1, name: "Pizza", user_id: 1 }
-    ],
-    concept: [
-      { id: 1, name: "Pepperoni", brainstorm_id: 1 },
-      { id: 2, name: "Hawaiian", brainstorm_id: 1 }
-    ],
-    idea: [
-      { id: 1, name: "Organic Pepperoni", concept_id: 1 },
-      { id: 2, name: "Organic Cheese", concept_id: 1 },
-    ],
-    step: [
-      { id: 1, name: "Buy Organic Pepperoni from Sprouts", idea_id: 1 },
-      { id: 2, name: "Place Pepperoni on Pizza", idea_id: 1 }
-    ],
-    currbrainstorm: {
-      id: 1
-    },
-    currconcept: {},
-    curridea: {}
+    concept: [],
+    idea: [],
+    step: [],
+    currbrainstorm: {},
+    currconcept: null,
+    curridea: null
   }
 
   // GET Requests
   componentDidMount() {
-    API.getAllConcepts(this.state.currbrainstorm.id).then(data => {
-      var viewModels = data.data.map(oldConcept => ({ id: oldConcept.id, name: oldConcept.concept }));
-      this.setState({
-        concept: [...viewModels, createEmptyConcept()]
-      });
-    })
-    // this.setState({
-    //   brainstorm: [createEmptyBrainstorm()],
-    //   concept: [...this.state.concept
-    //     // , createEmptyConcept()
-    //   ],
-    //   idea: [...this.state.idea, createEmptyIdea()],
-    //   step: [...this.state.step, createEmptyStep()]
-    // })
-    // API.getBrainstorm(this.props.params.id)
-    //     .then(res =>
-    //         this.setState({
-    //             brainstorm: res.body.data
-    //         })
-    //     )
-    //     .catch(err => console.log(err));
+    if (this.state.currbrainstorm.id) {
+      API.getBrainstorm(this.state.currbrainstorm.id)
+        .then(res =>
+          API.getAllConcepts(this.state.currbrainstorm.id)
+          .then(data => {
+            var viewModels = data.data;
+            this.setState({
+              concept: [...viewModels, createEmptyConcept()],
+              currbrainstorm: res.data
+            });
+          })
+        )
+        .catch(err => console.log(err));
+    } else {
+      API.saveBrainstorm({ brainstorm: "" })
+        .then(res =>
+          this.setState({
+            currbrainstorm: {name: res.data.brainstorm},
+          })
+        )
+        .catch(err => console.log(err));
+    }
   }
 
-  // getConcepts() {
-  //     API.getConcept(this.state.brainstorm[0].name)
-  //         .then(res =>
-  //             this.setState({
-  //                 concept: res.body.data
-  //             })
-  //         )
-  //         .catch(err => console.log(err));
+
+  // getConcept() {
+  //   API.getConcept(this.state.currbrainstorm.id)
+  //     .then(res =>
+  //       this.setState({
+  //         concept: res.body.data
+  //       })
+  //     )
+  //     .catch(err => console.log(err));
   // }
 
-  // getIdeas() {
-  //     API.getIdea(this.state.currconcept.name)
-  //         .then(res =>
-  //             this.setState({
-  //                 idea: res.body.data
-  //             })
-  //         )
-  //         .catch(err => console.log(err));
+  // getIdea() {
+  //   API.getIdea(this.state.currconcept.id)
+  //     .then(res =>
+  //       this.setState({
+  //         idea: res.body.data
+  //       })
+  //     )
+  //     .catch(err => console.log(err));
   // }
 
-  // getSteps() {
-  //     API.getSteps(this.state.curridea.name)
+  // getStep() {
+  //     API.getStep(this.state.curridea.id)
   //         .then(res =>
   //             this.setState({
   //                 step: res.body.data
@@ -137,16 +119,7 @@ class Main extends React.Component {
   //         .catch(err => console.log(err));
   // }
 
-  // UPDATE Request to load whenever updated
 
-  // componentDidUpdate(prevProps) {
-  //   // Typical usage (don't forget to compare props):
-  //   if (this.props.userID !== prevProps.userID) {
-  //     this.fetchData(this.props.userID);
-  //   }
-  // }
-
-  // Or should UPDATE be run here?
   handleChange = (key, index, property) => event => {
     const value = event.target.value;
     let currValue = null;
@@ -166,30 +139,64 @@ class Main extends React.Component {
     // console.log(newState)
   };
 
-  selectCurrConcept = (index) => () => {
+  handleBrainstormChange = (key, index, property) => event => {
+    const value = event.target.value;
+    let currValue = Object.assign({}, this.state[key], { [property]: value });
     this.setState({
-      currconcept: this.state.concept[index]
-    });
-    // getConcepts();
+      [key]: currValue
+    })
+  };
+
+
+  selectCurrConcept = (index) => () => {
+    API.getConcept(this.state.currbrainstorm.id)
+      .then(res =>
+        this.setState({
+          currconcept: this.state.concept[index]
+        })
+      )
+      .then(res => {
+        API.getAllIdeas(this.state.currconcept.id)
+          .then(data => {
+            var viewModels = data.data;
+            this.setState({
+              idea: [...viewModels, createEmptyIdea()]
+            });
+          })
+      })
+      .catch(err => console.log(err));
   };
 
   selectCurrIdea = (index) => () => {
-    this.setState({
-      curridea: this.state.idea[index]
-    });
-    // getIdeas();
+    API.getIdea(this.state.currconcept.id)
+      .then(res =>
+        this.setState({
+          curridea: this.state.idea[index]
+        })
+      )
+      .then(res => {
+        API.getAllSteps(this.state.curridea.id)
+          .then(data => {
+            var viewModels = data.data;
+            this.setState({
+              step: [...viewModels, createEmptyStep()]
+            });
+          })
+      })
+      .catch(err => console.log(err));
   };
 
   // POST Routes
   handleBrainstormSubmit = index => event => {
     event.preventDefault();
-    const brainstorm = this.state.brainstorm;
-    const id = brainstorm[index].id
+    const brainstorm = this.state.currbrainstorm;
+    const id = brainstorm.id
+    const value = brainstorm.brainstorm
     if (id) {
-      API.updateBrainstorm()
+      API.updateBrainstorm({ brainstorm: value, id: id })
         .then(res =>
           this.setState({
-            brainstorm: brainstorm.map(item => {
+            currbrainstorm: brainstorm.map(item => {
               if (item.id === res.data.id) {
                 return res.data;
               }
@@ -199,17 +206,18 @@ class Main extends React.Component {
         )
         .catch(err => console.log(err));
     } else {
-      API.saveBrainstorm(index)
+      API.saveBrainstorm({ brainstorm: value })
         .then(res =>
           this.setState({
-            brainstorm: res.data,
+            currbrainstorm: res.data,
             concept: [createEmptyConcept()]
           })
-          
+
         )
         .catch(err => console.log(err));
     }
   };
+
 
   handleConceptSubmit = index => event => {
     event.preventDefault();
@@ -229,22 +237,32 @@ class Main extends React.Component {
         )
         .catch(err => console.log(err));
     } else {
-      API.saveConcept(concept[index])
+      let newData = this.conceptData(index);
+      API.saveConcept(newData)
         .then(res =>
           this.setState({
-            concept: [...concept.slice(0, concept.length - 1), res.data, createEmptyConcept()]
+            concept: [...concept.slice(0, concept.length - 1), res.data, createEmptyConcept()],
+            idea: [createEmptyIdea()],
+            currconcept: res.data
           })
         )
         .catch(err => console.log(err));
     }
   };
 
+  // Reassigns conceptData for axios
+  conceptData(index) {
+    let data = Object.assign({}, this.state.concept[index], { BrainstormId: this.state.currbrainstorm.id });
+    console.log("concept: " + this.state.currbrainstorm)
+    return data;
+  }
+
   handleIdeaSubmit = index => event => {
     event.preventDefault();
     const idea = this.state.idea;
     const id = idea[index].id
     if (id) {
-      API.updateIdea()
+      API.updateIdea(idea[index])
         .then(res =>
           this.setState({
             idea: idea.map(item => {
@@ -257,25 +275,34 @@ class Main extends React.Component {
         )
         .catch(err => console.log(err));
     } else {
-      API.saveIdea(index)
+      let newData = this.ideaData(index)
+      API.saveIdea(newData)
         .then(res =>
           this.setState({
-            idea: [...idea.slice(0, idea.length - 1), res.data, createEmptyIdea()]
+            idea: [...idea.slice(0, idea.length - 1), res.data, createEmptyIdea()],
+            step: [createEmptyStep()],
+            curridea: res.data
           })
         )
         .catch(err => console.log(err));
     }
   };
 
+  ideaData(index) {
+    let data = Object.assign({}, this.state.idea[index], { ConceptId: this.state.currconcept.id });
+    console.log("idea: " + this.state.currconcept.id)
+    return data;
+  }
+
   handleStepSubmit = index => event => {
     event.preventDefault();
     const step = this.state.step;
     const id = step[index].id
     if (id) {
-      API.updateStep()
+      API.updateStep(step[index])
         .then(res =>
           this.setState({
-            Step: step.map(item => {
+            step: step.map(item => {
               if (item.id === res.data.id) {
                 return res.data;
               }
@@ -285,7 +312,8 @@ class Main extends React.Component {
         )
         .catch(err => console.log(err));
     } else {
-      API.saveStep(index)
+      let newData = this.stepData(index)
+      API.saveStep(newData)
         .then(res =>
           this.setState({
             step: [...step.slice(0, step.length - 1), res.data, createEmptyStep()]
@@ -295,82 +323,92 @@ class Main extends React.Component {
     }
   };
 
+  stepData(index) {
+    let data = Object.assign({}, this.state.step[index], { IdeaId: this.state.curridea.id });
+    console.log(this.state.curridea.id)
+    return data;
+  }
+
   render() {
     return (
       <Grid container spacing={24}>
         <Grid item xs={4}>
           <Styled>{({ classes }) =>
             <Card className={classes.card1}>
-              <Typography align="center">
-                <CardHeader title={
-                  this.state.brainstorm.map((brainstorm, i) => (
-                    <div>
-                      <BrainstormText
-                        value={brainstorm.name}
-                        onChange={this.handleChange("brainstorm", i, "name")}
-                        onSubmit={this.handleBrainstormSubmit(i)}
-                        id={this.state.brainstorm[i].id}
-                        typ3={"brainstorm"}
-                      />
-                    </div>
-                  ))
-                }>
-                </CardHeader>
-              </Typography>
+              <CardHeader align="center"
+                title={
+                  <BrainstormText
+                    key={this.state.currbrainstorm.id}
+                    value={
+                      this.state.currbrainstorm.brainstorm
+                    }
+                    onChange=
+                    {this.handleBrainstormChange(
+                      "currbrainstorm", 0, "brainstorm")}
+                    onSubmit={this.handleBrainstormSubmit(0)}
+                    id={this.state.currbrainstorm.id}
+                    typ3={"brainstorm"}
+                  />
+                }
+              >
+              </CardHeader>
               <CardContent>
                 {this.state.concept.map((concept, i) => (
-                  <div>
-                    <ConceptText
-                      onClick={this.selectCurrConcept(i)}
-                      onChange={this.handleChange("concept", i, "name")}
-                      onSubmit={this.handleConceptSubmit(i)}
-                      value={concept.name} />
-                  </div>
+                  <ConceptText
+                    key={concept.id}
+                    id={concept.id}
+                    onClick={this.selectCurrConcept(i)}
+                    onChange={this.handleChange("concept", i, "concept")}
+                    onSubmit={this.handleConceptSubmit(i)}
+                    value={concept.concept}
+                    typ3={"concept"}
+                  />
                 ))}
               </CardContent>
             </Card>}
           </Styled>
         </Grid>
-        <Grid item xs={4}>
-          <Styled>{({ classes }) =>
-            <Card className={classes.card2}>
-              <Typography align="center">
-                <CardHeader title={this.state.currconcept.name} />
-              </Typography>
-              <CardContent>
-                {this.state.idea.map((idea, i) => (
-                  <div>
+        {this.state.currconcept &&
+          <Grid item xs={4}>
+            <Styled>{({ classes }) =>
+              <Card className={classes.card2}>
+                <CardHeader align="center" title={this.state.currconcept.concept} />
+                <CardContent>
+                  {this.state.idea.map((idea, i) => (
                     <IdeaText
+                      key={idea.id}
+                      id={idea.id}
                       onClick={this.selectCurrIdea(i)}
-                      onChange={this.handleChange("idea", i, "name")}
+                      onChange={this.handleChange("idea", i, "idea")}
                       onSubmit={this.handleIdeaSubmit(i)}
-                      value={idea.name} />
-                  </div>
-                ))}
-              </CardContent>
-            </Card>}
-          </Styled>
-        </Grid>
-        <Grid item xs={4}>
-          <Styled>{({ classes }) =>
-            <Card className={classes.card3}>
-              <Typography align="center">
-                <CardHeader title={this.state.curridea.name} />
-              </Typography>
-              <CardContent>
-                {this.state.step.map((step, i) => (
-                  <div>
+                      value={idea.idea}
+                      typ3={"idea"}
+                    />
+                  ))}
+                </CardContent>
+              </Card>}
+            </Styled>
+          </Grid>}
+        {this.state.curridea &&
+          <Grid item xs={4}>
+            <Styled>{({ classes }) =>
+              <Card className={classes.card3}>
+                <CardHeader align="center" title={this.state.curridea.idea} />
+                <CardContent>
+                  {this.state.step.map((step, i) => (
                     <StepText
-                      // onClick={this.getSteps()}
-                      onChange={this.handleChange("step", i, "name")}
+                      key={step.id}
+                      id={step.id}
+                      onChange={this.handleChange("step", i, "step")}
                       onSubmit={this.handleStepSubmit(i)}
-                      value={step.name} />
-                  </div>
-                ))}
-              </CardContent>
-            </Card>}
-          </Styled>
-        </Grid>
+                      value={step.step}
+                      typ3={"step"}
+                      />
+                  ))}
+                </CardContent>
+              </Card>}
+            </Styled>
+          </Grid>}
       </Grid>
     )
   }
