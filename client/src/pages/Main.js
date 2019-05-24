@@ -300,7 +300,7 @@ class Main extends React.Component {
     const step = this.state.step;
     const id = step[index].id
     if (id) {
-      API.updateStep()
+      API.updateStep(step[index])
         .then(res =>
           this.setState({
             Step: step.map(item => {
