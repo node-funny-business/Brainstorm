@@ -29,7 +29,7 @@ function onAuthRequired({ history }) {
 
 class App extends Component {
   componentDidMount() {
-    // API.deleteConcept(2).then(data => {
+    // API.updateBrainstorm({ brainstorm: "ramen", id:1 }).then(data => {
     //   console.log("test-concept", data)
     // })
   }
@@ -38,7 +38,7 @@ class App extends Component {
       <MuiThemeProvider theme={theme}>
         <Router>
           <Security issuer='https://dev-363275.okta.com/oauth2/default'
-            client_id='0oamv91dwmixCU5FL356'
+            client_id='0oam45rndnEWAIpaA356'
             redirect_uri={window.location.origin + '/implicit/callback'}
             onAuthRequired={onAuthRequired} >
             <Nav color="primary" />

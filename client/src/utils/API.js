@@ -35,8 +35,8 @@ export default {
   deleteConcept: function(id) {
     return axios.delete("/api/concept/id/" + id);
   },
-  getAllIdeas: function(concept_id) {
-    return axios.get("/api/idea/concept/" + concept_id);
+  getAllIdeas: function(ConceptId) {
+    return axios.get("/api/idea/concept/" + ConceptId);
   },
   getIdea: function(id) {
     return axios.get("/api/idea/id/" + id);
@@ -50,8 +50,8 @@ export default {
   deleteIdea: function(id) {
     return axios.delete("/api/idea/id/" + id);
   },
-  getAllSteps: function(idea_id) {
-    return axios.get("/api/step/idea/" + idea_id);
+  getAllSteps: function(IdeaId) {
+    return axios.get("/api/step/idea/" + IdeaId);
   },
   getStep: function(id) {
     return axios.get("/api/step/id/" + id);

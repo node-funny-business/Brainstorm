@@ -105,7 +105,7 @@ function AboutUs(props) {
               />
               <CardContent>
                 <Typography component="p">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  My name is John Viera and I'm a fullstack developer based in Southern California. I enjoy working out, motorcycles and going fast, and playing basketball with friends. I decided to learning web development because I like creating things with my hands and with coding I get to do just that. Plus the money's good too...
                 </Typography>
                 <div><br /></div>
                 <Grid container spacing={24}>

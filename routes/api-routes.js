@@ -17,10 +17,10 @@ module.exports = function (app) {
     });  // works
     
 
-    app.get('/api/brainstorm/id/:brainstorm', function (req, res) {
+    app.get('/api/brainstorm/id/:BrainstormId', function (req, res) {
         db.Brainstorm.findOne({
             where: {
-                id: req.params.brainstorm,
+                id: req.params.BrainstormId,
             }
         }).then(function (result) {
             res.json(result)
@@ -55,10 +55,10 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/api/idea/concept/:concept_id', function (req, res) {
+    app.get('/api/idea/concept/:ConceptId', function (req, res) {
         db.Idea.findAll({
             where: {
-                ConceptId: req.params.concept_id
+                ConceptId: req.params.ConceptId
             }
         }).then(function (result) {
             res.json(result);
@@ -80,10 +80,10 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/api/step/idea/:idea_id', function (req, res) {
+    app.get('/api/step/idea/:IdeaId', function (req, res) {
         db.Steps.findAll({
             where: {
-                IdeaId: req.params.idea_id
+                IdeaId: req.params.IdeaId
             }
         }).then(function (result) {
             res.json(result);
@@ -110,7 +110,7 @@ module.exports = function (app) {
 
     app.post('/api/brainstorm/save/', function (req, res) {
         db.Brainstorm.create({
-            concept: req.body.name
+            brainstorm: req.body.brainstorm
         }).then(result => res.json(result))
             .catch(function (err) {
                 console.log(err.message);
@@ -142,7 +142,7 @@ module.exports = function (app) {
 
     app.post('/api/step/save/', function (req, res) {
         db.Steps.create({
-            steps: req.body.idea,
+            step: req.body.step,
             IdeaId: req.body.IdeaId
         }).then(result => res.json(result))
             .catch(function (err) {
@@ -210,7 +210,7 @@ module.exports = function (app) {
 
     app.put('/api/brainstorm/id/', function (req, res) {
         db.Brainstorm.update({
-            name: req.body.name
+            brainstorm: req.body.brainstorm
         }, {
                 where: {
                     id: req.body.id
@@ -253,7 +253,7 @@ module.exports = function (app) {
 
     app.put('/api/step/id/', function (req, res) {
         db.Steps.update({
-            steps: req.body.steps
+            step: req.body.step
         }, {
                 where: {
                     id: req.body.id
