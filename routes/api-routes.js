@@ -166,6 +166,7 @@ module.exports = function (app) {
     });
 
     app.delete('/api/concept/id/:id', function(req, res) {
+        console.log(req.params)
         db.Concept.destroy({
             where: {
                 id: req.params.id

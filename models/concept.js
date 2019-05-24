@@ -10,3 +10,5 @@ module.exports = function(sequelize, DataTypes) {
     });
     return Concept;
 };
+
+// NOT THIS ONE

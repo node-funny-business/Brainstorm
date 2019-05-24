@@ -205,7 +205,7 @@ class Main extends React.Component {
             brainstorm: res.data,
             concept: [createEmptyConcept()]
           })
-          
+
         )
         .catch(err => console.log(err));
     }
@@ -240,8 +240,8 @@ class Main extends React.Component {
     }
   };
   // Reassigns conceptData for axios
-  conceptData (index) {
-    let data = Object.assign({}, this.state.concept[index], {BrainstormId: this.state.currbrainstorm.id});
+  conceptData(index) {
+    let data = Object.assign({}, this.state.concept[index], { BrainstormId: this.state.currbrainstorm.id });
     return data;
   }
 
@@ -307,29 +307,31 @@ class Main extends React.Component {
         <Grid item xs={4}>
           <Styled>{({ classes }) =>
             <Card className={classes.card1}>
-              <Typography align="center">
-                <CardHeader title={
-                  this.state.brainstorm.map((brainstorm, i) => (
-                      <BrainstormText
-                        key={brainstorm.id}
-                        value={brainstorm.name}
-                        onChange={this.handleChange("brainstorm", i, "name")}
-                        onSubmit={this.handleBrainstormSubmit(i)}
-                        id={this.state.brainstorm[i].id}
-                        typ3={"brainstorm"}
-                      />
-                  ))
-                }>
-                </CardHeader>
-              </Typography>
+              <CardHeader align="center" 
+                title={
+                this.state.brainstorm.map((brainstorm, i) => (
+                  <BrainstormText
+                    key={brainstorm.id}
+                    value={brainstorm.name}
+                    onChange={this.handleChange("brainstorm", i, "name")}
+                    onSubmit={this.handleBrainstormSubmit(i)}
+                    id={this.state.brainstorm[i].id}
+                    typ3={"brainstorm"}
+                  />
+                ))
+              }>
+              </CardHeader>
               <CardContent>
                 {this.state.concept.map((concept, i) => (
-                    <ConceptText
-                      key={concept.id}
-                      onClick={this.selectCurrConcept(i)}
-                      onChange={this.handleChange("concept", i, "concept")}
-                      onSubmit={this.handleConceptSubmit(i)}
-                      value={concept.concept} />
+                  <ConceptText
+                    key={concept.id}
+                    id={concept.id}
+                    onClick={this.selectCurrConcept(i)}
+                    onChange={this.handleChange("concept", i, "concept")}
+                    onSubmit={this.handleConceptSubmit(i)}
+                    value={concept.concept}
+                    typ3={"concept"}
+                    />
                 ))}
               </CardContent>
             </Card>}
@@ -338,17 +340,15 @@ class Main extends React.Component {
         <Grid item xs={4}>
           <Styled>{({ classes }) =>
             <Card className={classes.card2}>
-              <Typography align="center">
-                <CardHeader title={this.state.currconcept.concept} />
-              </Typography>
+              <CardHeader align="center" title={this.state.currconcept.concept} />
               <CardContent>
                 {this.state.idea.map((idea, i) => (
-                    <IdeaText
-                      key={idea.id}
-                      onClick={this.selectCurrIdea(i)}
-                      onChange={this.handleChange("idea", i, "name")}
-                      onSubmit={this.handleIdeaSubmit(i)}
-                      value={idea.name} />
+                  <IdeaText
+                    key={idea.id}
+                    onClick={this.selectCurrIdea(i)}
+                    onChange={this.handleChange("idea", i, "name")}
+                    onSubmit={this.handleIdeaSubmit(i)}
+                    value={idea.name} />
                 ))}
               </CardContent>
             </Card>}
@@ -357,17 +357,15 @@ class Main extends React.Component {
         <Grid item xs={4}>
           <Styled>{({ classes }) =>
             <Card className={classes.card3}>
-              <Typography align="center">
-                <CardHeader title={this.state.curridea.idea} />
-              </Typography>
+              <CardHeader align="center" title={this.state.curridea.idea} />
               <CardContent>
                 {this.state.step.map((step, i) => (
-                    <StepText
-                      key={step.id}
-                      // onClick={this.getSteps()}
-                      onChange={this.handleChange("step", i, "name")}
-                      onSubmit={this.handleStepSubmit(i)}
-                      value={step.name} />
+                  <StepText
+                    key={step.id}
+                    // onClick={this.getSteps()}
+                    onChange={this.handleChange("step", i, "name")}
+                    onSubmit={this.handleStepSubmit(i)}
+                    value={step.name} />
                 ))}
               </CardContent>
             </Card>}

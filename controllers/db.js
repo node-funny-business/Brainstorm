@@ -27,19 +27,22 @@ db.Steps = require('../models/steps')(sequelize, Sequelize);
 db.Steps.belongsTo(db.Idea, {
     foreignKey: {
         allowNull: false
-    }
+    },
+    onDelete: 'cascade'
 });
 db.Idea.hasMany(db.Steps);
 db.Idea.belongsTo(db.Concept, {
     foreignKey: {
         allowNull: false
-    }
+    },
+    onDelete: 'cascade'
 });
 db.Concept.hasMany(db.Idea);
 db.Concept.belongsTo(db.Brainstorm, {
     foreignKey: {
         allowNull: false
-    }
+    },
+    onDelete: 'cascade'
 });
 db.Brainstorm.hasMany(db.Concept);
 
