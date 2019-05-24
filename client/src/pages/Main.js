@@ -313,7 +313,8 @@ class Main extends React.Component {
         )
         .catch(err => console.log(err));
     } else {
-      API.saveStep(index)
+      let newData = this.stepData(index)
+      API.saveStep(newData)
         .then(res =>
           this.setState({
             step: [...step.slice(0, step.length - 1), res.data, createEmptyStep()]
@@ -322,6 +323,11 @@ class Main extends React.Component {
         .catch(err => console.log(err));
     }
   };
+
+  stepData(index) {
+    let data = Object.assign({}, this.state.step[index], { IdeaId: this.state.curridea.id });
+    return data;
+  }
 
   render() {
     return (
