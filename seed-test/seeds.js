@@ -2,11 +2,11 @@ var db = require("../controllers/db")
 
 var seeds = [{
     Brainstorm: [{
-    name: "pizza"
+    brainstorm: "pizza"
 },{
-    name: "Pie"
+    brainstorm: "Pie"
 },{
-    name: "Sandwhich"
+    brainstorm: "Sandwhich"
 }]}, { Concept: [{
     concept: "hello boys",
     BrainstormId: 1

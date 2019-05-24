@@ -110,7 +110,7 @@ module.exports = function (app) {
 
     app.post('/api/brainstorm/save/', function (req, res) {
         db.Brainstorm.create({
-            name: req.body.name
+            brainstorm: req.body.name
         }).then(result => res.json(result))
             .catch(function (err) {
                 console.log(err.message);
@@ -210,7 +210,7 @@ module.exports = function (app) {
 
     app.put('/api/brainstorm/id/', function (req, res) {
         db.Brainstorm.update({
-            name: req.body.name
+            brainstorm: req.body.brainstorm
         }, {
                 where: {
                     id: req.body.id

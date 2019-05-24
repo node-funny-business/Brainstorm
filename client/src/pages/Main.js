@@ -14,23 +14,6 @@ import API from "../utils/API";
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
-function createEmptyBrainstorm() {
-  return { name: "" }
-}
-
-function createEmptyConcept() {
-  return { name: "" }
-}
-
-function createEmptyIdea() {
-  return { name: "" }
-}
-
-function createEmptyStep() {
-  return { name: "" }
-}
-
-
 function createStyled(styles, options) {
   function Styled(props) {
     const { children, ...other } = props;
@@ -55,12 +38,28 @@ const Styled = createStyled({
   },
 });
 
+function createEmptyBrainstorm() {
+  return { name: "" }
+}
+
+function createEmptyConcept() {
+  return { name: "" }
+}
+
+function createEmptyIdea() {
+  return { name: "" }
+}
+
+function createEmptyStep() {
+  return { name: "" }
+}
+
 class Main extends React.Component {
 
   state = {
-    brainstorm: [
-      { id: 1, brainstorm: "Pizza", user_id: 1 }
-    ],
+    // brainstorm: [
+    //   { id: 1 }
+    // ],
     concept: [
       { id: 1, concept: "Pepperoni", BrainstormId: 1 },
       { id: 2, concept: "Hawaiian", BrainstormId: 1 }
@@ -74,7 +73,8 @@ class Main extends React.Component {
       { id: 2, step: "Place Pepperoni on Pizza", idea_id: 1 }
     ],
     currbrainstorm: {
-      id: 1
+      id: 1,
+      brainstorm: ""
     },
     currconcept: null,
     curridea: null
@@ -88,15 +88,7 @@ class Main extends React.Component {
         concept: [...viewModels, createEmptyConcept()]
       });
     })
-    // this.setState({
-    //   brainstorm: [createEmptyBrainstorm()],
-    //   concept: [...this.state.concept
-    //     // , createEmptyConcept()
-    //   ],
-    //   idea: [...this.state.idea, createEmptyIdea()],
-    //   step: [...this.state.step, createEmptyStep()]
-    // })
-    // API.getBrainstorm(this.props.params.id)
+    // API.getBrainstorm(1)
     //     .then(res =>
     //         this.setState({
     //             brainstorm: res.body.data
@@ -307,16 +299,16 @@ class Main extends React.Component {
             <Card className={classes.card1}>
               <CardHeader align="center" 
                 title={
-                this.state.brainstorm.map((brainstorm, i) => (
+                // this.state.brainstorm.map((brainstorm, i) => (
                   <BrainstormText
-                    key={brainstorm.id}
-                    value={brainstorm.name}
-                    onChange={this.handleChange("brainstorm", i, "name")}
-                    onSubmit={this.handleBrainstormSubmit(i)}
-                    id={this.state.brainstorm[i].id}
+                    key={this.state.currbrainstorm.id}
+                    value={this.state.currbrainstorm.brainstorm}
+                    onChange={this.handleChange("brainstorm", 0, "brainstorm")}
+                    onSubmit={this.handleBrainstormSubmit(0)}
+                    id={this.state.currbrainstorm.id}
                     typ3={"brainstorm"}
                   />
-                ))
+                // ))
               }>
               </CardHeader>
               <CardContent>
