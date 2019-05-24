@@ -41,7 +41,6 @@ function BrainstormText(props) {
             <DeleteBtn id={props.id}/>
             <FormControl 
             className={classes.formControl}
-            
             fullWidth>
                 <Input
                     id="component-helper"

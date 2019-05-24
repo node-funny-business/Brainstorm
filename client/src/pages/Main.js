@@ -157,7 +157,7 @@ class Main extends React.Component {
 
   handleBrainstormChange = (key, index, property) => event => {
     const value = event.target.value;
-    let currValue = Object.assign({}, this.state[key][index], { [property]: value });
+    let currValue = Object.assign({}, this.state[key], { [property]: value });
     this.setState({
       [key]: currValue
     })
@@ -182,7 +182,8 @@ class Main extends React.Component {
   handleBrainstormSubmit = index => event => {
     event.preventDefault();
     const brainstorm = this.state.currbrainstorm;
-    const id = brainstorm[index].id
+    const id = brainstorm.id
+    const value = brainstorm.brainstorm
     if (id) {
       API.updateBrainstorm()
         .then(res =>
@@ -197,7 +198,7 @@ class Main extends React.Component {
         )
         .catch(err => console.log(err));
     } else {
-      API.saveBrainstorm(index)
+      API.saveBrainstorm({brainstorm: value})
         .then(res =>
           this.setState({
             currbrainstorm: res.data,
@@ -208,6 +209,7 @@ class Main extends React.Component {
         .catch(err => console.log(err));
     }
   };
+
 
   handleConceptSubmit = index => event => {
     event.preventDefault();
@@ -310,7 +312,9 @@ class Main extends React.Component {
                 // this.state.brainstorm.map((brainstorm, i) => (
                   <BrainstormText
                     key={this.state.currbrainstorm.id}
-                    value={this.state.currbrainstorm.brainstorm}
+                    value={
+                      this.state.currbrainstorm.brainstorm
+                    }
                     onChange= 
                     {this.handleBrainstormChange(
                       "currbrainstorm", 0, "brainstorm")}
