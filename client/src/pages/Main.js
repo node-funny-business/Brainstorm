@@ -114,7 +114,7 @@ class Main extends React.Component {
   // }
 
   // getStep() {
-  //     API.getSteps(this.state.curridea.id)
+  //     API.getStep(this.state.curridea.id)
   //         .then(res =>
   //             this.setState({
   //                 step: res.body.data
@@ -394,7 +394,7 @@ class Main extends React.Component {
                   {this.state.step.map((step, i) => (
                     <StepText
                       key={step.id}
-                      // onClick={this.getSteps()}
+                      // onClick={this.getStep()}
                       onChange={this.handleChange("step", i, "step")}
                       onSubmit={this.handleStepSubmit(i)}
                       value={step.step}

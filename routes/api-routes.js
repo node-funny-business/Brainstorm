@@ -142,7 +142,7 @@ module.exports = function (app) {
 
     app.post('/api/step/save/', function (req, res) {
         db.Steps.create({
-            steps: req.body.idea,
+            step: req.body.step,
             IdeaId: req.body.IdeaId
         }).then(result => res.json(result))
             .catch(function (err) {

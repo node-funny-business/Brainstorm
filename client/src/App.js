@@ -32,7 +32,7 @@ class App extends Component {
     // API.updateBrainstorm({ brainstorm: "ramen", id:1 }).then(data => {
     //   console.log("test-concept", data)
     // })
-    API.getStep(1).then(data => {
+    API.saveStep({step: "poo", IdeaId: 2}).then(data => {
       console.log("test-concept", data)
     })
   }
