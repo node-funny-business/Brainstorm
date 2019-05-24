@@ -75,12 +75,12 @@ class Main extends React.Component {
   componentDidMount() {
     if (this.state.currbrainstorm.id) {
       API.getBrainstorm(this.state.currbrainstorm.id)
-      .then(res =>
+        .then(res =>
           this.setState({
-              currbrainstorm: res.data
+            currbrainstorm: res.data
           })
-      )
-      .catch(err => console.log(err));
+        )
+        .catch(err => console.log(err));
       API.getAllConcepts(this.state.currbrainstorm.id).then(res => {
         var viewModels = res.data;
         this.setState({
@@ -91,6 +91,9 @@ class Main extends React.Component {
       return;
     }
   }
+
+
+
 
   // getConcepts() {
   //     API.getConcept(this.state.brainstorm[0].name)
@@ -164,7 +167,12 @@ class Main extends React.Component {
     this.setState({
       currconcept: this.state.concept[index]
     });
-    // getIdeas();
+    // API.getAllIdeas(this.state.currconcept.id).then(res => {
+    //   var viewModels = res.data;
+    //   this.setState({
+    //     idea: [...viewModels, createEmptyIdea()]
+    //   });
+    // })
   };
 
   selectCurrIdea = (index) => () => {
@@ -181,7 +189,7 @@ class Main extends React.Component {
     const id = brainstorm.id
     const value = brainstorm.brainstorm
     if (id) {
-      API.updateBrainstorm({brainstorm: value, id: id})
+      API.updateBrainstorm({ brainstorm: value, id: id })
         .then(res =>
           this.setState({
             currbrainstorm: brainstorm.map(item => {
@@ -194,7 +202,7 @@ class Main extends React.Component {
         )
         .catch(err => console.log(err));
     } else {
-      API.saveBrainstorm({brainstorm: value})
+      API.saveBrainstorm({ brainstorm: value })
         .then(res =>
           this.setState({
             currbrainstorm: res.data,
@@ -303,23 +311,23 @@ class Main extends React.Component {
         <Grid item xs={4}>
           <Styled>{({ classes }) =>
             <Card className={classes.card1}>
-              <CardHeader align="center" 
+              <CardHeader align="center"
                 title={
-                // this.state.brainstorm.map((brainstorm, i) => (
+                  // this.state.brainstorm.map((brainstorm, i) => (
                   <BrainstormText
                     key={this.state.currbrainstorm.id}
                     value={
                       this.state.currbrainstorm.brainstorm
                     }
-                    onChange= 
+                    onChange=
                     {this.handleBrainstormChange(
                       "currbrainstorm", 0, "brainstorm")}
                     onSubmit={this.handleBrainstormSubmit(0)}
                     id={this.state.currbrainstorm.id}
                     typ3={"brainstorm"}
                   />
-                // ))
-              }
+                  // ))
+                }
               >
               </CardHeader>
               <CardContent>
@@ -332,48 +340,48 @@ class Main extends React.Component {
                     onSubmit={this.handleConceptSubmit(i)}
                     value={concept.concept}
                     typ3={"concept"}
-                    />
+                  />
                 ))}
               </CardContent>
             </Card>}
           </Styled>
         </Grid>
-        {this.state.currconcept && 
-        <Grid item xs={4}>
-          <Styled>{({ classes }) =>
-            <Card className={classes.card2}>
-              <CardHeader align="center" title={this.state.currconcept.concept} />
-              <CardContent>
-                {this.state.idea.map((idea, i) => (
-                  <IdeaText
-                    key={idea.id}
-                    onClick={this.selectCurrIdea(i)}
-                    onChange={this.handleChange("idea", i, "name")}
-                    onSubmit={this.handleIdeaSubmit(i)}
-                    value={idea.name} />
-                ))}
-              </CardContent>
-            </Card>}
-          </Styled>
-        </Grid>}
+        {this.state.currconcept &&
+          <Grid item xs={4}>
+            <Styled>{({ classes }) =>
+              <Card className={classes.card2}>
+                <CardHeader align="center" title={this.state.currconcept.concept} />
+                <CardContent>
+                  {this.state.idea.map((idea, i) => (
+                    <IdeaText
+                      key={idea.id}
+                      onClick={this.selectCurrIdea(i)}
+                      onChange={this.handleChange("idea", i, "name")}
+                      onSubmit={this.handleIdeaSubmit(i)}
+                      value={idea.name} />
+                  ))}
+                </CardContent>
+              </Card>}
+            </Styled>
+          </Grid>}
         {this.state.curridea &&
-        <Grid item xs={4}>
-          <Styled>{({ classes }) =>
-            <Card className={classes.card3}>
-              <CardHeader align="center" title={this.state.curridea.idea} />
-              <CardContent>
-                {this.state.step.map((step, i) => (
-                  <StepText
-                    key={step.id}
-                    // onClick={this.getSteps()}
-                    onChange={this.handleChange("step", i, "name")}
-                    onSubmit={this.handleStepSubmit(i)}
-                    value={step.name} />
-                ))}
-              </CardContent>
-            </Card>}
-          </Styled>
-        </Grid>}
+          <Grid item xs={4}>
+            <Styled>{({ classes }) =>
+              <Card className={classes.card3}>
+                <CardHeader align="center" title={this.state.curridea.idea} />
+                <CardContent>
+                  {this.state.step.map((step, i) => (
+                    <StepText
+                      key={step.id}
+                      // onClick={this.getSteps()}
+                      onChange={this.handleChange("step", i, "name")}
+                      onSubmit={this.handleStepSubmit(i)}
+                      value={step.name} />
+                  ))}
+                </CardContent>
+              </Card>}
+            </Styled>
+          </Grid>}
       </Grid>
     )
   }

@@ -35,8 +35,8 @@ export default {
   deleteConcept: function(id) {
     return axios.delete("/api/concept/id/" + id);
   },
-  getAllIdeas: function(concept_id) {
-    return axios.get("/api/idea/concept/" + concept_id);
+  getAllIdeas: function(ConceptId) {
+    return axios.get("/api/idea/concept/" + ConceptId);
   },
   getIdea: function(id) {
     return axios.get("/api/idea/id/" + id);
