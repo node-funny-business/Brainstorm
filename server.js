@@ -15,6 +15,9 @@ if (process.env.NODE_ENV === "production") {
 
 
 require('./routes/api-routes.js')(app);
+app.get("*", function(req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+})
 
 db.sequelize.sync().then(function() {
   app.listen(PORT, function() {

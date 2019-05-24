@@ -35,20 +35,21 @@ const Styled = createStyled({
   },
 });
 
+// Creates new lines
 function createEmptyBrainstorm() {
-  return { name: "" }
+  return { brainstorm: "" }
 }
 
 function createEmptyConcept() {
-  return { name: "" }
+  return { concept: "" }
 }
 
 function createEmptyIdea() {
-  return { name: "" }
+  return { idea: "" }
 }
 
 function createEmptyStep() {
-  return { name: "" }
+  return { step: "" }
 }
 
 class Main extends React.Component {
@@ -119,7 +120,7 @@ class Main extends React.Component {
   //         .catch(err => console.log(err));
   // }
 
-
+  // Handles change for Concept, Idea, and Step
   handleChange = (key, index, property) => event => {
     const value = event.target.value;
     let currValue = null;
@@ -139,6 +140,7 @@ class Main extends React.Component {
     // console.log(newState)
   };
 
+  // Handles change for brainstorm
   handleBrainstormChange = (key, index, property) => event => {
     const value = event.target.value;
     let currValue = Object.assign({}, this.state[key], { [property]: value });
@@ -147,7 +149,7 @@ class Main extends React.Component {
     })
   };
 
-
+  // Sets state for next card when concept is selected
   selectCurrConcept = (index) => () => {
     API.getConcept(this.state.currbrainstorm.id)
       .then(res =>
@@ -167,6 +169,7 @@ class Main extends React.Component {
       .catch(err => console.log(err));
   };
 
+  // Sets idea for next card when concept is selected
   selectCurrIdea = (index) => () => {
     API.getIdea(this.state.currconcept.id)
       .then(res =>
@@ -186,7 +189,7 @@ class Main extends React.Component {
       .catch(err => console.log(err));
   };
 
-  // POST Routes
+  // If id exists, Update. If not, Post.
   handleBrainstormSubmit = index => event => {
     event.preventDefault();
     const brainstorm = this.state.currbrainstorm;
@@ -288,6 +291,7 @@ class Main extends React.Component {
     }
   };
 
+  // Reassigns ideaData for axios
   ideaData(index) {
     let data = Object.assign({}, this.state.idea[index], { ConceptId: this.state.currconcept.id });
     console.log("idea: " + this.state.currconcept.id)
@@ -322,7 +326,7 @@ class Main extends React.Component {
         .catch(err => console.log(err));
     }
   };
-
+  // Reassigns stepData for axios
   stepData(index) {
     let data = Object.assign({}, this.state.step[index], { IdeaId: this.state.curridea.id });
     console.log(this.state.curridea.id)

@@ -9,7 +9,7 @@ import { withAuth } from '@okta/okta-react';
 import style from "@material-ui/system/style";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import pink from '@material-ui/core/colors/pink';
-
+import {Link} from 'react-router-dom'
 
 const theme = createMuiTheme({
     palette: {
@@ -47,11 +47,19 @@ const styles = theme => ({
         }
 
         render() {
-            if (this.state.authenticated === null) return null;
-
-            const button = this.state.authenticated ?
-              <button onClick={this.props.auth.logout}>Logout</button> :
-              <button onClick={this.props.auth.login}>Login</button>;
+            const mainContent = this.state.authenticated ? (
+                <div>
+                  <button className="btn btn-light btn-lg" onClick={this.logout}>
+                  Logout
+                  </button>
+                </div>
+              ) : (
+                <div>
+                  <button className="btn btn-light btn-lg" onClick={this.login}>
+                  <Link to="/main">Login</Link>
+                  </button>
+                </div>
+              );
             return (
                 <div>
                     <Grid container spacing={24}>
@@ -66,7 +74,7 @@ const styles = theme => ({
                                         <p>A Brainstorm app to help you organize your ideas!</p>
                                         <p>Once you press ENTER, new lines will show up.</p>
                                         <p>You can then expand on your current idea, or create a new one!</p>
-                                        {button}
+                                        {mainContent}
                                     </Typography>
                                 </CardContent>
                             </Card>

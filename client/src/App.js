@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Security, SecureRoute, ImplicitCallback } from '@okta/okta-react';
-
-// import API from "./utils/API";
 import Nav from './components/Nav'
 import AboutUs from "./pages/AboutUs";
 import Instructions from "./pages/Instructions";
@@ -10,9 +8,7 @@ import Brainstorms from "./pages/Brainstorms";
 import Main from "./pages/Main";
 import Login from "./components/auth/login";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import purple from '@material-ui/core/colors/purple';
 import pink from '@material-ui/core/colors/pink';
-import API from './utils/API';
 
 const theme = createMuiTheme({
   palette: {
@@ -44,7 +40,7 @@ class App extends Component {
             <Nav color="primary" />
             <Route path='/' exact={true} component={Instructions} />
             <Route path='/Instructions' exact={true} component={Instructions} />
-            <SecureRoute path='/Main' exact={true} component={Main} />
+            <Route path='/Main' exact={true} component={Main} />
             <Route path='/brainstorms' exact={true} component={Brainstorms} />
             <Route path='/aboutus' exact={true} component={AboutUs} />
             <Route path='/login' render={() => <Login baseUrl='https://dev-363275.okta.com' />} />

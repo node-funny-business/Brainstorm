@@ -2,10 +2,11 @@ var db = require('../controllers/db');
 
 module.exports = function(app) {
     app.get('/api/ideas', function(req, res) {
-        db.Idea.findAll({}).then(result => res.json(result))
-        .catch(function (err) {
+        db.Idea.findAll({
+        }).then(function (result) {
+            res.json(result);
+        }).catch(err => {
             console.log(err.message);
-            res.send(500);
         });
     });
 
