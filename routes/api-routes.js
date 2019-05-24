@@ -17,10 +17,10 @@ module.exports = function (app) {
     });  // works
     
 
-    app.get('/api/brainstorm/id/:brainstorm', function (req, res) {
+    app.get('/api/brainstorm/id/:BrainstormId', function (req, res) {
         db.Brainstorm.findOne({
             where: {
-                id: req.params.brainstorm,
+                id: req.params.BrainstormId,
             }
         }).then(function (result) {
             res.json(result)

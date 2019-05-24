@@ -38,7 +38,7 @@ function BrainstormText(props) {
         className={classes.container}
         onSubmit={props.onSubmit}
         >
-            <DeleteBtn id={props.id}/>
+            {/* <DeleteBtn id={props.id}/> */}
             <FormControl 
             className={classes.formControl}
             fullWidth>

@@ -76,24 +76,23 @@ class Main extends React.Component {
 
   // GET Requests
   componentDidMount() {
-    // if (this.state.currbrainstorm.id) {
-    //   API.getAllConcepts(this.state.currbrainstorm.id).then(data => {
-    //     var viewModels = data.data;
-    //     this.setState({
-    //       concept: [...viewModels, createEmptyConcept()]
-    //     });
-    //   })
-    // } else {
-    //   return;
-    // }
- 
-    // API.getBrainstorm(1)
-    //     .then(res =>
-    //         this.setState({
-    //             brainstorm: res.body.data
-    //         })
-    //     )
-    //     .catch(err => console.log(err));
+    if (this.state.currbrainstorm.id) {
+      API.getBrainstorm(this.state.currbrainstorm.id)
+      .then(res =>
+          this.setState({
+              currbrainstorm: res.data
+          })
+      )
+      .catch(err => console.log(err));
+      API.getAllConcepts(this.state.currbrainstorm.id).then(res => {
+        var viewModels = res.data;
+        this.setState({
+          concept: [...viewModels, createEmptyConcept()]
+        });
+      })
+    } else {
+      return;
+    }
   }
 
   // getConcepts() {
@@ -185,7 +184,7 @@ class Main extends React.Component {
     const id = brainstorm.id
     const value = brainstorm.brainstorm
     if (id) {
-      API.updateBrainstorm()
+      API.updateBrainstorm({brainstorm: value, id: id})
         .then(res =>
           this.setState({
             currbrainstorm: brainstorm.map(item => {
