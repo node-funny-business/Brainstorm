@@ -178,11 +178,10 @@ module.exports = function (app) {
             });
     }); //  work
 
-    app.delete('/api/idea/id/', function(req, res) {
+    app.delete('/api/idea/id/:id', function(req, res) {
         db.Idea.destroy({
             where: {
-                id: req.body.id,
-                ConceptId: req.body.ConceptId
+                id: req.params.id
             }
         }).then(result => res.json(result))
             .catch(function (err) {
@@ -192,11 +191,10 @@ module.exports = function (app) {
     });
 
 
-    app.delete('/api/step/id/', function(req, res) {
+    app.delete('/api/step/id/:id', function(req, res) {
         db.Steps.destroy({
             where: {
-                id: req.body.id,
-                IdeaId: req.body.IdeaId
+                id: req.params.id
             }
         }).then(result => res.json(result))
             .catch(function (err) {
@@ -230,8 +228,7 @@ module.exports = function (app) {
             concept: req.body.concept,
         }, {
                 where: {
-                    id: req.body.id,
-                    BrainstormId: req.body.BrainstormId
+                    id: req.body.id
                 }
             }).then(result => res.json(result))
             .catch(function (err) {
@@ -245,8 +242,7 @@ module.exports = function (app) {
             idea: req.body.idea
         }, {
                 where: {
-                    id: req.body.id,
-                    ConceptId: req.body.ConceptId
+                    id: req.body.id
                 }
             }).then(result => res.json(result))
             .catch(function (err) {
@@ -260,8 +256,7 @@ module.exports = function (app) {
             steps: req.body.steps
         }, {
                 where: {
-                    id: req.body.id,
-                    IdeaId: req.body.IdeaId
+                    id: req.body.id
                 }
             }).then(result => res.json(result))
             .catch(function (err) {
