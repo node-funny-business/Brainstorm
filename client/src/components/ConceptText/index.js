@@ -27,13 +27,16 @@ function ConceptText(props) {
         <form
             className={classes.container}
             onSubmit={props.onSubmit}>
-            <DeleteBtn />
+            <DeleteBtn 
+            typ3={props.typ3}
+            id={props.id}
+            />
             <FormControl
                 className={classes.formControl}
-                fullWidth>
+                fullWidth
+                >
                 <Input
                     onClick={props.onClick}
-                    id="component-helper"
                     value={props.value}
                     onChange={props.onChange}
                     aria-describedby="component-helper-text"

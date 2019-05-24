@@ -61,19 +61,19 @@ class Main extends React.Component {
 
   state = {
     brainstorm: [
-      { id: 1, name: "Pizza", user_id: 1 }
+      { id: 1, brainstorm: "Pizza", user_id: 1 }
     ],
     concept: [
-      { id: 1, name: "Pepperoni", brainstorm_id: 1 },
-      { id: 2, name: "Hawaiian", brainstorm_id: 1 }
+      { id: 1, concept: "Pepperoni", BrainstormId: 1 },
+      { id: 2, concept: "Hawaiian", BrainstormId: 1 }
     ],
     idea: [
-      { id: 1, name: "Organic Pepperoni", concept_id: 1 },
-      { id: 2, name: "Organic Cheese", concept_id: 1 },
+      { id: 1, idea: "Organic Pepperoni", concept_id: 1 },
+      { id: 2, idea: "Organic Cheese", concept_id: 1 },
     ],
     step: [
-      { id: 1, name: "Buy Organic Pepperoni from Sprouts", idea_id: 1 },
-      { id: 2, name: "Place Pepperoni on Pizza", idea_id: 1 }
+      { id: 1, step: "Buy Organic Pepperoni from Sprouts", idea_id: 1 },
+      { id: 2, step: "Place Pepperoni on Pizza", idea_id: 1 }
     ],
     currbrainstorm: {
       id: 1
@@ -85,7 +85,7 @@ class Main extends React.Component {
   // GET Requests
   componentDidMount() {
     API.getAllConcepts(this.state.currbrainstorm.id).then(data => {
-      var viewModels = data.data.map(oldConcept => ({ id: oldConcept.id, name: oldConcept.concept }));
+      var viewModels = data.data;
       this.setState({
         concept: [...viewModels, createEmptyConcept()]
       });
@@ -170,14 +170,14 @@ class Main extends React.Component {
     this.setState({
       currconcept: this.state.concept[index]
     });
-    // getConcepts();
+    // getIdeas();
   };
 
   selectCurrIdea = (index) => () => {
     this.setState({
       curridea: this.state.idea[index]
     });
-    // getIdeas();
+    // getSteps();
   };
 
   // POST Routes
@@ -205,7 +205,7 @@ class Main extends React.Component {
             brainstorm: res.data,
             concept: [createEmptyConcept()]
           })
-          
+
         )
         .catch(err => console.log(err));
     }
@@ -229,7 +229,8 @@ class Main extends React.Component {
         )
         .catch(err => console.log(err));
     } else {
-      API.saveConcept(concept[index])
+      let newData = this.conceptData(index);
+      API.saveConcept(newData)
         .then(res =>
           this.setState({
             concept: [...concept.slice(0, concept.length - 1), res.data, createEmptyConcept()]
@@ -238,6 +239,11 @@ class Main extends React.Component {
         .catch(err => console.log(err));
     }
   };
+  // Reassigns conceptData for axios
+  conceptData(index) {
+    let data = Object.assign({}, this.state.concept[index], { BrainstormId: this.state.currbrainstorm.id });
+    return data;
+  }
 
   handleIdeaSubmit = index => event => {
     event.preventDefault();
@@ -301,31 +307,31 @@ class Main extends React.Component {
         <Grid item xs={4}>
           <Styled>{({ classes }) =>
             <Card className={classes.card1}>
-              <Typography align="center">
-                <CardHeader title={
-                  this.state.brainstorm.map((brainstorm, i) => (
-                    <div>
-                      <BrainstormText
-                        value={brainstorm.name}
-                        onChange={this.handleChange("brainstorm", i, "name")}
-                        onSubmit={this.handleBrainstormSubmit(i)}
-                        id={this.state.brainstorm[i].id}
-                        typ3={"brainstorm"}
-                      />
-                    </div>
-                  ))
-                }>
-                </CardHeader>
-              </Typography>
+              <CardHeader align="center" 
+                title={
+                this.state.brainstorm.map((brainstorm, i) => (
+                  <BrainstormText
+                    key={brainstorm.id}
+                    value={brainstorm.name}
+                    onChange={this.handleChange("brainstorm", i, "name")}
+                    onSubmit={this.handleBrainstormSubmit(i)}
+                    id={this.state.brainstorm[i].id}
+                    typ3={"brainstorm"}
+                  />
+                ))
+              }>
+              </CardHeader>
               <CardContent>
                 {this.state.concept.map((concept, i) => (
-                  <div>
-                    <ConceptText
-                      onClick={this.selectCurrConcept(i)}
-                      onChange={this.handleChange("concept", i, "name")}
-                      onSubmit={this.handleConceptSubmit(i)}
-                      value={concept.name} />
-                  </div>
+                  <ConceptText
+                    key={concept.id}
+                    id={concept.id}
+                    onClick={this.selectCurrConcept(i)}
+                    onChange={this.handleChange("concept", i, "concept")}
+                    onSubmit={this.handleConceptSubmit(i)}
+                    value={concept.concept}
+                    typ3={"concept"}
+                    />
                 ))}
               </CardContent>
             </Card>}
@@ -334,18 +340,15 @@ class Main extends React.Component {
         <Grid item xs={4}>
           <Styled>{({ classes }) =>
             <Card className={classes.card2}>
-              <Typography align="center">
-                <CardHeader title={this.state.currconcept.name} />
-              </Typography>
+              <CardHeader align="center" title={this.state.currconcept.concept} />
               <CardContent>
                 {this.state.idea.map((idea, i) => (
-                  <div>
-                    <IdeaText
-                      onClick={this.selectCurrIdea(i)}
-                      onChange={this.handleChange("idea", i, "name")}
-                      onSubmit={this.handleIdeaSubmit(i)}
-                      value={idea.name} />
-                  </div>
+                  <IdeaText
+                    key={idea.id}
+                    onClick={this.selectCurrIdea(i)}
+                    onChange={this.handleChange("idea", i, "name")}
+                    onSubmit={this.handleIdeaSubmit(i)}
+                    value={idea.name} />
                 ))}
               </CardContent>
             </Card>}
@@ -354,18 +357,15 @@ class Main extends React.Component {
         <Grid item xs={4}>
           <Styled>{({ classes }) =>
             <Card className={classes.card3}>
-              <Typography align="center">
-                <CardHeader title={this.state.curridea.name} />
-              </Typography>
+              <CardHeader align="center" title={this.state.curridea.idea} />
               <CardContent>
                 {this.state.step.map((step, i) => (
-                  <div>
-                    <StepText
-                      // onClick={this.getSteps()}
-                      onChange={this.handleChange("step", i, "name")}
-                      onSubmit={this.handleStepSubmit(i)}
-                      value={step.name} />
-                  </div>
+                  <StepText
+                    key={step.id}
+                    // onClick={this.getSteps()}
+                    onChange={this.handleChange("step", i, "name")}
+                    onSubmit={this.handleStepSubmit(i)}
+                    value={step.name} />
                 ))}
               </CardContent>
             </Card>}

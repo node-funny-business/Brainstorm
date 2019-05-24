@@ -30,10 +30,10 @@ module.exports = function (app) {
         });
     }); // works
 
-    app.get('/api/concept/brainstorm/:brainstorm_id', function (req, res) {
+    app.get('/api/concept/brainstorm/:BrainstormId', function (req, res) {
         db.Concept.findAll({
             where: {
-                BrainstormId: req.params.brainstorm_id
+                BrainstormId: req.params.BrainstormId
             }
         }).then(function (result) {
             res.json(result);
@@ -166,6 +166,7 @@ module.exports = function (app) {
     });
 
     app.delete('/api/concept/id/:id', function(req, res) {
+        console.log(req.params)
         db.Concept.destroy({
             where: {
                 id: req.params.id
@@ -224,11 +225,10 @@ module.exports = function (app) {
 
     app.put('/api/concept/id/', function (req, res) {
         db.Concept.update({
-            concept: req.body.concept
+            concept: req.body.concept,
         }, {
                 where: {
-                    id: req.body.id,
-                    BrainstormId: req.body.BrainstormId
+                    id: req.body.id
                 }
             }).then(result => res.json(result))
             .catch(function (err) {
@@ -242,8 +242,7 @@ module.exports = function (app) {
             idea: req.body.idea
         }, {
                 where: {
-                    id: req.body.id,
-                    ConceptId: req.body.ConceptId
+                    id: req.body.id
                 }
             }).then(result => res.json(result))
             .catch(function (err) {
@@ -257,8 +256,7 @@ module.exports = function (app) {
             steps: req.body.steps
         }, {
                 where: {
-                    id: req.body.id,
-                    IdeaId: req.body.IdeaId
+                    id: req.body.id
                 }
             }).then(result => res.json(result))
             .catch(function (err) {

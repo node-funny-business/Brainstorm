@@ -18,11 +18,11 @@ export default {
     return axios.post("/api/brainstorm/save/", brainstormData);
   },
   updateBrainstorm: function(brainstormData) {
-    return axios.put('/api/brainstorm/id/' + brainstormData.id, brainstormData)
+    return axios.put('/api/brainstorm/id/', brainstormData)
   }, 
-  getAllConcepts: function(brainstorm_id) {
-    return axios.get("/api/concept/brainstorm/" + brainstorm_id);
-  }, //change to BrainstormId possibly
+  getAllConcepts: function(BrainstormId) {
+    return axios.get("/api/concept/brainstorm/" + BrainstormId);
+  },
   getConcept: function(id) {
     return axios.get("/api/concept/id/" + id);
   },
@@ -30,7 +30,7 @@ export default {
     return axios.post('/api/concept/save/', conceptData);
   },
   updateConcept: function(conceptData) {
-    return axios.put('/api/concept/id/' + conceptData.id, conceptData)
+    return axios.put('/api/concept/id/', conceptData)
   },
   deleteConcept: function(id) {
     return axios.delete("/api/concept/id/" + id);
@@ -45,7 +45,7 @@ export default {
     return axios.post('/api/idea/save/', IdeaData);
   },
   updateIdea: function(ideaData) {
-    return axios.put('/api/idea/id/' + ideaData.id, ideaData)
+    return axios.put('/api/idea/id/', ideaData)
   },
   deleteIdea: function(id) {
     return axios.delete("/api/idea/id/" + id);
@@ -60,7 +60,7 @@ export default {
     return axios.post('/api/step/save/', StepData);
   },
   updateStep: function(stepData) {
-    return axios.put('/api/step/id/' + stepData.id, stepData)
+    return axios.put('/api/step/id/', stepData)
   },
   deleteStep: function(id) {
     return axios.delete("/api/step/id/" + id);
