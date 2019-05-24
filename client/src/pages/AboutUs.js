@@ -68,22 +68,22 @@ function AboutUs(props) {
               />
               <CardContent>
                 <Typography component="p">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  Hi, my name is Daniel Olson. I am 25 and a Full Stack developer based in southern California. I enjoy a good game of Magic the Gathering, PC gaming and long walks on the beach. Visit any of my links if youd like to know more.
                   </Typography>
                 <div><br /></div>
                 <Grid container spacing={24}>
                   <Grid align="center" item xs={4}>
-                    <a href="#">
+                    <a href="https://github.com/Dolson809">
                       <img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg" />
                     </a>
                   </Grid>
                   <Grid align="center" item xs={4}>
-                    <a href="#">
+                    <a href="https://www.linkedin.com/in/daniel-olson-1792a617a/">
                       <img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/linkedin.svg" />
                     </a>
                   </Grid>
                   <Grid align="center" item xs={4}>
-                    <a href="#">
+                    <a href="mailto:Sanjose1994@gmail.com">
                       <img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/gmail.svg" />
                     </a>
                   </Grid>
@@ -105,22 +105,22 @@ function AboutUs(props) {
               />
               <CardContent>
                 <Typography component="p">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  My name is John Viera and I'm a fullstack developer based in Southern California. I enjoy working out, motorcycles and going fast, and playing basketball with friends. I decided to learning web development because I like creating things with my hands and with coding I get to do just that. Plus the money's good too...
                 </Typography>
                 <div><br /></div>
                 <Grid container spacing={24}>
                   <Grid align="center" item xs={4}>
-                    <a href="#">
+                    <a href="https://github.com/GoonSquad88">
                       <img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg" />
                     </a>
                   </Grid>
                   <Grid align="center" item xs={4}>
-                    <a href="#">
+                    <a href="www.linkedin.com/in/jonatan-viera-cendejas-00252b180">
                       <img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/linkedin.svg" />
                     </a>
                   </Grid>
                   <Grid align="center" item xs={4}>
-                    <a href="#">
+                    <a href="mailto:johnny05la@gmail.com">
                       <img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/gmail.svg" />
                     </a>
                   </Grid>
@@ -142,22 +142,24 @@ function AboutUs(props) {
               />
               <CardContent>
                 <Typography component="p">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  I'm a lifelong learner that is continually fascinated by the internet and the underpinnings of its construction. What technologies are used to build a given page? What methodologies can be combined to improve its functionality and usability?
+  
+                  These are the questions that constantly fuel my curiosity and passion for Web Development. Whether I'm engineering Back-End processes or creating an intuitive User Interface, my goal as a programmer is to share my excitement for coding through executing my tasks and projects.
                   </Typography>
                 <div><br /></div>
                 <Grid container spacing={24}>
                   <Grid align="center" item xs={4}>
-                    <a href="#">
+                    <a href="https://github.com/jasonklee89">
                       <img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg" />
                     </a>
                   </Grid>
                   <Grid align="center" item xs={4}>
-                    <a href="#">
+                    <a href="https://www.linkedin.com/in/jason-lee-a607b217a/">
                       <img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/linkedin.svg" />
                     </a>
                   </Grid>
                   <Grid align="center" item xs={4}>
-                    <a href="#">
+                    <a href="mailto:jasonkellogglee@gmail.com">
                       <img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/gmail.svg" />
                     </a>
                   </Grid>
