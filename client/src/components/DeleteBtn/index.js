@@ -11,22 +11,22 @@ function DeleteBtn(props) {
     switch (props.typ3) {
       case "brainstorm":
         API.deleteBrainstorm(id)
-          .then(res => console.log(res))
+          .then(res => window.location.reload())
           .catch(err => console.log(err))
         break;
       case "concept":
         API.deleteConcept(id)
-          .then(res => console.log(res))
+          .then(res => window.location.reload())
           .catch(err => console.log(err))
         break;
       case "idea":
         API.deleteIdea(id)
-          .then(res => console.log(res))
+          .then(res => window.location.reload())
           .catch(err => console.log(err))
         break;
       case "step":
         API.deleteStep(id)
-          .then(res => console.log(res))
+          .then(res => window.location.reload())
           .catch(err => console.log(err))
         break;
       default:

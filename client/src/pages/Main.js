@@ -6,9 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import BrainstormText from "../components/BrainstormText"
-import DeleteBtn from "../components/DeleteBtn"
 import ConceptText from "../components/ConceptText"
 import IdeaText from "../components/IdeaText"
 import StepText from "../components/StepText"
@@ -78,8 +76,8 @@ class Main extends React.Component {
     currbrainstorm: {
       id: 1
     },
-    currconcept: {},
-    curridea: {}
+    currconcept: null,
+    curridea: null
   }
 
   // GET Requests
@@ -337,6 +335,7 @@ class Main extends React.Component {
             </Card>}
           </Styled>
         </Grid>
+        {this.state.currconcept && 
         <Grid item xs={4}>
           <Styled>{({ classes }) =>
             <Card className={classes.card2}>
@@ -353,7 +352,8 @@ class Main extends React.Component {
               </CardContent>
             </Card>}
           </Styled>
-        </Grid>
+        </Grid>}
+        {this.state.curridea &&
         <Grid item xs={4}>
           <Styled>{({ classes }) =>
             <Card className={classes.card3}>
@@ -370,7 +370,7 @@ class Main extends React.Component {
               </CardContent>
             </Card>}
           </Styled>
-        </Grid>
+        </Grid>}
       </Grid>
     )
   }

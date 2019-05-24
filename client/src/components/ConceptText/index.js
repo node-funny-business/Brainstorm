@@ -8,53 +8,53 @@ import Typography from "@material-ui/core/Typography";
 import DeleteBtn from "../DeleteBtn/"
 
 const styles = theme => ({
-    container: {
-        display: "flex",
-        flexWrap: "wrap"
-    },
-    formControl: {
-        margin: theme.spacing.unit
-    }
+  container: {
+    display: "flex",
+    flexWrap: "wrap"
+  },
+  formControl: {
+    margin: theme.spacing.unit
+  }
 });
 
 
 
 function ConceptText(props) {
 
-    const { classes } = props;
+  const { classes } = props;
 
-    return (
-        <form
-            className={classes.container}
-            onSubmit={props.onSubmit}>
-            <DeleteBtn 
-            typ3={props.typ3}
-            id={props.id}
-            />
-            <FormControl
-                className={classes.formControl}
-                fullWidth
-                >
-                <Input
-                    onClick={props.onClick}
-                    value={props.value}
-                    onChange={props.onChange}
-                    aria-describedby="component-helper-text"
-                />
-                {/* Testing state */}
-                {/* <Typography>
+  return (
+    <form
+      className={classes.container}
+      onSubmit={props.onSubmit}>
+      <DeleteBtn
+        typ3={props.typ3}
+        id={props.id}
+      />
+      <FormControl
+        className={classes.formControl}
+        fullWidth
+      >
+        <Input
+          onClick={props.onClick}
+          value={props.value}
+          onChange={props.onChange}
+          aria-describedby="component-helper-text"
+        />
+        {/* Testing state */}
+        {/* <Typography>
                     {props.value}
                 </Typography> */}
-                {/* <FormHelperText id="component-helper-text">
+        {/* <FormHelperText id="component-helper-text">
                     Add Concept Here
                 </FormHelperText> */}
-            </FormControl>
-        </form>
-    );
+      </FormControl>
+    </form>
+  );
 }
 
 ConceptText.propTypes = {
-    classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(ConceptText);
