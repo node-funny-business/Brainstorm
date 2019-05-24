@@ -73,17 +73,17 @@ function AboutUs(props) {
                 <div><br /></div>
                 <Grid container spacing={24}>
                   <Grid align="center" item xs={4}>
-                    <a href="#">
+                    <a href="https://github.com/Dolson809">
                       <img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg" />
                     </a>
                   </Grid>
                   <Grid align="center" item xs={4}>
-                    <a href="#">
+                    <a href="https://www.linkedin.com/in/daniel-olson-1792a617a/">
                       <img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/linkedin.svg" />
                     </a>
                   </Grid>
                   <Grid align="center" item xs={4}>
-                    <a href="#">
+                    <a href="Sanjose1994@gmail.com">
                       <img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/gmail.svg" />
                     </a>
                   </Grid>
@@ -110,17 +110,17 @@ function AboutUs(props) {
                 <div><br /></div>
                 <Grid container spacing={24}>
                   <Grid align="center" item xs={4}>
-                    <a href="#">
+                    <a href="https://github.com/GoonSquad88">
                       <img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg" />
                     </a>
                   </Grid>
                   <Grid align="center" item xs={4}>
-                    <a href="#">
+                    <a href="http://www.linkedin.com/in/jonatan-viera-cendejas-00252b180">
                       <img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/linkedin.svg" />
                     </a>
                   </Grid>
                   <Grid align="center" item xs={4}>
-                    <a href="#">
+                    <a href="johnny05la@gmail.com">
                       <img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/gmail.svg" />
                     </a>
                   </Grid>
