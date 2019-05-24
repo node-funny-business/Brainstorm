@@ -253,7 +253,7 @@ module.exports = function (app) {
 
     app.put('/api/step/id/', function (req, res) {
         db.Steps.update({
-            steps: req.body.steps
+            step: req.body.step
         }, {
                 where: {
                     id: req.body.id
