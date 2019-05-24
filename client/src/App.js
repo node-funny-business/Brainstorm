@@ -29,12 +29,12 @@ function onAuthRequired({ history }) {
 
 class App extends Component {
   componentDidMount() {
-    // API.saveBrainstorm({name: "ramen"}).then(data => {
-    //   console.log("test-concept", data)
-    // })
-    API.updateBrainstorm({ brainstorm: "ramen", id:1 }).then(data => {
+    API.saveBrainstorm({name: "tea"}).then(data => {
       console.log("test-concept", data)
     })
+    // API.updateBrainstorm({ brainstorm: "ramen", id:1 }).then(data => {
+    //   console.log("test-concept", data)
+    // })
   }
   render() {
     return (
