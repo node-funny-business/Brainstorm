@@ -9,84 +9,49 @@ import { withAuth } from '@okta/okta-react';
 import style from "@material-ui/system/style";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import pink from '@material-ui/core/colors/pink';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const theme = createMuiTheme({
-    palette: {
-      primary: { main: pink[300] },
-      secondary: { main: "#D3D3D3" },
-    },
-    typography: { useNextVariants: true },
-  });
+  palette: {
+    primary: { main: pink[300] },
+    secondary: { main: "#D3D3D3" },
+  },
+  typography: { useNextVariants: true },
+});
 
 
 const styles = theme => ({
-    card: {
-        marginTop: theme.spacing.unit * 8
-    }
+  card: {
+    marginTop: theme.spacing.unit * 8
+  }
 })
 
-    class Instructions extends Component {
+class Instructions extends Component {
 
-        // constructor(props) {
-        //     super(props);
-        //     this.state = { authenticated: null };
-        //     this.checkAuthentication = this.checkAuthentication.bind(this);
-        //     this.checkAuthentication();
-        // }
-
-        // async checkAuthentication() {
-        //     const authenticated = await this.props.auth.isAuthenticated();
-        //     if (authenticated !== this.state.authenticated) {
-        //         this.setState({ authenticated });
-        //     }
-        // }
-
-        // componentDidUpdate() {
-        //     this.checkAuthentication();
-        // }
-
-        render() {
-            // const mainContent = this.state.authenticated ? (
-            //     <div>
-            //       <button className="btn btn-light btn-lg" onClick={this.logout}>
-            //       Logout
-            //       </button>
-            //     </div>
-            //   ) : (
-            //     <div>
-            //       <button className="btn btn-light btn-lg" onClick={this.login}>
-            //       <Link to="/main">Login</Link>
-            //       </button>
-            //     </div>
-            //   );
-            const { classes } = this.props;
-            return (
-                <div>
-                    <Grid container spacing={24}>
-                        <Grid item xs={3} />
-                        <Grid item xs={6}>
-                            <Card className={classes.card}>
-                                <Typography align="center">
-                                    <CardHeader title="Instructions" />
-                                </Typography>
-                                <CardContent>
-                                    <Typography align="center" component="p">
-                                        <p>A Brainstorm app to help you organize your ideas!</p>
-                                        <p>Once you press ENTER, new lines will show up.</p>
-                                        <p>You can then expand on your current idea, or create a new one!</p>
-                                        {/* {mainContent} */}
-                                    </Typography>
-                                </CardContent>
-                            </Card>
-                        </Grid>
-                    </Grid>
-                </div>
-            )
-        }
-    }
-
-
-// export default withAuth(Instructions);
+  render() {
+    const { classes } = this.props;
+    return (
+      <div>
+        <Grid container spacing={24}>
+          <Grid item xs={3} />
+          <Grid item xs={6}>
+            <Card className={classes.card}>
+              <Typography align="center">
+                <CardHeader title="Instructions" />
+              </Typography>
+              <CardContent>
+                <Typography align="center" component="p">
+                  <p>A Brainstorm app to help you organize your ideas!</p>
+                  <p>Once you press ENTER, new lines will show up.</p>
+                  <p>You can then expand on your current idea, or create a new one!</p>
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+      </div>
+    )
+  }
+}
 
 export default withStyles(styles)(Instructions);
