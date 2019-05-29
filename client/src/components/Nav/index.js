@@ -112,7 +112,7 @@ class Nav extends React.Component {
       </Link>
       <Link to="/aboutus" style={{ textDecoration: 'none' }}>
         <MenuItem onClick={this.handleMenuClose}>
-          About
+          About Us
         </MenuItem>
       </Link>
       <Link to="/main" style={{ textDecoration: 'none' }}>
@@ -183,12 +183,12 @@ class Nav extends React.Component {
                 onClick={this.handleMobileMenuOpen}
                 color="inherit"
               >
-                <MoreIcon />
+                {/* <MoreIcon /> */}
               </IconButton>
             </div>
             <div className={classes.sectionMobile}>
               <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
-                <MoreIcon />
+                {/* <MoreIcon /> */}
               </IconButton>
             </div>
           </Toolbar>

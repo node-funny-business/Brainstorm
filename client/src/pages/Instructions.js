@@ -28,44 +28,45 @@ const styles = theme => ({
 
     class Instructions extends Component {
 
-        constructor(props) {
-            super(props);
-            this.state = { authenticated: null };
-            this.checkAuthentication = this.checkAuthentication.bind(this);
-            this.checkAuthentication();
-        }
+        // constructor(props) {
+        //     super(props);
+        //     this.state = { authenticated: null };
+        //     this.checkAuthentication = this.checkAuthentication.bind(this);
+        //     this.checkAuthentication();
+        // }
 
-        async checkAuthentication() {
-            const authenticated = await this.props.auth.isAuthenticated();
-            if (authenticated !== this.state.authenticated) {
-                this.setState({ authenticated });
-            }
-        }
+        // async checkAuthentication() {
+        //     const authenticated = await this.props.auth.isAuthenticated();
+        //     if (authenticated !== this.state.authenticated) {
+        //         this.setState({ authenticated });
+        //     }
+        // }
 
-        componentDidUpdate() {
-            this.checkAuthentication();
-        }
+        // componentDidUpdate() {
+        //     this.checkAuthentication();
+        // }
 
         render() {
-            const mainContent = this.state.authenticated ? (
-                <div>
-                  <button className="btn btn-light btn-lg" onClick={this.logout}>
-                  Logout
-                  </button>
-                </div>
-              ) : (
-                <div>
-                  <button className="btn btn-light btn-lg" onClick={this.login}>
-                  <Link to="/main">Login</Link>
-                  </button>
-                </div>
-              );
+            // const mainContent = this.state.authenticated ? (
+            //     <div>
+            //       <button className="btn btn-light btn-lg" onClick={this.logout}>
+            //       Logout
+            //       </button>
+            //     </div>
+            //   ) : (
+            //     <div>
+            //       <button className="btn btn-light btn-lg" onClick={this.login}>
+            //       <Link to="/main">Login</Link>
+            //       </button>
+            //     </div>
+            //   );
+            const { classes } = this.props;
             return (
                 <div>
                     <Grid container spacing={24}>
                         <Grid item xs={3} />
                         <Grid item xs={6}>
-                            <Card className="card">
+                            <Card className={classes.card}>
                                 <Typography align="center">
                                     <CardHeader title="Instructions" />
                                 </Typography>
@@ -74,7 +75,7 @@ const styles = theme => ({
                                         <p>A Brainstorm app to help you organize your ideas!</p>
                                         <p>Once you press ENTER, new lines will show up.</p>
                                         <p>You can then expand on your current idea, or create a new one!</p>
-                                        {mainContent}
+                                        {/* {mainContent} */}
                                     </Typography>
                                 </CardContent>
                             </Card>
@@ -86,4 +87,6 @@ const styles = theme => ({
     }
 
 
-export default withAuth(Instructions);
+// export default withAuth(Instructions);
+
+export default withStyles(styles)(Instructions);

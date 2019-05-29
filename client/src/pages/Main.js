@@ -79,13 +79,7 @@ class Main extends React.Component {
         )
         .catch(err => console.log(err));
     } else {
-      API.saveBrainstorm({ brainstorm: "" })
-        .then(res =>
-          this.setState({
-            currbrainstorm: {name: res.data.brainstorm},
-          })
-        )
-        .catch(err => console.log(err));
+      createEmptyBrainstorm();
     }
   }
 
@@ -162,7 +156,8 @@ class Main extends React.Component {
           .then(data => {
             var viewModels = data.data;
             this.setState({
-              idea: [...viewModels, createEmptyIdea()]
+              idea: [...viewModels, createEmptyIdea()],
+              curridea: ""
             });
           })
       })
