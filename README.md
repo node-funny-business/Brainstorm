@@ -22,4 +22,4 @@ https://brainstorm-app.herokuapp.com/
 
 ### Screenshot
 
-![Brainstorm](/public/assets/images/screenshot/screenshot.png?raw=true "Brainstorm")
+![Brainstorm](/client/public/assets/images/screenshot/screenshot.png?raw=true "Brainstorm")
