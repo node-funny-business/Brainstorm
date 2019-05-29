@@ -83,37 +83,6 @@ class Main extends React.Component {
     }
   }
 
-
-  // getConcept() {
-  //   API.getConcept(this.state.currbrainstorm.id)
-  //     .then(res =>
-  //       this.setState({
-  //         concept: res.body.data
-  //       })
-  //     )
-  //     .catch(err => console.log(err));
-  // }
-
-  // getIdea() {
-  //   API.getIdea(this.state.currconcept.id)
-  //     .then(res =>
-  //       this.setState({
-  //         idea: res.body.data
-  //       })
-  //     )
-  //     .catch(err => console.log(err));
-  // }
-
-  // getStep() {
-  //     API.getStep(this.state.curridea.id)
-  //         .then(res =>
-  //             this.setState({
-  //                 step: res.body.data
-  //             })
-  //         )
-  //         .catch(err => console.log(err));
-  // }
-
   // Handles change for Concept, Idea, and Step
   handleChange = (key, index, property) => event => {
     const value = event.target.value;
