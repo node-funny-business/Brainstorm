@@ -7,6 +7,8 @@ import BrainstormText from "../components/BrainstormText"
 import ConceptText from "../components/ConceptText"
 import IdeaText from "../components/IdeaText"
 import StepText from "../components/StepText"
+import IdeaCard from "../components/IdeaCard"
+import StepCard from "../components/StepCard"
 import API from "../utils/API";
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
@@ -185,7 +187,6 @@ class Main extends React.Component {
     }
   };
 
-
   handleConceptSubmit = index => event => {
     event.preventDefault();
     const concept = this.state.concept;
@@ -307,9 +308,7 @@ class Main extends React.Component {
                 title={
                   <BrainstormText
                     key={this.state.currbrainstorm.id}
-                    value={
-                      this.state.currbrainstorm.brainstorm
-                    }
+                    value={this.state.currbrainstorm.brainstorm}
                     onChange=
                     {this.handleBrainstormChange(
                       "currbrainstorm", 0, "brainstorm")}
@@ -338,44 +337,22 @@ class Main extends React.Component {
         </Grid>
         {this.state.currconcept &&
           <Grid item xs={4}>
-            <Styled>{({ classes }) =>
-              <Card className={classes.card2}>
-                <CardHeader align="center" title={this.state.currconcept.concept} />
-                <CardContent>
-                  {this.state.idea.map((idea, i) => (
-                    <IdeaText
-                      key={idea.id}
-                      id={idea.id}
-                      onClick={this.selectCurrIdea(i)}
-                      onChange={this.handleChange("idea", i, "idea")}
-                      onSubmit={this.handleIdeaSubmit(i)}
-                      value={idea.idea}
-                      typ3={"idea"}
-                    />
-                  ))}
-                </CardContent>
-              </Card>}
-            </Styled>
+            <IdeaCard 
+            title={this.state.currconcept.concept}
+            ideaArray={this.state.idea}
+            setIdea={this.selectCurrIdea}
+            textChange={this.handleChange}
+            hitEnter={this.handleIdeaSubmit}
+            />
           </Grid>}
         {this.state.curridea &&
           <Grid item xs={4}>
-            <Styled>{({ classes }) =>
-              <Card className={classes.card3}>
-                <CardHeader align="center" title={this.state.curridea.idea} />
-                <CardContent>
-                  {this.state.step.map((step, i) => (
-                    <StepText
-                      key={step.id}
-                      id={step.id}
-                      onChange={this.handleChange("step", i, "step")}
-                      onSubmit={this.handleStepSubmit(i)}
-                      value={step.step}
-                      typ3={"step"}
-                      />
-                  ))}
-                </CardContent>
-              </Card>}
-            </Styled>
+            <StepCard 
+            title={this.state.curridea.idea}
+            stepArray={this.state.step}
+            textChange={this.handleChange}
+            hitEnter={this.handleStepSubmit}
+            />
           </Grid>}
       </Grid>
     )
