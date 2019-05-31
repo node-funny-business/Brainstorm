@@ -9,8 +9,8 @@ import Menu from '@material-ui/core/Menu';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
-import MoreIcon from '@material-ui/icons/MoreVert';
 import { Link } from 'react-router-dom'
+// import MoreIcon from '@material-ui/icons/MoreVert';
 
 const styles = theme => ({
   root: {
@@ -24,26 +24,26 @@ const styles = theme => ({
     marginRight: 20,
   },
   title: {
-    display: 'none',
+    // display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
   },
-  search: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing.unit * 2,
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing.unit * 3,
-      width: 'auto',
-    },
-  },
+  // search: {
+  //   position: 'relative',
+  //   borderRadius: theme.shape.borderRadius,
+  //   backgroundColor: fade(theme.palette.common.white, 0.15),
+  //   '&:hover': {
+  //     backgroundColor: fade(theme.palette.common.white, 0.25),
+  //   },
+  //   marginRight: theme.spacing.unit * 2,
+  //   marginLeft: 0,
+  //   width: '100%',
+  //   [theme.breakpoints.up('sm')]: {
+  //     marginLeft: theme.spacing.unit * 3,
+  //     width: 'auto',
+  //   },
+  // },
   inputRoot: {
     color: 'inherit',
     width: '100%',
@@ -107,7 +107,7 @@ class Nav extends React.Component {
       >
       <Link to="/" style={{ textDecoration: 'none' }}>
         <MenuItem onClick={this.handleMenuClose}>
-          Instructions
+          Brainstorm
         </MenuItem>
       </Link>
       <Link to="/aboutus" style={{ textDecoration: 'none' }}>
@@ -115,9 +115,9 @@ class Nav extends React.Component {
           About Us
         </MenuItem>
       </Link>
-      <Link to="/main" style={{ textDecoration: 'none' }}>
+      <Link to="/instructions" style={{ textDecoration: 'none' }}>
         <MenuItem onClick={this.handleMenuClose}>
-          Main
+          Instructions
         </MenuItem>
       </Link>
       </Menu >
@@ -175,7 +175,7 @@ class Nav extends React.Component {
             <Typography className={classes.title} variant="h6" color="inherit" noWrap>
               <i class="fas fa-brain"></i> BrainStorm
             </Typography>
-            <div className={classes.grow} />
+            {/* <div className={classes.grow} /> */}
             <div className={classes.sectionDesktop}>
               <IconButton
                 aria-owns={isMenuOpen ? 'material-appbar' : undefined}

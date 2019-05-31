@@ -38,7 +38,7 @@ class App extends Component {
             redirect_uri={window.location.origin + '/implicit/callback'}
             onAuthRequired={onAuthRequired} >
             <Nav color="primary" />
-            <Route path='/' exact={true} component={Instructions} />
+            <Route path='/' exact={true} component={Main} />
             <Route path='/Instructions' exact={true} component={Instructions} />
             <Route path='/Main' exact={true} component={Main} />
             <Route path='/brainstorms' exact={true} component={Brainstorms} />
