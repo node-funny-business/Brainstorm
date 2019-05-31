@@ -7,6 +7,7 @@ import BrainstormText from "../components/BrainstormText"
 import ConceptText from "../components/ConceptText"
 import IdeaText from "../components/IdeaText"
 import StepText from "../components/StepText"
+import BrainstormCard from "../components/BrainstormCard"
 import IdeaCard from "../components/IdeaCard"
 import StepCard from "../components/StepCard"
 import API from "../utils/API";
@@ -302,38 +303,16 @@ class Main extends React.Component {
     return (
       <Grid container spacing={24}>
         <Grid item xs={4}>
-          <Styled>{({ classes }) =>
-            <Card className={classes.card1}>
-              <CardHeader align="center"
-                title={
-                  <BrainstormText
-                    key={this.state.currbrainstorm.id}
-                    value={this.state.currbrainstorm.brainstorm}
-                    onChange=
-                    {this.handleBrainstormChange(
-                      "currbrainstorm", 0, "brainstorm")}
-                    onSubmit={this.handleBrainstormSubmit(0)}
-                    id={this.state.currbrainstorm.id}
-                    typ3={"brainstorm"}
-                  />
-                }
-              >
-              </CardHeader>
-              <CardContent>
-                {this.state.concept.map((concept, i) => (
-                  <ConceptText
-                    key={concept.id}
-                    id={concept.id}
-                    onClick={this.selectCurrConcept(i)}
-                    onChange={this.handleChange("concept", i, "concept")}
-                    onSubmit={this.handleConceptSubmit(i)}
-                    value={concept.concept}
-                    typ3={"concept"}
-                  />
-                ))}
-              </CardContent>
-            </Card>}
-          </Styled>
+          <BrainstormCard 
+          brainstormValue={this.state.currbrainstorm.brainstorm}
+          brainstormChange={this.handleBrainstormChange}
+          brainstormSubmit={this.handleBrainstormSubmit}
+          id={this.state.currbrainstorm.id}
+          conceptArray={this.state.concept}
+          selectConcept={this.selectCurrConcept}
+          conceptChange={this.handleChange}
+          conceptSubmit={this.handleConceptSubmit}
+          />
         </Grid>
         {this.state.currconcept &&
           <Grid item xs={4}>

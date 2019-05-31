@@ -3,6 +3,7 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import BrainstormText from "../BrainstormText";
+import ConceptText from "../ConceptText";
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
@@ -31,28 +32,42 @@ const Styled = createStyled({
   },
 });
 
-function IdeaCard(props) {
+function BrainstormCard(props) {
 
   return (
     <Styled>{({ classes }) =>
-      <Card className={classes.card2}>
-        <CardHeader align="center" title={props.title} />
-        <CardContent>
-          {props.ideaArray.map((idea, i) => (
-            <BrainstormText
-              key={idea.id}
-              id={idea.id}
-              onClick={props.setIdea(i)}
-              onChange={props.textChange("idea", i, "idea")}
-              onSubmit={props.hitEnter(i)}
-              value={idea.idea}
-              typ3={"idea"}
-            />
-          ))}
-        </CardContent>
-      </Card>}
-    </Styled>
+    <Card className={classes.card1}>
+      <CardHeader align="center"
+        title={
+          <BrainstormText
+            // key={this.state.currbrainstorm.id}
+            value={props.brainstormValue}
+            onChange=
+            {props.brainstormChange(
+              "currbrainstorm", 0, "brainstorm")}
+            onSubmit={props.brainstormSubmit(0)}
+            id={props.id}
+            typ3={"brainstorm"}
+          />
+        }
+      >
+      </CardHeader>
+      <CardContent>
+        {props.conceptArray.map((concept, i) => (
+          <ConceptText
+            key={concept.id}
+            id={concept.id}
+            onClick={props.selectConcept(i)}
+            onChange={props.conceptChange("concept", i, "concept")}
+            onSubmit={props.conceptSubmit(i)}
+            value={concept.concept}
+            typ3={"concept"}
+          />
+        ))}
+      </CardContent>
+    </Card>}
+  </Styled>
   )
 }
 
-export default IdeaCard
+export default BrainstormCard
