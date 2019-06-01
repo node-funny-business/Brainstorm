@@ -197,45 +197,61 @@ class Main extends React.Component {
       idea: [createEmptyIdea()],
       currconcept: newConcept
     })
-  }
-
-  handleIdeaSubmit = index => event => {
-    event.preventDefault();
-    const idea = this.state.idea;
-    const id = idea[index].id
-    if (id) {
-      API.updateIdea(idea[index])
-        .then(res =>
-          this.setState({
-            idea: idea.map(item => {
-              if (item.id === res.data.id) {
-                return res.data;
-              }
-              return item;
-            })
-          })
-        )
-        .catch(err => console.log(err));
-    } else {
-      let newData = this.ideaData(index)
-      API.saveIdea(newData)
-        .then(res =>
-          this.setState({
-            idea: [...idea.slice(0, idea.length - 1), res.data, createEmptyIdea()],
-            step: [createEmptyStep()],
-            curridea: res.data
-          })
-        )
-        .catch(err => console.log(err));
-    }
   };
 
+  ideaUpdate = ideas => {
+    this.setState({
+      idea: ideas
+    })
+  };
+
+  ideaSave = newIdea => {
+    const idea = this.state.idea;
+    this.setState({
+      idea: [...idea.slice(0, idea.length - 1), newIdea, createEmptyIdea()],
+      step: [createEmptyStep()],
+      curridea: newIdea
+    })
+  };
+
+
+  // handleIdeaSubmit = index => event => {
+  //   event.preventDefault();
+  //   const idea = this.state.idea;
+  //   const id = idea[index].id
+  //   if (id) {
+  //     API.updateIdea(idea[index])
+  //       .then(res =>
+  //         this.setState({
+  //           idea: idea.map(item => {
+  //             if (item.id === res.data.id) {
+  //               return res.data;
+  //             }
+  //             return item;
+  //           })
+  //         })
+  //       )
+  //       .catch(err => console.log(err));
+  //   } else {
+  //     let newData = this.ideaData(index)
+  //     API.saveIdea(newData)
+  //       .then(res =>
+  //         this.setState({
+  //           idea: [...idea.slice(0, idea.length - 1), res.data, createEmptyIdea()],
+  //           step: [createEmptyStep()],
+  //           curridea: res.data
+  //         })
+  //       )
+  //       .catch(err => console.log(err));
+  //   }
+  // };
+
   // Reassigns ideaData for axios
-  ideaData(index) {
-    let data = Object.assign({}, this.state.idea[index], { ConceptId: this.state.currconcept.id });
-    console.log("idea: " + this.state.currconcept.id)
-    return data;
-  }
+  // ideaData(index) {
+  //   let data = Object.assign({}, this.state.idea[index], { ConceptId: this.state.currconcept.id });
+  //   console.log("idea: " + this.state.currconcept.id)
+  //   return data;
+  // }
 
   handleStepSubmit = index => event => {
     event.preventDefault();
@@ -293,10 +309,13 @@ class Main extends React.Component {
           <Grid item xs={4}>
             <IdeaCard
               title={this.state.currconcept.concept}
+              conceptId={this.state.currconcept.id}
               ideaArray={this.state.idea}
               setIdea={this.selectCurrIdea}
               textChange={this.handleChange}
-              hitEnter={this.handleIdeaSubmit}
+              // hitEnter={this.handleIdeaSubmit}
+              ideaUpdate={this.ideaUpdate}
+              ideaSave={this.ideaSave}
             />
           </Grid>}
         {this.state.curridea &&

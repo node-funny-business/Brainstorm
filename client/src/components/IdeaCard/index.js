@@ -21,39 +21,68 @@ function createStyled(styles, options) {
 }
 
 const Styled = createStyled({
-  card1: {
-    backgroundColor: '#D7CCC8'
-  },
   card2: {
     backgroundColor: '#CFD8DC'
-  },
-  card3: {
-    backgroundColor: '#EEEEEE'
-  },
+  }
 });
 
-function IdeaCard(props) {
+class IdeaCard extends React.Component {
 
-  return (
-    <Styled>{({ classes }) =>
-      <Card className={classes.card2}>
-        <CardHeader align="center" title={props.title} />
-        <CardContent>
-          {props.ideaArray.map((idea, i) => (
-            <IdeaText
-              key={idea.id}
-              id={idea.id}
-              onClick={props.setIdea(i)}
-              onChange={props.textChange("idea", i, "idea")}
-              onSubmit={props.hitEnter(i)}
-              value={idea.idea}
-              typ3={"idea"}
-            />
-          ))}
-        </CardContent>
-      </Card>}
-    </Styled>
-  )
+  ideaSubmit = index => event => {
+    event.preventDefault();
+    const idea = this.props.ideaArray;
+    const id = idea[index].id;
+    let updatedIdeas;
+    if (id) {
+      API.updateIdea(idea[index])
+        .then(res =>
+          updatedIdeas = idea.map(item => {
+            if (item.id === res.data.id) {
+              return res.data;
+            }
+            return item;
+          })
+        ).then(() => this.props.ideaUpdate(updatedIdeas))
+        .catch(err => console.log(err));
+    } else {
+      let newData = this.ideaData(index)
+      API.saveIdea(newData)
+        .then(res =>
+          this.props.ideaSave(res.data)
+        )
+        .catch(err => console.log(err));
+    }
+  };
+
+  // Reassigns ideaData for axios
+  ideaData = index => {
+    let data = Object.assign({}, this.props.ideaArray[index], { ConceptId: this.props.conceptId });
+    return data;
+  }
+
+  render() {
+    return (
+      <Styled>{({ classes }) =>
+        <Card className={classes.card2}>
+          <CardHeader align="center" title={this.props.title} />
+          <CardContent>
+            {this.props.ideaArray.map((idea, i) => (
+              <IdeaText
+                key={idea.id}
+                id={idea.id}
+                onClick={this.props.setIdea(i)}
+                onChange={this.props.textChange("idea", i, "idea")}
+                // onSubmit={this.props.hitEnter(i)}
+                onSubmit={this.ideaSubmit(i)}
+                value={idea.idea}
+                typ3={"idea"}
+              />
+            ))}
+          </CardContent>
+        </Card>}
+      </Styled>
+    )
+  }
 }
 
 export default IdeaCard

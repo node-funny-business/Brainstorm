@@ -23,13 +23,7 @@ function createStyled(styles, options) {
 const Styled = createStyled({
   card1: {
     backgroundColor: '#D7CCC8'
-  },
-  card2: {
-    backgroundColor: '#CFD8DC'
-  },
-  card3: {
-    backgroundColor: '#EEEEEE'
-  },
+  }
 });
 
 class BrainstormCard extends React.Component {
@@ -37,7 +31,7 @@ class BrainstormCard extends React.Component {
   conceptSubmit = index => event => {
     event.preventDefault();
     const concept = this.props.conceptArray;
-    const id = concept[index].id
+    const id = concept[index].id;
     let updatedConcepts;
     if (id) {
       API.updateConcept(concept[index])
