@@ -5,6 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import IdeaText from "../IdeaText";
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import API from "../../utils/API";
 
 
 function createStyled(styles, options) {

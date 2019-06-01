@@ -146,15 +146,15 @@ class Main extends React.Component {
         curridea: this.state.idea[index]
       })
     )
-    .then(() => {
-      API.getAllSteps(this.state.curridea.id)
-        .then(data => {
-          var viewModels = data.data;
-          this.setState({
-            step: [...viewModels, createEmptyStep()]
-          });
-        })
-    }).catch(err => console.log(err));
+      .then(() => {
+        API.getAllSteps(this.state.curridea.id)
+          .then(data => {
+            var viewModels = data.data;
+            this.setState({
+              step: [...viewModels, createEmptyStep()]
+            });
+          })
+      }).catch(err => console.log(err));
   };
 
   // If id exists, Update. If not, Post.
@@ -184,42 +184,19 @@ class Main extends React.Component {
     }
   };
 
-  handleConceptSubmit = index => event => {
-    event.preventDefault();
-    const concept = this.state.concept;
-    const id = concept[index].id
-    if (id) {
-      API.updateConcept(concept[index])
-        .then(res =>
-          this.setState({
-            concept: concept.map(item => {
-              if (item.id === res.data.id) {
-                return res.data;
-              }
-              return item;
-            })
-          })
-        )
-        .catch(err => console.log(err));
-    } else {
-      let newData = this.conceptData(index);
-      API.saveConcept(newData)
-        .then(res =>
-          this.setState({
-            concept: [...concept.slice(0, concept.length - 1), res.data, createEmptyConcept()],
-            idea: [createEmptyIdea()],
-            currconcept: res.data
-          })
-        )
-        .catch(err => console.log(err));
-    }
+  conceptUpdate = concepts => {
+    this.setState({
+      concept: concepts
+    })
   };
 
-  // Reassigns conceptData for axios
-  conceptData(index) {
-    let data = Object.assign({}, this.state.concept[index], { BrainstormId: this.state.currbrainstorm.id });
-    console.log("concept: " + this.state.currbrainstorm)
-    return data;
+  conceptSave = newConcept => {
+    const concept = this.state.concept;
+    this.setState({
+      concept: [...concept.slice(0, concept.length - 1), newConcept, createEmptyConcept()],
+      idea: [createEmptyIdea()],
+      currconcept: newConcept
+    })
   }
 
   handleIdeaSubmit = index => event => {
@@ -307,7 +284,9 @@ class Main extends React.Component {
             conceptArray={this.state.concept}
             selectConcept={this.selectCurrConcept}
             conceptChange={this.handleChange}
-            conceptSubmit={this.handleConceptSubmit}
+            // conceptSubmit={this.handleConceptSubmit}
+            conceptUpdate={this.conceptUpdate}
+            conceptSave={this.conceptSave}
           />
         </Grid>
         {this.state.currconcept &&
