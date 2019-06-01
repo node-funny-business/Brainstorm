@@ -7,7 +7,6 @@ import ConceptText from "../ConceptText";
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
-
 function createStyled(styles, options) {
   function Styled(props) {
     const { children, ...other } = props;
@@ -33,7 +32,6 @@ const Styled = createStyled({
 });
 
 function BrainstormCard(props) {
-
   return (
     <Styled>{({ classes }) =>
     <Card className={classes.card1}>
