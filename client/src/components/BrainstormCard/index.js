@@ -28,6 +28,29 @@ const Styled = createStyled({
 
 class BrainstormCard extends React.Component {
 
+  brainstormSubmit = index => event => {
+    event.preventDefault();
+    // const brainstorm = this.props.brainstorm;
+    const id = this.props.id
+    const value = this.props.brainstormValue
+    if (id) {
+      API.updateBrainstorm({ brainstorm: value, id: id })
+        .then(res =>
+          this.props.brainstormUpdate(res.data)
+          // this.setState({
+          //   currbrainstorm: res.data
+          // })
+        )
+        .catch(err => console.log(err));
+    } else {
+      API.saveBrainstorm({ brainstorm: value })
+        .then(res =>
+          this.props.brainstormSave(res.data)
+        )
+        .catch(err => console.log(err));
+    }
+  };
+
   conceptSubmit = index => event => {
     event.preventDefault();
     const concept = this.props.conceptArray;
@@ -72,7 +95,7 @@ class BrainstormCard extends React.Component {
                 onChange=
                 {this.props.brainstormChange(
                   "currbrainstorm", 0, "brainstorm")}
-                onSubmit={this.props.brainstormSubmit(0)}
+                onSubmit={this.brainstormSubmit(0)}
                 id={this.props.id}
                 typ3={"brainstorm"}
               />

@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
-import BrainstormText from "../components/BrainstormText"
-import ConceptText from "../components/ConceptText"
-import IdeaText from "../components/IdeaText"
-import StepText from "../components/StepText"
+// import Card from '@material-ui/core/Card';
+// import CardHeader from '@material-ui/core/CardHeader';
+// import CardContent from '@material-ui/core/CardContent';
+// import BrainstormText from "../components/BrainstormText"
+// import ConceptText from "../components/ConceptText"
+// import IdeaText from "../components/IdeaText"
+// import StepText from "../components/StepText"
 import BrainstormCard from "../components/BrainstormCard"
 import IdeaCard from "../components/IdeaCard"
 import StepCard from "../components/StepCard"
@@ -158,30 +158,44 @@ class Main extends React.Component {
   };
 
   // If id exists, Update. If not, Post.
-  handleBrainstormSubmit = index => event => {
-    event.preventDefault();
-    const brainstorm = this.state.currbrainstorm;
-    const id = brainstorm.id
-    const value = brainstorm.brainstorm
-    if (id) {
-      API.updateBrainstorm({ brainstorm: value, id: id })
-        .then(res =>
-          this.setState({
-            currbrainstorm: res.data
-          })
-        )
-        .catch(err => console.log(err));
-    } else {
-      API.saveBrainstorm({ brainstorm: value })
-        .then(res =>
-          this.setState({
-            currbrainstorm: res.data,
-            concept: [createEmptyConcept()]
-          })
+  // handleBrainstormSubmit = index => event => {
+  //   event.preventDefault();
+  //   const brainstorm = this.state.currbrainstorm;
+  //   const id = brainstorm.id
+  //   const value = brainstorm.brainstorm
+  //   if (id) {
+  //     API.updateBrainstorm({ brainstorm: value, id: id })
+  //       .then(res =>
+  //         this.setState({
+  //           currbrainstorm: res.data
+  //         })
+  //       )
+  //       .catch(err => console.log(err));
+  //   } else {
+  //     API.saveBrainstorm({ brainstorm: value })
+  //       .then(res =>
+  //         this.setState({
+  //           currbrainstorm: res.data,
+  //           concept: [createEmptyConcept()]
+  //         })
 
-        )
-        .catch(err => console.log(err));
-    }
+  //       )
+  //       .catch(err => console.log(err));
+  //   }
+  // };
+
+  brainstormUpdate = brainstorm => {
+    this.setState({
+      brainstorm: brainstorm
+    })
+  };
+
+  brainstormSave = newBrainstorm => {
+    const brainstorm = this.state.currbrainstorm;
+    this.setState({
+      currbrainstorm: newBrainstorm,
+      concept: [createEmptyConcept()]
+    })
   };
 
   conceptUpdate = concepts => {
@@ -227,50 +241,18 @@ class Main extends React.Component {
     })
   };
 
-  // handleStepSubmit = index => event => {
-  //   event.preventDefault();
-  //   const step = this.state.step;
-  //   const id = step[index].id
-  //   if (id) {
-  //     API.updateStep(step[index])
-  //       .then(res =>
-  //         this.setState({
-  //           step: step.map(item => {
-  //             if (item.id === res.data.id) {
-  //               return res.data;
-  //             }
-  //             return item;
-  //           })
-  //         })
-  //       )
-  //       .catch(err => console.log(err));
-  //   } else {
-  //     let newData = this.stepData(index)
-  //     API.saveStep(newData)
-  //       .then(res =>
-  //         this.setState({
-  //           step: [...step.slice(0, step.length - 1), res.data, createEmptyStep()]
-  //         })
-  //       )
-  //       .catch(err => console.log(err));
-  //   }
-  // };
-  // // Reassigns stepData for axios
-  // stepData(index) {
-  //   let data = Object.assign({}, this.state.step[index], { IdeaId: this.state.curridea.id });
-  //   console.log(this.state.curridea.id)
-  //   return data;
-  // }
-
   render() {
     return (
       <Grid container spacing={24}>
         <Grid item xs={4}>
           <BrainstormCard
+            // brainstorm={this.state.currbrainstorm}
             brainstormValue={this.state.currbrainstorm.brainstorm}
-            brainstormChange={this.handleBrainstormChange}
-            brainstormSubmit={this.handleBrainstormSubmit}
             id={this.state.currbrainstorm.id}
+            brainstormChange={this.handleBrainstormChange}
+            brainstormUpdate={this.brainstormUpdate}
+            brainstormSave={this.brainstormSave}
+            // brainstormSubmit={this.handleBrainstormSubmit}
             conceptArray={this.state.concept}
             selectConcept={this.selectCurrConcept}
             conceptChange={this.handleChange}
