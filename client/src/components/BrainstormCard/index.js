@@ -83,6 +83,7 @@ class BrainstormCard extends React.Component {
     // console.log("concept: " + this.state.currbrainstorm)
     return data;
   }
+  
   render() {
     return (
       <Styled>{({ classes }) =>
