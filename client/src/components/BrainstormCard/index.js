@@ -86,7 +86,6 @@ class BrainstormCard extends React.Component {
                 id={concept.id}
                 onClick={this.props.selectConcept(i)}
                 onChange={this.props.conceptChange("concept", i, "concept")}
-                // onSubmit={this.props.conceptSubmit(i)}
                 onSubmit={this.conceptSubmit(i)}
                 value={concept.concept}
                 typ3={"concept"}

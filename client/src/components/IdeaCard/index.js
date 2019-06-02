@@ -72,7 +72,6 @@ class IdeaCard extends React.Component {
                 id={idea.id}
                 onClick={this.props.setIdea(i)}
                 onChange={this.props.textChange("idea", i, "idea")}
-                // onSubmit={this.props.hitEnter(i)}
                 onSubmit={this.ideaSubmit(i)}
                 value={idea.idea}
                 typ3={"idea"}

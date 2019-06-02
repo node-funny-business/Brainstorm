@@ -5,6 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import StepText from "../StepText";
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import API from "../../utils/API";
 
 
 function createStyled(styles, options) {
@@ -20,38 +21,65 @@ function createStyled(styles, options) {
 }
 
 const Styled = createStyled({
-  card1: {
-    backgroundColor: '#D7CCC8'
-  },
-  card2: {
-    backgroundColor: '#CFD8DC'
-  },
   card3: {
     backgroundColor: '#EEEEEE'
-  },
+  }
 });
 
-function StepCard(props) {
+class StepCard extends React.Component {
 
-  return (
-    <Styled>{({ classes }) =>
-    <Card className={classes.card3}>
-      <CardHeader align="center" title={props.title} />
-      <CardContent>
-        {props.stepArray.map((step, i) => (
-          <StepText
-            key={step.id}
-            id={step.id}
-            onChange={props.textChange("step", i, "step")}
-            onSubmit={props.hitEnter(i)}
-            value={step.step}
-            typ3={"step"}
-            />
-        ))}
-      </CardContent>
-    </Card>}
-  </Styled>
-  )
+  stepSubmit = index => event => {
+    event.preventDefault();
+    const step = this.props.stepArray;
+    const id = step[index].id;
+    let updatedSteps
+    if (id) {
+      API.updateStep(step[index])
+        .then(res =>
+            updatedSteps = step.map(item => {
+              if (item.id === res.data.id) {
+                return res.data;
+              }
+              return item;
+            })
+        ).then(() => this.props.stepUpdate(updatedSteps))
+        .catch(err => console.log(err));
+    } else {
+      let newData = this.stepData(index)
+      API.saveStep(newData)
+        .then(res =>
+          this.props.stepSave(res.data)
+        )
+        .catch(err => console.log(err));
+    }
+  };
+  // Reassigns stepData for axios
+  stepData = index => {
+    let data = Object.assign({}, this.props.stepArray[index], { IdeaId: this.props.ideaId });
+    return data;
+  }
+
+  render() {
+    return (
+      <Styled>{({ classes }) =>
+        <Card className={classes.card3}>
+          <CardHeader align="center" title={this.props.title} />
+          <CardContent>
+            {this.props.stepArray.map((step, i) => (
+              <StepText
+                key={step.id}
+                id={step.id}
+                onChange={this.props.textChange("step", i, "step")}
+                onSubmit={this.stepSubmit(i)}
+                value={step.step}
+                typ3={"step"}
+              />
+            ))}
+          </CardContent>
+        </Card>}
+      </Styled>
+    )
+  }
 }
 
 export default StepCard

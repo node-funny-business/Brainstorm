@@ -214,16 +214,28 @@ class Main extends React.Component {
     })
   };
 
+  stepUpdate = steps => {
+    this.setState({
+      step: steps
+    })
+  };
 
-  // handleIdeaSubmit = index => event => {
+  stepSave = newStep => {
+    const step = this.state.step;
+    this.setState({
+      step: [...step.slice(0, step.length - 1), newStep, createEmptyStep()]
+    })
+  };
+
+  // handleStepSubmit = index => event => {
   //   event.preventDefault();
-  //   const idea = this.state.idea;
-  //   const id = idea[index].id
+  //   const step = this.state.step;
+  //   const id = step[index].id
   //   if (id) {
-  //     API.updateIdea(idea[index])
+  //     API.updateStep(step[index])
   //       .then(res =>
   //         this.setState({
-  //           idea: idea.map(item => {
+  //           step: step.map(item => {
   //             if (item.id === res.data.id) {
   //               return res.data;
   //             }
@@ -233,60 +245,22 @@ class Main extends React.Component {
   //       )
   //       .catch(err => console.log(err));
   //   } else {
-  //     let newData = this.ideaData(index)
-  //     API.saveIdea(newData)
+  //     let newData = this.stepData(index)
+  //     API.saveStep(newData)
   //       .then(res =>
   //         this.setState({
-  //           idea: [...idea.slice(0, idea.length - 1), res.data, createEmptyIdea()],
-  //           step: [createEmptyStep()],
-  //           curridea: res.data
+  //           step: [...step.slice(0, step.length - 1), res.data, createEmptyStep()]
   //         })
   //       )
   //       .catch(err => console.log(err));
   //   }
   // };
-
-  // Reassigns ideaData for axios
-  // ideaData(index) {
-  //   let data = Object.assign({}, this.state.idea[index], { ConceptId: this.state.currconcept.id });
-  //   console.log("idea: " + this.state.currconcept.id)
+  // // Reassigns stepData for axios
+  // stepData(index) {
+  //   let data = Object.assign({}, this.state.step[index], { IdeaId: this.state.curridea.id });
+  //   console.log(this.state.curridea.id)
   //   return data;
   // }
-
-  handleStepSubmit = index => event => {
-    event.preventDefault();
-    const step = this.state.step;
-    const id = step[index].id
-    if (id) {
-      API.updateStep(step[index])
-        .then(res =>
-          this.setState({
-            step: step.map(item => {
-              if (item.id === res.data.id) {
-                return res.data;
-              }
-              return item;
-            })
-          })
-        )
-        .catch(err => console.log(err));
-    } else {
-      let newData = this.stepData(index)
-      API.saveStep(newData)
-        .then(res =>
-          this.setState({
-            step: [...step.slice(0, step.length - 1), res.data, createEmptyStep()]
-          })
-        )
-        .catch(err => console.log(err));
-    }
-  };
-  // Reassigns stepData for axios
-  stepData(index) {
-    let data = Object.assign({}, this.state.step[index], { IdeaId: this.state.curridea.id });
-    console.log(this.state.curridea.id)
-    return data;
-  }
 
   render() {
     return (
@@ -300,7 +274,6 @@ class Main extends React.Component {
             conceptArray={this.state.concept}
             selectConcept={this.selectCurrConcept}
             conceptChange={this.handleChange}
-            // conceptSubmit={this.handleConceptSubmit}
             conceptUpdate={this.conceptUpdate}
             conceptSave={this.conceptSave}
           />
@@ -313,7 +286,6 @@ class Main extends React.Component {
               ideaArray={this.state.idea}
               setIdea={this.selectCurrIdea}
               textChange={this.handleChange}
-              // hitEnter={this.handleIdeaSubmit}
               ideaUpdate={this.ideaUpdate}
               ideaSave={this.ideaSave}
             />
@@ -322,9 +294,12 @@ class Main extends React.Component {
           <Grid item xs={4}>
             <StepCard
               title={this.state.curridea.idea}
+              ideaId={this.state.curridea.id}
               stepArray={this.state.step}
               textChange={this.handleChange}
               hitEnter={this.handleStepSubmit}
+              stepUpdate={this.stepUpdate}
+              stepSave={this.stepSave}
             />
           </Grid>}
       </Grid>
