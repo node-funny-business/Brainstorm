@@ -123,38 +123,38 @@ class Nav extends React.Component {
       </Menu >
     );
 
-    const renderMobileMenu = (
-      <Menu
-        anchorEl={mobileMoreAnchorEl}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        open={isMobileMenuOpen}
-        onClose={this.handleMenuClose}
-      >
-        <MenuItem onClick={this.handleMobileMenuClose}>
-          <IconButton color="inherit">
-            <i class="material-icons">save</i>
-          </IconButton>
-          <p>Save</p>
-        </MenuItem>
-        <Link to="/brainstorms" style={{ textDecoration: 'none' }}>
-          <MenuItem onClick={this.handleMobileMenuClose}>
-            <IconButton color="inherit">
-              <i class="material-icons">flash_on</i>
-            </IconButton>
-            <p>My Brainstorms</p>
-          </MenuItem>
-        </Link>
-        <Link to="/login" style={{ textDecoration: 'none' }}>
-          <MenuItem onClick={this.handleMobileMenuClose}>
-            <IconButton color="inherit">
-              <i class="material-icons">account_circle</i>
-            </IconButton>
-            <p>Log Out</p>
-          </MenuItem>
-        </Link>
-      </Menu>
-    );
+    // const renderMobileMenu = (
+    //   <Menu
+    //     anchorEl={mobileMoreAnchorEl}
+    //     anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+    //     transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+    //     open={isMobileMenuOpen}
+    //     onClose={this.handleMenuClose}
+    //   >
+    //     <MenuItem onClick={this.handleMobileMenuClose}>
+    //       <IconButton color="inherit">
+    //         <i class="material-icons">save</i>
+    //       </IconButton>
+    //       <p>Save</p>
+    //     </MenuItem>
+    //     <Link to="/brainstorms" style={{ textDecoration: 'none' }}>
+    //       <MenuItem onClick={this.handleMobileMenuClose}>
+    //         <IconButton color="inherit">
+    //           <i class="material-icons">flash_on</i>
+    //         </IconButton>
+    //         <p>My Brainstorms</p>
+    //       </MenuItem>
+    //     </Link>
+    //     <Link to="/login" style={{ textDecoration: 'none' }}>
+    //       <MenuItem onClick={this.handleMobileMenuClose}>
+    //         <IconButton color="inherit">
+    //           <i class="material-icons">account_circle</i>
+    //         </IconButton>
+    //         <p>Log Out</p>
+    //       </MenuItem>
+    //     </Link>
+    //   </Menu>
+    // );
 
     return (
       <div className={classes.root}>
@@ -176,25 +176,25 @@ class Nav extends React.Component {
               <i class="fas fa-brain"></i> BrainStorm
             </Typography>
             {/* <div className={classes.grow} /> */}
-            <div className={classes.sectionDesktop}>
+            {/* <div className={classes.sectionDesktop}>
               <IconButton
                 aria-owns={isMenuOpen ? 'material-appbar' : undefined}
                 aria-haspopup="true"
                 onClick={this.handleMobileMenuOpen}
                 color="inherit"
               >
-                {/* <MoreIcon /> */}
+                <MoreIcon />
               </IconButton>
             </div>
             <div className={classes.sectionMobile}>
               <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
-                {/* <MoreIcon /> */}
+                <MoreIcon />
               </IconButton>
-            </div>
+            </div> */}
           </Toolbar>
         </AppBar>
         {renderMenu}
-        {renderMobileMenu}
+        {/* {renderMobileMenu} */}
       </div>
     );
   }
