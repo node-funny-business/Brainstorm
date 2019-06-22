@@ -5,10 +5,8 @@ import CardHeader from '@material-ui/core/CardHeader';
 import { CardContent } from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';
 import CardMedia from '@material-ui/core/CardMedia';
-import Link from '@material-ui/core/Link';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import Divider from '@material-ui/core/Divider';
 import DanielImg from '../images/DanielOlson.jpg'
 import JonImg from '../images/JonatanViera.jpg'
 import JasonImg from '../images/JasonLee.jpg'
@@ -39,14 +37,14 @@ const Styled = createStyled({
   },
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '56.25%',
   }
 });
 
 const styles = () => ({
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '56.25%',
   }
 });
 
